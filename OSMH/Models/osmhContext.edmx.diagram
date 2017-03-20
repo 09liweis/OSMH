@@ -6,6 +6,8 @@
     <edmx:Diagrams>
       <Diagram DiagramId="6ec45374c7f8414c80e7218902b4ddc9" Name="Diagram1">
         <EntityTypeShape EntityType="osmhModel.Test" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="osmhModel.UserAccount" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="osmhModel.Blog" Width="1.5" PointX="0.75" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

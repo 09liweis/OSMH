@@ -26,5 +26,7 @@ namespace OSMH.Models
         }
     
         public DbSet<Test> Test { get; set; }
+        public DbSet<UserAccount> UserAccount { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
     }
 }
