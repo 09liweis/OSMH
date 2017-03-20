@@ -25,5 +25,6 @@ namespace OSMH.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public DbSet<Test> Tests { get; set; }
     }
 }
