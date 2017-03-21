@@ -1,0 +1,15 @@
+﻿@model OSMH.Models.Blog
+
+@{
+    ViewBag.Title = Model.Title;
+}
+
+@Html.ActionLink("Go back to Blog List", "/", "BlogNews", new { area = "" }, new { @class = "btn btn-primary" })
+<div class="row">
+    <div class="col-md-8">
+        <h1>@Html.DisplayFor(model => model.Title)</h1>
+        <p>@Html.DisplayFor(model => model.PublishDate)</p>
+        <p>@Html.DisplayFor(model => model.Content)</p>
+    </div>
+    @Html.Partial("~/Views/Shared/_BlogDates.cshtml")
+</div>

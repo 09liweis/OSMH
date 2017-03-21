@@ -1,0 +1,13 @@
+﻿@model IEnumerable<OSMH.Models.Blog>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>News and Blog</h1>
+
+<div class="row">
+    @Html.Partial("~/Views/Shared/_BlogList.cshtml", Model)
+    @Html.Partial("~/Views/Shared/_BlogDates.cshtml")
+</div>
+
