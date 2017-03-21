@@ -5,16 +5,16 @@ using System.Web;
 using System.Web.Mvc;
 
 using OSMH.Models;
-
 namespace OSMH.Controllers
 {
     public class BlogsController : Controller
     {
-        private osmhEntities db = new osmhEntities();
+        private OSMHDbContext db = new OSMHDbContext();
         // GET: Blogs
-        public JsonResult Index()
+        public ActionResult Index()
         {
-            return new JsonResult { Data = db.Blogs.ToList(), JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            List<Blog> blogs = db.blogs.ToList();
+            return View(blogs);
         }
     }
 }
