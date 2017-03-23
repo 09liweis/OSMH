@@ -205,6 +205,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Alert.cs" />
+    <Compile Include="Models\AlertAchive.cs" />
     <Compile Include="Models\Blog.cs" />
     <Compile Include="Models\OSMHDbContext.cs" />
     <Compile Include="Models\UserAccount.cs" />
