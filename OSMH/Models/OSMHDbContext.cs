@@ -10,5 +10,6 @@ namespace OSMH.Models
     {
         public DbSet<Blog> blogs { get; set; }
         public DbSet<UserAccount> userAccounts { get; set; }
+        public DbSet<Doctor> doctors { get; set; }
     }
 }

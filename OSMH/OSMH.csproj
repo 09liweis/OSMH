@@ -194,11 +194,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BlogsController.cs" />
+    <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Blog.cs" />
+    <Compile Include="Models\Doctor.cs" />
     <Compile Include="Models\OSMHDbContext.cs" />
     <Compile Include="Models\UserAccount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -224,6 +226,7 @@
     <Content Include="Views\Shared\_BlogList.cshtml" />
     <Content Include="Views\Shared\_BlogDates.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Doctor\Dashboard.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
