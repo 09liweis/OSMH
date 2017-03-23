@@ -45,8 +45,9 @@ namespace SomeeTest.Controllers
                 if (user.Role == "doctor")
                 {
                     Doctor doctor = db.doctors.Where(d => d.User_id == user.Id).FirstOrDefault();
-                    Session["role"] = "doctor";
+                    Session["doctorId"] = doctor.Id.ToString();
                     Session["name"] = doctor.FirstName.ToString() + " " + doctor.LastName.ToString();
+                    return RedirectToAction("Dashboard", "Doctor");
                 }
                 return RedirectToAction("Loggedin");
             }
