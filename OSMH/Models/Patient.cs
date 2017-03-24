@@ -6,10 +6,11 @@ using System.Web;
 
 namespace OSMH.Models
 {
-    [Table("Doctor")]
-    public class Doctor
+    [Table("Patient")]
+    public class Patient
     {
         public int Id { get; set; }
-        public int User_id { get; set; }
+        public string SIN { get; set; }
+        public DateTime DOB { get; set; }
     }
 }
