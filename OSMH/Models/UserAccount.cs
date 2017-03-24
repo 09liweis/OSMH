@@ -14,6 +14,8 @@ namespace OSMH.Models
         [Required]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         [Required]
         public string UserName { get; set; }
         [Required]

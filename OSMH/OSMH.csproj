@@ -206,6 +206,7 @@
     <Compile Include="Models\Blog.cs" />
     <Compile Include="Models\Doctor.cs" />
     <Compile Include="Models\OSMHDbContext.cs" />
+    <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\Schedule.cs" />
     <Compile Include="Models\UserAccount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
