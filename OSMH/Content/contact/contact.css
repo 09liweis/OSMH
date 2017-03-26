@@ -1,0 +1,17 @@
+﻿#main{
+    margin-top:50px;
+}
+
+#main section{
+    background-color:cornsilk;
+    border-radius:10px;
+    padding:10px 3%;
+}
+
+.main-list{
+    margin:15px 0;
+}
+
+.main-list h4{
+    font-weight:bold;
+}

@@ -1,0 +1,19 @@
+﻿@model IEnumerable<OSMH.Models.ContactUs>
+
+@{
+    ViewBag.Title = "Contact OSMH";
+}
+
+<link rel="stylesheet" href="~/Content/contact/contact.css" />
+
+<main id="main" class="col-md-8 row">
+    @foreach (var contact in Model)
+    {
+        <section class="main-list col-md-12 row">
+            <h4>@Html.DisplayFor(modelItem => contact.ContactUs_name)</h4>
+            <h5>@Html.DisplayFor(modelItem => contact.ContactUs_info)</h5>
+            <h6>@Html.DisplayFor(modelItem => contact.ContactUs_email)</h6>
+            <h6>@Html.DisplayFor(modelItem => contact.ContactUs_phone)</h6>
+        </section>
+    }
+</main>
