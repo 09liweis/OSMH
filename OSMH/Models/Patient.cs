@@ -12,5 +12,6 @@ namespace OSMH.Models
         public int Id { get; set; }
         public string SIN { get; set; }
         public DateTime DOB { get; set; }
+        public int User_id { get; set; }
     }
 }
