@@ -184,6 +184,7 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Content\visitor\admin.css" />
     <Content Include="Content\themes\heroic-features.css" />
     <Content Include="Content\themes\homepage.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -214,6 +215,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\visitor\visitor.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -223,6 +225,7 @@
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\VisitorController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -234,6 +237,7 @@
     <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\Schedule.cs" />
     <Compile Include="Models\UserAccount.cs" />
+    <Compile Include="Models\VisitorLimit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -265,9 +269,9 @@
     <Content Include="Views\Contact\Create.cshtml" />
     <Content Include="Views\Contact\Edit.cshtml" />
     <Content Include="Views\Contact\Delete.cshtml" />
-
+    <Content Include="Views\Shared\_Visitor.cshtml" />
+    <Content Include="Views\Visitor\Admin.cshtml" />
     <Content Include="Views\Patient\Dashboard.cshtml" />
-
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
