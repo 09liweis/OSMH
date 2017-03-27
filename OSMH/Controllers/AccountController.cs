@@ -41,13 +41,17 @@ namespace SomeeTest.Controllers
             if (user != null)
             {
                 Session["userId"] = user.Id.ToString();
-                Session["userName"] = user.UserName.ToString();
+                Session["name"] = user.FirstName.ToString() + " " + user.LastName.ToString();
                 if (user.Role == "doctor")
                 {
                     Doctor doctor = db.doctors.Where(d => d.User_id == user.Id).FirstOrDefault();
                     Session["doctorId"] = doctor.Id.ToString();
-                    Session["name"] = user.FirstName.ToString() + " " + user.LastName.ToString();
                     return RedirectToAction("Dashboard", "Doctor");
+                } else if (user.Role == "patient")
+                {
+                    Patient patient = db.patients.Where(p => p.User_id == user.Id).FirstOrDefault();
+                    Session["patientId"] = patient.Id.ToString();
+                    return RedirectToAction("Dashboard", "Patient");
                 }
                 return RedirectToAction("Loggedin");
             }
