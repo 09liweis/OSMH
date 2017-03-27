@@ -240,15 +240,15 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Doctor\Dashboard.cshtml" />
     <Content Include="Views\Doctor\CreateSchedule.cshtml" />
-<<<<<<< HEAD
+
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\Contact\Admin.cshtml" />
     <Content Include="Views\Contact\Create.cshtml" />
     <Content Include="Views\Contact\Edit.cshtml" />
     <Content Include="Views\Contact\Delete.cshtml" />
-=======
+
     <Content Include="Views\Patient\Dashboard.cshtml" />
->>>>>>> sam
+
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
