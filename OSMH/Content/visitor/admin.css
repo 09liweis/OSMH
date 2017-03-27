@@ -1,0 +1,21 @@
+﻿[v-cloak] {
+    display: none;
+}
+
+aside{
+    margin-top:50px;
+    border-radius:10px;
+    background-color:antiquewhite;
+    padding: 10px 0;
+}
+
+#today h4{
+    font-weight:bold;
+    text-align:center;
+}
+
+#today > :nth-child(2) {
+    border-bottom: 1px solid black;
+    padding-bottom: 5px;
+    text-align: center;
+}
