@@ -12,6 +12,7 @@ namespace OSMH.Models
         public DbSet<UserAccount> userAccounts { get; set; }
         public DbSet<Doctor> doctors { get; set; }
         public DbSet<ContactUs> ContactUs { get; set; }
+        public DbSet<Patient> patients { get; set; }
 
         public System.Data.Entity.DbSet<OSMH.Models.Schedule> Schedules { get; set; }
     }
