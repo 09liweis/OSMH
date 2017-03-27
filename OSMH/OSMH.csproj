@@ -215,7 +215,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\visitor\visitor.js" />
+    <Content Include="Scripts\visitor\admin.js" />
+    <Content Include="Scripts\visitor\public.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -237,7 +238,9 @@
     <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\Schedule.cs" />
     <Compile Include="Models\UserAccount.cs" />
+    <Compile Include="Models\visitorAdmin.cs" />
     <Compile Include="Models\VisitorLimit.cs" />
+    <Compile Include="Models\VisitorReg.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -263,7 +266,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Doctor\Dashboard.cshtml" />
     <Content Include="Views\Doctor\CreateSchedule.cshtml" />
-
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\Contact\Admin.cshtml" />
     <Content Include="Views\Contact\Create.cshtml" />
@@ -272,6 +274,7 @@
     <Content Include="Views\Shared\_Visitor.cshtml" />
     <Content Include="Views\Visitor\Admin.cshtml" />
     <Content Include="Views\Patient\Dashboard.cshtml" />
+    <Content Include="Views\Visitor\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
