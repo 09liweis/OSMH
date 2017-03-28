@@ -233,6 +233,7 @@
     <Compile Include="Models\Blog.cs" />
     <Compile Include="Models\ContactUs.cs" />
     <Compile Include="Models\Doctor.cs" />
+    <Compile Include="Models\helper\Auth.cs" />
     <Compile Include="Models\OSMHDbContext.cs" />
     <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\Schedule.cs" />
