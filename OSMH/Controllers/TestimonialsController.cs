@@ -39,6 +39,11 @@ namespace OSMH.Controllers
             }
         }
 
+        public ActionResult Index()
+        {
+            return View(Testimonials);
+        }
+
         // GET: Testimonials/Create
         public ActionResult Admin()
         {
@@ -58,7 +63,7 @@ namespace OSMH.Controllers
             {
                 db.Testimonials.Add(test);
                 db.SaveChanges();
-                return RedirectToAction("Index", "Blogs");
+                return RedirectToAction("Index", "Testimonials");
             }
 
             return View(test);
