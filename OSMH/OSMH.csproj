@@ -237,8 +237,12 @@
     <Compile Include="Models\OSMHDbContext.cs" />
     <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\Schedule.cs" />
+<<<<<<< HEAD
     <Compile Include="Models\UserAccount.cs" />
     <Compile Include="Models\visitorAdmin.cs" />
+=======
+    <Compile Include="Models\User.cs" />
+>>>>>>> sam
     <Compile Include="Models\VisitorLimit.cs" />
     <Compile Include="Models\VisitorReg.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -257,14 +261,13 @@
     <Content Include="Views\Blogs\Create.cshtml" />
     <Content Include="Views\Blogs\Edit.cshtml" />
     <Content Include="Views\Blogs\Delete.cshtml" />
-    <Content Include="Views\Blogs\List.cshtml" />
+    <Content Include="Views\Blogs\Admin.cshtml" />
     <Content Include="Views\Blogs\Index.cshtml" />
     <Content Include="Views\Blogs\Archive.cshtml" />
     <Content Include="Views\Blogs\Details.cshtml" />
     <Content Include="Views\Shared\_BlogList.cshtml" />
     <Content Include="Views\Shared\_BlogDates.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Doctor\Dashboard.cshtml" />
     <Content Include="Views\Doctor\CreateSchedule.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\Contact\Admin.cshtml" />
@@ -274,7 +277,11 @@
     <Content Include="Views\Shared\_Visitor.cshtml" />
     <Content Include="Views\Visitor\Admin.cshtml" />
     <Content Include="Views\Patient\Dashboard.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Visitor\Index.cshtml" />
+=======
+    <Content Include="Views\Doctor\Admin.cshtml" />
+>>>>>>> sam
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -10,35 +10,52 @@ namespace OSMH.Controllers
     {
         private OSMHDbContext db = new OSMHDbContext();
         // GET: Doctor
-        public ActionResult Dashboard()
+        public ActionResult Admin()
+        {
+            //Temporary test
+            Session["doctorId"] = "1";
+            if (Session["doctorId"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            List<Schedule> schedules = db.Schedules.ToList();
+            return View(schedules);
+        }
+
+        public ActionResult CreateSchedule()
         {
             if (Session["doctorId"] == null)
             {
                 return RedirectToAction("Login", "Account");
             }
-            return View();
-        }
-
-        public ActionResult CreateSchedule()
-        {
             return View();
         }
 
         [HttpPost]
         public ActionResult CreateSchedule(Schedule schedule)
         {
-            if (Session["doctorId"] == null)
-            {
-                return RedirectToAction("Login", "Account");
-            }
-            var doctorId = Session["doctorId"];
-            schedule.Doctor_id = Convert.ToInt32(doctorId);
-            DateTime startTime = DateTime.Parse(schedule.StartTime);
-            DateTime endTime = DateTime.Parse(schedule.EndTime);
+            TimeSpan startTime = schedule.StartTime;
+            TimeSpan endTime = schedule.EndTime;
+
             db.Schedules.Add(schedule);
             db.SaveChanges();
 
-            return RedirectToAction("Dashboard");
+            while (startTime > endTime)
+            {
+                TimeSpan nextEndTime = startTime.Add(TimeSpan.FromMinutes(30));
+                Schedule newSchedule = new Schedule();
+                newSchedule.Doctor_id = schedule.Doctor_id;
+                newSchedule.StartTime = startTime;
+                newSchedule.EndTime = nextEndTime;
+                newSchedule.Date = schedule.Date;
+                db.Schedules.Add(newSchedule);
+                db.SaveChanges();
+
+                startTime = nextEndTime;
+            }
+
+            return RedirectToAction("Admin");
         }
     }
 }
