@@ -226,6 +226,7 @@
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TestimonialsController.cs" />
     <Compile Include="Controllers\VisitorController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Global.asax.cs">
@@ -237,6 +238,7 @@
     <Compile Include="Models\OSMHDbContext.cs" />
     <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\Schedule.cs" />
+    <Compile Include="Models\Testimonial.cs" />
     <Compile Include="Models\visitorAdmin.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\VisitorLimit.cs" />
@@ -274,6 +276,7 @@
     <Content Include="Views\Visitor\Admin.cshtml" />
     <Content Include="Views\Patient\Dashboard.cshtml" />
     <Content Include="Views\Doctor\Admin.cshtml" />
+    <Content Include="Views\Testimonials\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
