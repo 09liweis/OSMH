@@ -8,7 +8,7 @@ using System.Web;
 namespace OSMH.Models
 {
     [Table("UserAccount")]
-    public class UserAccount
+    public class User
     {
         public int Id { get; set; }
         [Required]

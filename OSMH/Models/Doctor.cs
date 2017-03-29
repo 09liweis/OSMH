@@ -11,5 +11,7 @@ namespace OSMH.Models
     {
         public int Id { get; set; }
         public int User_id { get; set; }
+        public virtual User User { get; set; }
+        public virtual ICollection<Schedule> Schedules { get; set; }
     }
 }

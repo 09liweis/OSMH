@@ -1,0 +1,15 @@
+﻿<script type="text/javascript" src="~/Scripts/visitor/public.js"></script>
+<link rel="stylesheet" href="~/Content/visitor/public.css" />
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Visitor.cshtml";
+}
+
+<div class="row">
+    <aside class="col-md-3">
+    </aside>
+    <main id="main" class="col-md-9">
+        <input placeholder="Your full name" v-model="name" />
+    </main>
+</div>
