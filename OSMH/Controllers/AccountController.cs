@@ -16,15 +16,15 @@ namespace SomeeTest.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(UserAccount userAccount)
+        public ActionResult Register(User user)
         {
             if (ModelState.IsValid)
             {
-                db.userAccounts.Add(userAccount);
+                db.users.Add(user);
                 db.SaveChanges();
 
                 ModelState.Clear();
-                ViewBag.Message = userAccount.UserName + " Succesfully registered";
+                ViewBag.Message = user.UserName + " Succesfully registered";
             }
             return View();
         }
@@ -35,9 +35,9 @@ namespace SomeeTest.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(UserAccount userAccount)
+        public ActionResult Login(User u)
         {
-            var user = db.userAccounts.Where(u => u.Email == userAccount.Email && u.Password == userAccount.Password).FirstOrDefault();
+            var user = db.users.Where(ur => u.Email == u.Email && u.Password == u.Password).FirstOrDefault();
             if (user != null)
             {
                 Session["userId"] = user.Id.ToString();
@@ -46,7 +46,7 @@ namespace SomeeTest.Controllers
                 {
                     Doctor doctor = db.doctors.Where(d => d.User_id == user.Id).FirstOrDefault();
                     Session["doctorId"] = doctor.Id.ToString();
-                    return RedirectToAction("Dashboard", "Doctor");
+                    return RedirectToAction("Admin", "Doctor");
                 } else if (user.Role == "patient")
                 {
                     Patient patient = db.patients.Where(p => p.User_id == user.Id).FirstOrDefault();

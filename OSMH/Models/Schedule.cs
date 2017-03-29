@@ -11,16 +11,18 @@ namespace OSMH.Models
     public class Schedule
     {
         public int Id { get; set; }
-        public int Doctor_id { get; set; }
         [Required]
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
         [Required]
         [DataType(DataType.Time)]
-        public string StartTime { get; set; }
+        public TimeSpan StartTime { get; set; }
         [Required]
         [DataType(DataType.Time)]
-        public string EndTime { get; set; }
+        public TimeSpan EndTime { get; set; }
         public bool Booked { get; set; }
+
+        public int Doctor_id { get; set; }
+        //public virtual Doctor Doctor { get; set; }
     }
 }

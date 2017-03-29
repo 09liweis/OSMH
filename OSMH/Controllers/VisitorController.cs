@@ -16,12 +16,16 @@ namespace OSMH.Controllers
         {
             return View();
         }
+        // Post: Read Public Page
+
+
+      
         // GET: Visitor Admin Page
         public ActionResult Admin()
         {
             return View();
         }
-        // Post: Read Admin Data
+        // Post: Read Admin Page
         public JsonResult readAdmin()
         {
             VisitorLimit limitation = db.VisitorLimit.FirstOrDefault(l => l.VisitorLimit_date == DateTime.Today);
@@ -29,7 +33,14 @@ namespace OSMH.Controllers
             {
                 limitation = db.VisitorLimit.Find(1);
             }
-            return Json(limitation);
+
+            int regs = db.VisitorReg.Where(r => r.VisitorReg_date == DateTime.Today).Count();
+
+            visitorAdmin visitorAdmin = new visitorAdmin();
+            visitorAdmin.visitorLimit = limitation;
+            visitorAdmin.visitorRegs = regs;
+
+            return Json(visitorAdmin);
         }
     }
 }

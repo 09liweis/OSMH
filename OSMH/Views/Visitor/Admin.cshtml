@@ -1,4 +1,6 @@
-﻿
+﻿<script type="text/javascript" src="~/Scripts/visitor/admin.js"></script>
+<link rel="stylesheet" href="~/Content/visitor/admin.css" />
+
 @{
     ViewBag.Title = "Admin";
     Layout = "~/Views/Shared/_Visitor.cshtml";
@@ -11,10 +13,11 @@
             <h4>
                 Status Today
             </h4>
-            <h5>{{ message.VisitorLimit_date }}</h5>
-            <h5><b>Maxmium Visitors</b> - {{ message.VisitorLimit_max }}</h5>
-            <h5><b>Visit Start Hour</b> - {{ message.VisitorLimit_start }}</h5>
-            <h5><b>Visit End Hour</b> - {{ message.VisitorLimit_end }}</h5>
+            <h5>{{ limitations.VisitorLimit_date }}</h5>
+            <h5><b>Maxmium Visitors</b> - {{ limitations.VisitorLimit_max }}</h5>
+            <h5><b>Registered Visitors</b> - {{ registered }}</h5>
+            <h5><b>Visit Start Hour</b> - {{ limitations.VisitorLimit_start }}</h5>
+            <h5><b>Visit End Hour</b> - {{ limitations.VisitorLimit_end }}</h5>
         </section>
     </aside>
 </div>
