@@ -8,8 +8,8 @@
 <div class="row">
     <div class="col-md-8">
         <h1>@Html.DisplayFor(model => model.Title)</h1>
-        <p>@Html.DisplayFor(model => model.PublishDate)</p>
-        <p>@Html.DisplayFor(model => model.Content)</p>
+        <p><span class="glyphicon glyphicon-time"></span> Posted on @Html.DisplayFor(model => model.PublishDate)</p>
+        <p>@Html.Raw(Model.Content)</p>
     </div>
     @Html.Partial("~/Views/Shared/_BlogDates.cshtml")
 </div>

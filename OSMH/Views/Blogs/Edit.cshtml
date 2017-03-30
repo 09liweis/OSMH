@@ -7,7 +7,7 @@
 <h2 class="text-center">Edit Blog - @Model.Title</h2>
 
 <div>
-    @Html.ActionLink("Back to List", "/", "Blogs", new { @class = "btn btn-primary" })
+    @Html.ActionLink("Back to List", "Admin", "Blogs", new { @class = "btn btn-primary" })
 </div>
 
 @using (Html.BeginForm("Edit", "Blogs", FormMethod.Post, new { @class = "blog-form" }))

@@ -14,7 +14,7 @@ namespace OSMH.Controllers
         public ActionResult Admin()
         {
             //Temporary test
-            Session["doctorId"] = "1";
+            //Session["doctorId"] = "1";
             if (!Auth.checkLogin())
             {
                 return RedirectToAction("Login", "Account");

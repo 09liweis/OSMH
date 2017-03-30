@@ -21,6 +21,10 @@
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
+
+        <script src="//cloud.tinymce.com/stable/tinymce.min.js"></script>
+        <script>tinymce.init({ selector:'textarea' });</script>
+
     </head>
     <body>
         <header>
@@ -104,7 +108,7 @@
                                         <li><a href="#">Staff Admin Login</a></li>
                                         <li><a href="#">Directions</a></li>
                                         <li><a href="#">Testimonials</a></li>
-                                        <li><a href="#">Blog</a></li>
+                                        <li>@Html.ActionLink("Blog", "Index", "Blogs")</li>
                                     </ul>
                                 </li> 
                                 <li>
@@ -117,7 +121,7 @@
                                 </li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                                <li><a href="/Account/Login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                             </ul>
                         </div>
                         <!-- /.navbar-collapse -->

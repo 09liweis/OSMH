@@ -37,21 +37,22 @@ namespace SomeeTest.Controllers
         [HttpPost]
         public ActionResult Login(User u)
         {
-            var user = db.users.Where(ur => u.Email == u.Email && u.Password == u.Password).FirstOrDefault();
+            var user = db.users.Where(ur => ur.Email == u.Email && ur.Password == u.Password).FirstOrDefault();
             if (user != null)
             {
                 Session["userId"] = user.Id.ToString();
                 Session["name"] = user.FirstName.ToString() + " " + user.LastName.ToString();
+                if (user.Role == "patient")
+                {
+                    Patient patient = db.patients.Where(p => p.User_id == user.Id).FirstOrDefault();
+                    Session["patientId"] = patient.Id.ToString();
+                    return RedirectToAction("Dashboard", "Patient");
+                }
                 if (user.Role == "doctor")
                 {
                     Doctor doctor = db.doctors.Where(d => d.User_id == user.Id).FirstOrDefault();
                     Session["doctorId"] = doctor.Id.ToString();
                     return RedirectToAction("Admin", "Doctor");
-                } else if (user.Role == "patient")
-                {
-                    Patient patient = db.patients.Where(p => p.User_id == user.Id).FirstOrDefault();
-                    Session["patientId"] = patient.Id.ToString();
-                    return RedirectToAction("Dashboard", "Patient");
                 }
                 return RedirectToAction("Loggedin");
             }
