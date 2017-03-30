@@ -1,6 +1,42 @@
-﻿
+﻿@model IEnumerable<OSMH.Models.Schedule>
+
 @{
     ViewBag.Title = "Dashboard";
 }
 
-<h2>@Session["name"], Welcome to Dashboard</h2>
+<h2>Dashboard</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Doctor)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Doctor.User.FirstName)
+        </td>
+    </tr>
+}
+
+</table>

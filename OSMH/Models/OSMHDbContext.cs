@@ -15,6 +15,13 @@ namespace OSMH.Models
         public DbSet<VisitorLimit> VisitorLimit { get; set; }
         public DbSet<VisitorReg> VisitorReg { get; set; }
         public DbSet<Patient> patients { get; set; }
-        public System.Data.Entity.DbSet<OSMH.Models.Schedule> Schedules { get; set; }
+        public DbSet<Schedule> Schedules { get; set; }
+
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Schedule>().HasRequired(s => s.Doctor).WithMany(s => s.Schedules).HasForeignKey(r => r.Doctor_id);
+        }
     }
 }

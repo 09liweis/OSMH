@@ -41,10 +41,7 @@ namespace OSMH.Controllers
             TimeSpan startTime = schedule.StartTime;
             TimeSpan endTime = schedule.EndTime;
 
-            db.Schedules.Add(schedule);
-            db.SaveChanges();
-
-            while (startTime > endTime)
+            while (startTime < endTime)
             {
                 TimeSpan nextEndTime = startTime.Add(TimeSpan.FromMinutes(30));
                 Schedule newSchedule = new Schedule();
