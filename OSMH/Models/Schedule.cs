@@ -23,6 +23,6 @@ namespace OSMH.Models
         public bool Booked { get; set; }
 
         public int Doctor_id { get; set; }
-        //public virtual Doctor Doctor { get; set; }
+        public virtual Doctor Doctor { get; set; }
     }
 }

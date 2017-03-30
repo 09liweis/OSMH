@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using OSMH.Models;
 using OSMH.Models.helper;
+using System.Data.Entity;
+
 namespace OSMH.Controllers
 {
     public class DoctorController : Controller
@@ -20,7 +22,7 @@ namespace OSMH.Controllers
                 return RedirectToAction("Login", "Account");
             }
 
-            List<Schedule> schedules = db.Schedules.ToList();
+            List<Schedule> schedules = db.Schedules.Include(s => s.Doctor).ToList();
             return View(schedules);
         }
 

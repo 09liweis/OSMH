@@ -9,6 +9,10 @@ namespace OSMH.Models
     [Table("Doctor")]
     public class Doctor
     {
+        public Doctor()
+        {
+            this.Schedules = new HashSet<Schedule>();
+        }
         public int Id { get; set; }
         public int User_id { get; set; }
         public virtual User User { get; set; }

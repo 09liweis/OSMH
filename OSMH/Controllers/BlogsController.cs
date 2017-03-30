@@ -53,7 +53,7 @@ namespace OSMH.Controllers
 
 
         //Admin site
-        // GET: Blogs
+        [Authorize]
         public ActionResult Admin()
         {
             return View(db.blogs.ToList());

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using OSMH.Models;
+using System.Web.Security;
+
 namespace SomeeTest.Controllers
 {
     public class AccountController : Controller
@@ -40,8 +42,14 @@ namespace SomeeTest.Controllers
             var user = db.users.Where(ur => ur.Email == u.Email && ur.Password == u.Password).FirstOrDefault();
             if (user != null)
             {
+                FormsAuthentication.SetAuthCookie(user.UserName, false);
                 Session["userId"] = user.Id.ToString();
-                Session["name"] = user.FirstName.ToString() + " " + user.LastName.ToString();
+                Session["name"] = user.UserName.ToString();
+                if (user.Role == "admin")
+                {
+                    Session["adminId"] = user.Id;
+                    return RedirectToAction("Index", "Admin");
+                }
                 if (user.Role == "patient")
                 {
                     Patient patient = db.patients.Where(p => p.User_id == user.Id).FirstOrDefault();
