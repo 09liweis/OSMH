@@ -76,7 +76,7 @@ namespace OSMH.Controllers
             {
                 db.blogs.Add(blog);
                 db.SaveChanges();
-                return RedirectToAction("Index", "Blogs");
+                return RedirectToAction("Admin", "Blogs");
             }
 
             return View(blog);
@@ -108,7 +108,7 @@ namespace OSMH.Controllers
             {
                 db.Entry(blog).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index", "Blogs");
+                return RedirectToAction("Admin", "Blogs");
             }
             return View(blog);
         }
@@ -136,7 +136,7 @@ namespace OSMH.Controllers
             Blog blog = db.blogs.Find(id);
             db.blogs.Remove(blog);
             db.SaveChanges();
-            return RedirectToAction("Index", "Blogs");
+            return RedirectToAction("Admin", "Blogs");
         }
 
         protected override void Dispose(bool disposing)
