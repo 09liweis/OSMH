@@ -27,7 +27,8 @@
             <div class="container" id="header">
                 <div class="row">
                     <div class="col-sm-3">
-                        <img src="~/Content/images/mainlogo.jpg" width="300" height="77">
+                        @Html.ActionLink(".", "Index", "Home", null, new { @class="logo"})
+                        <!--<img src="../Content/images/mainlogo.jpg" width="300" height="77">-->
                     </div>
                     <div class="col-sm-3 col-sm-offset-4">
                         <form class="navbar-form" role="search">
@@ -40,7 +41,7 @@
                         </form>
                     </div>
                     <div class="col-sm-1">
-                        <button class="btn btn-primary" type="button">Log-In</button>
+                        <button class="btn btn-danger" type="button">DONATE</button>
                     </div>
                 </div>
             </div>
@@ -54,27 +55,69 @@
                                 <span class="sr-only">Toggle navigation</span>
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="#">OSMH</a>
+                            @Html.ActionLink("OSMH", "Index", "Home", null, new { @class = "navbar-brand" })
+                          <!--  <a class="navbar-brand" href="#">OSMH</a>-->
                         </div>
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav">
-                                <li>
-                                    <a href="#">Services</a>
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Service<span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <h6 class="dropdown-header">Cure</h6>
+                                            <li><a href="#">Diagnostic Imaging</a></li>
+                                            <li><a href="#">Surgical Services</a></li>
+                                            <li><a href="#">Emergency Services</a></li>
+                                            <li><a href="#">Chronic Disease</a></li>
+                                        <h6 class="dropdown-header">Care</h6>
+                                            <li><a href="#">Critical Care</a></li>
+                                            <li><a href="#">Cancer Care</a></li>
+                                            <li><a href="#">Kidney Care</a></li>
+                                            <li><a href="#">Infection Prevention</a></li>
+                                    </ul>
                                 </li>
                                 <li>
-                                    <a href="#">Patients</a>
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Patients<span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Discharge</a></li>
+                                        <li><a href="#">Declaration of Values</a></li>
+                                        <li><a href="#">Privacy</a></li>
+                                        <li><a href="#">Online Payment</a></li>
+                                    </ul>
                                 </li>
                                 <li>
-                                    <a href="#">Visitors</a>
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Patients<span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Discharge</a></li>
+                                        <li><a href="#">Declaration of Values</a></li>
+                                        <li><a href="#">Privacy</a></li>
+                                        <li><a href="#">Online Payment</a></li>
+                                    </ul>
                                 </li>
                                 <li>
-                                    <a href="#">Who We Are</a>
-                                </li>
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Who We Are<span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Mission,Vision, Values, History</a></li>
+                                        <li><a href="#">Staff Members</a></li>
+                                        <li><a href="#">Staff Admin Login</a></li>
+                                        <li><a href="#">Directions</a></li>
+                                        <li><a href="#">Testimonials</a></li>
+                                        <li><a href="#">Blog</a></li>
+                                    </ul>
+                                </li> 
                                 <li>
-                                    <a href="#">Contact Us</a>
+                                  @Html.ActionLink("Contact Us", "Index", "Contact", null, new { @class = "dropdown-toggle",data_toggle = "dropdown"})
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Patient Relations</a></li>
+                                        <li><a href="#">Online Appointment</a></li>
+                                        <li>@Html.ActionLink("Contact Information","Index","Contact")</li>
+                                    </ul>
                                 </li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                             </ul>
                         </div>
                         <!-- /.navbar-collapse -->
@@ -97,7 +140,7 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="#">OSMH</a>
+                            @Html.ActionLink("OSMH", "Index", "Home", null, new { @class = "navbar-brand" })
                         </div>
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse">
@@ -115,7 +158,7 @@
                                     <a href="#">Who We Are</a>
                                 </li>
                                 <li>
-                                    <a href="#">Contact Us</a>
+                                    @Html.ActionLink("Contact Us", "Index", "Contact")
                                 </li>
                             </ul>
                         </div>
@@ -136,10 +179,11 @@
                                     <ul>
                                         <li> <a href="#"> Publication </a> </li>
                                         <li> <a href="#"> Education Library </a> </li>
+                                        <li> <a href="#"> F.A.Q. </a> </li>
                                     </ul>
                                 </div>
                                 <div class="col-lg-2 col-md-2 col-xs-12">
-                                    <h3>Additonal</h3>
+                                    <h3>Additional</h3>
                                     <ul>
                                         <li> <a href="#"> Leave Message</a> </li>
                                         <li> <a href="#"> Careers </a> </li>
@@ -150,7 +194,7 @@
                                     <ul>
                                         <li> <a href="#"> Acessibility </a> </li>
                                         <li> <a href="#"> Dislcaimer </a> </li>
-                                        <li> <a href="#"> Legal Mumbo Jumbo </a> </li>
+                                        <li> <a href="#"> Privacy </a> </li>
                                     </ul>
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-xs-12 ">
@@ -177,8 +221,7 @@
                     <!--/.footer-bottom-->
                 </footer>
                 <!-- /.container -->
-            </div>
-        <!-- /.container -->
+            
         <!-- jQuery -->
         <script src="~/Scripts/jquery.js"></script>
         <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
