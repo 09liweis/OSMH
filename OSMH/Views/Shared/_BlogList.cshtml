@@ -3,10 +3,10 @@
     @foreach (var item in Model)
     {
         <div>
-            <h2>@Html.DisplayFor(modelItem => item.Title)</h2>
-            @Html.ActionLink(item.PublishDate.ToShortDateString(), "Archive", new { id = item.PublishDate.ToShortDateString() }, new { @class = "btn btn-warning" })
-            <p>@item.Content.Substring(0, Math.Min(item.Content.Length, 100))...</p>
-            @Html.ActionLink("Read More", "Details", new { id = item.Id })
+            <h2>@Html.ActionLink(item.Title, "Details", new { id = item.Id })</h2>
+            <p><span class="glyphicon glyphicon-time"></span> Posted on @Html.ActionLink(item.PublishDate.ToShortDateString(), "Archive", new { id = item.PublishDate.ToShortDateString() })</p>
+            <p>@Html.Raw(@item.Content.Substring(0, Math.Min(item.Content.Length, 300)))...</p>
+            @Html.ActionLink("Read More", "Details", new { id = item.Id }, new { @class = "btn btn-success"})
         </div>
     }
 </div>

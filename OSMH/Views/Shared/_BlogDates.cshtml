@@ -1,9 +1,13 @@
 ﻿<div class="col-md-4">
-    <h2>More News and Blogs</h2>
-    <ul>
-        @foreach (var date in ViewBag.dates)
+    <div class="panel panel-success">
+        <div class="panel-heading"><h4>More News and Blogs</h4></div>
+        <div class="panel-body">
+            <ul class="list-unstyled">
+                @foreach (var date in ViewBag.dates)
             {
-            <li><a href="/Blogs/Archive/@date.ToShortDateString()">@date.ToShortDateString()</a></li>
-        }
-    </ul>
+                    <li><a href="/Blogs/Archive/@date.ToShortDateString()">@date.ToShortDateString()</a></li>
+                }
+            </ul>
+        </div>
+    </div>
 </div>

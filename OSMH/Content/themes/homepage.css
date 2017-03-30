@@ -7,8 +7,17 @@
 	margin-bottom: 1em;
 }
 
+.logo{
+    background-image: url("../images/mainlogo.jpg");
+    background-size: cover;
+    width: 300px;
+    height: 77px;
+    display: block;
+    text-indent: -9999px;
+}
+
 body{
-	padding-top: 40px;
+	padding-top: 20px;
 }
 
 #banner-text{
@@ -36,6 +45,7 @@ footer{
 
 #bottomnav{
 	margin-bottom: 0;
+    margin-top: 2em;
 }
 
 #footerlogo{

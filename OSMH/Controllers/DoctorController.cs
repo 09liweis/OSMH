@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using OSMH.Models;
+using OSMH.Models.helper;
 namespace OSMH.Controllers
 {
     public class DoctorController : Controller
@@ -13,8 +14,8 @@ namespace OSMH.Controllers
         public ActionResult Admin()
         {
             //Temporary test
-            Session["doctorId"] = "1";
-            if (Session["doctorId"] == null)
+            //Session["doctorId"] = "1";
+            if (!Auth.checkLogin())
             {
                 return RedirectToAction("Login", "Account");
             }

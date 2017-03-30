@@ -3,15 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using OSMH.Models;
 
 namespace OSMH.Controllers
 {
     public class PatientController : Controller
     {
-        // GET: Patient
+        private OSMHDbContext db = new OSMHDbContext();
         public ActionResult Dashboard()
         {
-            return View();
+            if (Session["patientId"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            List<Schedule> schedules = db.Schedules.Where(s => s.Booked == false).ToList();
+            return View(schedules);
         }
     }
 }

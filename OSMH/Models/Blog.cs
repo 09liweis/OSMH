@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace OSMH.Models
 {
@@ -14,6 +15,7 @@ namespace OSMH.Models
         [Required]
         public string Title { get; set; }
         [Required]
+        [AllowHtml]
         public string Content { get; set; }
         public bool Published { get; set; }
         [Required]

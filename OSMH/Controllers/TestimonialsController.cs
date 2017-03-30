@@ -39,10 +39,6 @@ namespace OSMH.Controllers
             }
         }
 
-        public ActionResult Index()
-        {
-            return View(Testimonials);
-        }
 
         // GET: Testimonials/Create
         public ActionResult Admin()
