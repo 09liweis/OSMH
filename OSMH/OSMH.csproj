@@ -215,6 +215,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\patient\dashboard.js" />
     <Content Include="Scripts\visitor\admin.js" />
     <Content Include="Scripts\visitor\public.js" />
     <Content Include="Web.config" />
@@ -227,17 +228,20 @@
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SchedulesController.cs" />
     <Compile Include="Controllers\VisitorController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Appointment.cs" />
     <Compile Include="Models\Blog.cs" />
     <Compile Include="Models\ContactUs.cs" />
     <Compile Include="Models\Doctor.cs" />
     <Compile Include="Models\helper\Auth.cs" />
     <Compile Include="Models\OSMHDbContext.cs" />
     <Compile Include="Models\Patient.cs" />
+    <Compile Include="Models\PatientDashboard.cs" />
     <Compile Include="Models\Schedule.cs" />
     <Compile Include="Models\visitorAdmin.cs" />
     <Compile Include="Models\User.cs" />
@@ -287,6 +291,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Schedules\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

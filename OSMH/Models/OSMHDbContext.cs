@@ -16,12 +16,14 @@ namespace OSMH.Models
         public DbSet<VisitorReg> VisitorReg { get; set; }
         public DbSet<Patient> patients { get; set; }
         public DbSet<Schedule> Schedules { get; set; }
+        public DbSet<Appointment> Appointments { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Schedule>().HasRequired(s => s.Doctor).WithMany(s => s.Schedules).HasForeignKey(r => r.Doctor_id);
+            modelBuilder.Entity<User>().HasOptional(u => u.Doctor).WithRequired(d => d.User);
         }
     }
 }

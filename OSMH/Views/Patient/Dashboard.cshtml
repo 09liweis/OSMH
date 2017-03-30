@@ -1,4 +1,4 @@
-﻿@model IEnumerable<OSMH.Models.Schedule>
+﻿@model OSMH.Models.PatientDashboard
 
 @{
     ViewBag.Title = "Dashboard";
@@ -6,37 +6,34 @@
 
 <h2>Dashboard</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StartTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EndTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Doctor)
-        </th>
-    </tr>
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#makeAppointment">
+    Make an appointment
+</button>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EndTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Doctor.User.FirstName)
-        </td>
-    </tr>
-}
+<div class="modal fade" id="makeAppointment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <select id="selectDoctor">
+                    <option>Select a doctor</option>
+                    @foreach (var d in Model.doctors)
+                    {
+                        <option value="@d.Id">@d.User.FirstName @d.User.LastName</option>
+                    }
+                </select>
+                <div id="selectDate">
 
-</table>
+                </div>
+                <div id="selectTime"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="bookAppointment">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

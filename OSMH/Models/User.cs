@@ -26,5 +26,7 @@ namespace OSMH.Models
         public string ConfirmPassword { get; set; }
 
         public string Role { get; set; }
+
+        public virtual Doctor Doctor { get; set; }
     }
 }
