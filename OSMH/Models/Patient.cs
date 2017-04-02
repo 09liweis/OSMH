@@ -13,5 +13,8 @@ namespace OSMH.Models
         public string SIN { get; set; }
         public DateTime DOB { get; set; }
         public int User_id { get; set; }
+
+        public virtual User user { get; set; }
+        public ICollection<Appointment> appointments { get; set; }
     }
 }

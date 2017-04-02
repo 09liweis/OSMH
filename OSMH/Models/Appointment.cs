@@ -12,5 +12,8 @@ namespace OSMH.Models
         public int Id { get; set; }
         public int Schedule_Id { get; set; }
         public int Patient_Id { get; set; }
+
+        public virtual Schedule schedule { get; set; }
+        public virtual Patient patient { get; set; }
     }
 }

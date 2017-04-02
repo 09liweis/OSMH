@@ -25,5 +25,6 @@ namespace OSMH.Models
 
         public int Doctor_id { get; set; }
         public virtual Doctor Doctor { get; set; }
+        public ICollection<Appointment> Appointments { get; set; }
     }
 }

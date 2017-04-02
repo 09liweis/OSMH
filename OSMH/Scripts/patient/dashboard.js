@@ -1,69 +1,91 @@
-﻿$(document).ready(function () {
-    $('#selectDoctor').change(function () {
-        var id = $(this).val();
-        $.ajax({
-            url: '/Schedules/Doctor/' + id,
-            type: 'GET',
-            success: function (data) {
-                var dates = [];
-                data.map(function (date) {
-                    var d = new Date(parseInt(date.substr(6)));
-                    var mm = d.getMonth() + 1;
-                    var month = (mm > 9 ? '' : '0') + mm;
-                    var dd = d.getDate();
-                    var day = (dd > 9 ? '' : '0') + dd
-                    var formatDate = d.getFullYear() + '-' + month + '-' + day;
-                    dates.push(formatDate);
+﻿var dashboard = new Vue({
+    el: '#dashboard',
+    data: {
+        doctorId: null,
+        date: null,
+        timeslot: null,
+        doctors: [],
+        dates: [],
+        timeslots: [],
+        appointments: [],
+    },
+    mounted() {
+        this.getAppointments();
+        this.getDoctors();
+    },
+    watch: {
+        doctorId: function (newId) {
+            this.doctorId = newId;
+            this.date = null;
+            if (this.doctorId != null) {
+                this.getDates();
+            }
+        },
+        date: function (newDate) {
+            this.date = newDate;
+            if (this.date != null) {
+                this.getTimeSlots();
+            }
+        },
+    },
+    methods: {
+        getAppointments() {
+            this.$http.get('/Patient/getAppointments').then(function (appointments) {
+                this.appointments = appointments.data.map(function (a) {
+                    return {Date: formatDate(a.Date), Time: renderFullTimeSlot(a.StartTime, a.EndTime), Doctor: a.UserName}
                 });
-                renderDates(dates);
+            });
+        },
+        getDoctors() {
+            this.$http.get('/Doctor/List').then(function (doctors) {
+                this.doctors = doctors.data;
+            });
+        },
+        getDates() {
+            this.$http.get('/Schedules/Doctor/' + this.doctorId).then(function (dates) {
+                this.dates = formatDates(dates.data);
+            });
+        },
+        bookAppointment() {
+            if (this.timeslot != null) {
+                this.$http.post('/Patient/BookAppointment/' + this.timeslot).then(function (result) {
+                    console.log(result.data);
+                });
             }
-        });
-    });
-
-    $('#makeAppointment').on('change', '#changeDate', function () {
-        var date = $(this).val();
-        $.ajax({
-            url: '/Schedules/TimeSlot/' + date + '?doctorId=' + $('#selectDoctor').val(),
-            type: 'GET',
-            success: function (data) {
-                renderTimeslots(data);
-            }
-        });
-    });
-
-    $('#bookAppointment').on('click', function () {
-        var scheduleId = $('input[name=timeslot]:checked').data('schedule');
-        $.ajax({
-            url: '/Patient/BookAppointment/' + scheduleId,
-            type: 'POST',
-            success: function (data) {
-                console.log(data);
-            }
-        });
-    });
-
-    $('#selectTime').on('change', 'input[name=timeslot]:checked', function () {
-        console.log($(this).data('schedule'));
-    });
-
-    function renderDates(dates) {
-        var datesSelector = '<select id="changeDate"><option>Select a date</option>';
-        dates.map(function (date) {
-            datesSelector += '<option value="' + date + '">' + date + '</option>';
-        });
-        datesSelector += '</select>';
-        $('#selectDate').html(datesSelector);
-    }
-
-    function renderTimeslots(timeslots) {
-        var timeSelector = '';
-        timeslots.map(function (time) {
-            timeSelector += '<p><input class="timeslot" type="radio" name="timeslot" data-schedule="' + time.Id +  '" />' + renderTimeslot(time.StartTime) + ' - ' + renderTimeslot(time.EndTime) + '</p>';
-        });
-        $('#selectTime').html(timeSelector);
-    }
-
-    function renderTimeslot(timeslot) {
-        return timeslot.Hours + ':' + (timeslot.Minutes == 0 ? '00' : timeslot.Minutes);
+        },
+        getTimeSlots() {
+            this.$http.get('/Schedules/TimeSlot/' + this.date + '?doctorId=' + this.doctorId).then(function (timeslots) {
+                this.timeslots = timeslots.data.map(function (t) {
+                    return {Id: t.Id, time: renderFullTimeSlot(t.StartTime, t.EndTime)}
+                });
+            });
+        },
     }
 });
+
+function renderTimeslot(timeslot) {
+    return timeslot.Hours + ':' + (timeslot.Minutes == 0 ? '00' : timeslot.Minutes);
+}
+
+function renderFullTimeSlot(start, end) {
+    return renderTimeslot(start) + ' - ' + renderTimeslot(end);
+}
+
+function formatDates(data) {
+    var dates = [];
+    data.map(function (date) {
+        var fd = formatDate(date);
+        dates.push(fd);
+    });
+    return dates;
+}
+
+function formatDate(date) {
+    var d = new Date(parseInt(date.substr(6)));
+    var mm = d.getMonth() + 1;
+    var month = (mm > 9 ? '' : '0') + mm;
+    var dd = d.getDate();
+    var day = (dd > 9 ? '' : '0') + dd
+    var formatDate = d.getFullYear() + '-' + month + '-' + day;
+    return formatDate;
+}

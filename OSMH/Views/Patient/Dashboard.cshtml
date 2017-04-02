@@ -4,35 +4,57 @@
     ViewBag.Title = "Dashboard";
 }
 
-<h2>Dashboard</h2>
+<div id="dashboard">
+    <h2>Dashboard</h2>
 
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#makeAppointment">
-    Make an appointment
-</button>
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#makeAppointment">
+        Make an appointment
+    </button>
+    <table id="appointments" class="table">
+        <tr>
+            <th>Doctor</th>
+            <th>Date</th>
+            <th>Time</th>
+        </tr>
+        <tr v-for="appointment in appointments">
+            <td>{{ appointment.Doctor}}</td>
+            <td>{{ appointment.Date }}</td>
+            <td>{{ appointment.Time }}</td>
+        </tr>
+    </table>
 
-<div class="modal fade" id="makeAppointment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-            </div>
-            <div class="modal-body">
-                <select id="selectDoctor">
-                    <option>Select a doctor</option>
-                    @foreach (var d in Model.doctors)
-                    {
-                        <option value="@d.Id">@d.User.FirstName @d.User.LastName</option>
-                    }
-                </select>
-                <div id="selectDate">
-
+    <div class="modal fade" id="makeAppointment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
                 </div>
-                <div id="selectTime"></div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="bookAppointment">Save changes</button>
+                <div class="modal-body">
+                    <select id="selectDoctor" class="form-control" v-model="doctorId">
+                        <option value="null">Select a doctor</option>
+                        <option v-for="d in doctors" :value="d.Id">{{d.FirstName}} {{d.LastName}}</option>
+                    </select>
+                    <div id="selectDate" v-if="doctorId != null">
+                        <select v-model="date" class="form-control">
+                            <option value="null">Select a date</option>
+                            <option v-for="d in dates" :value="d">{{d}}</option>
+                        </select>
+                    </div>
+                    <div id="selectTime" v-if="date != null">
+                        <div class="radio" v-for="ts in timeslots">
+                            <label>
+                                <input type="radio" v-model="timeslot" name="timeslot" :value="ts.Id">
+                                {{ts.time}}
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" v-on:click="bookAppointment">Book</button>
+                </div>
             </div>
         </div>
     </div>

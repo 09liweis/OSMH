@@ -57,5 +57,12 @@ namespace OSMH.Controllers
 
             return RedirectToAction("Admin");
         }
+
+        //
+        public JsonResult List()
+        {
+            var doctors = db.doctors.Select(d => new { d.Id, d.User.FirstName, d.User.LastName }).ToList();
+            return new JsonResult { Data = doctors, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
     }
 }
