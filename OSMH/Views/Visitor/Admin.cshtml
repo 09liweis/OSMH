@@ -7,16 +7,35 @@
 
 
 <div class="row">
-    <aside class="col-md-3">
-        <section id="today" class="col-md-12" v-cloak>
+    <aside id="today" class="col-md-3" v-cloak>
+        <section id="today-display" class="today col-md-12">
             <h4>
                 Status Today
             </h4>
-            <h5>{{ limitations.VisitorLimit_date }}</h5>
-            <h5><b>Maxmium Visitors</b> - {{ limitations.VisitorLimit_max }}</h5>
+            <h5>{{ today }}</h5>
+            <h5><b>Maxmium Visitors</b> - {{ oldMax }}</h5>
             <h5><b>Registered Visitors</b> - {{ registered }}</h5>
-            <h5><b>Visit Start Hour</b> - {{ limitations.VisitorLimit_start }}</h5>
-            <h5><b>Visit End Hour</b> - {{ limitations.VisitorLimit_end }}</h5>
+            <h5><b>Visit Start Hour</b> - {{ oldStart }}</h5>
+            <h5><b>Visit End Hour</b> - {{ oldEnd }}</h5>
+            <button class="btn btn-default" v-on:click="editToday = !editToday">Edit</button>
+        </section>
+        <section id="today-edit" class="today col-md-12" v-show="editToday">
+            <h4>
+                Edit today's limitation
+            </h4>
+            <div class="form-group">
+                <label for="today-edit-max">Maximun Visitors</label>
+                <input v-model.number="newMax" id="today-edit-max" class="form-control" placeholder="Maxmium Visitors">
+            </div>
+            <div class="form-group">
+                <label for="today-edit-start">Visit Start Hour</label>
+                <input v-model.number="newStart" id="today-edit-start" class="form-control" placeholder="Visit Start Hour">
+            </div>  
+            <div class="form-group">
+                <label for="today-edit-end">Visit End Hour</label>
+                <input v-model.number="newEnd" id="today-edit-end" class="form-control" placeholder="Visit End Hour">
+            </div> 
+            <button class="btn btn-default" v-on:click="saveToday">Save</button>
         </section>
     </aside>
 </div>

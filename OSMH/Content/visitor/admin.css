@@ -5,17 +5,34 @@
 aside{
     margin-top:50px;
     border-radius:10px;
-    background-color:antiquewhite;
-    padding: 10px 0;
 }
 
-#today h4{
+.today {
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+.today h4{
     font-weight:bold;
     text-align:center;
 }
 
-#today > :nth-child(2) {
+#today-display {
+    background-color: antiquewhite;
+    border-radius: 5px 5px 0 0;
+}
+
+#today-display >:nth-child(2) {
     border-bottom: 1px solid black;
     padding-bottom: 5px;
     text-align: center;
+}
+
+#today-edit {
+    background-color: #f2f1ed;
+    border-radius: 0 0 5px 5px;
+}
+
+#today-edit input {
+    margin-bottom: 10px;
 }
