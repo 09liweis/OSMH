@@ -2,7 +2,7 @@
     display: none;
 }
 
-aside{
+main{
     margin-top:50px;
     border-radius:10px;
 }
@@ -35,4 +35,17 @@ aside{
 
 #today-edit input {
     margin-bottom: 10px;
+}
+
+#today-edit h6{
+    color:red;
+}
+
+aside {
+    margin-top: 50px;
+}
+
+#special{
+    border-left: 3px solid #8d0101;
+    padding-left: 6%;
 }

@@ -7,7 +7,19 @@
 
 
 <div class="row">
-    <aside id="today" class="col-md-3" v-cloak>
+    <aside class="col-md-4">
+        <div class="form-group">
+            <label for="datepicker">Check a date:</label>
+            <input type="text" id="datepicker">
+        </div> 
+        <section id="special" class="col-md-12" v-cloak>
+            <h5>Maxmium Visitors - {{ specialMax }}</h5>
+            <h5>Visit Start Hour - {{ specialStart }}</h5>
+            <h5>Visit End Hour - {{ specialEnd }}</h5>
+        </section>
+    </aside>
+    
+    <main id="today" class="col-md-4" v-cloak>
         <section id="today-display" class="today col-md-12">
             <h4>
                 Status Today
@@ -17,9 +29,9 @@
             <h5><b>Registered Visitors</b> - {{ registered }}</h5>
             <h5><b>Visit Start Hour</b> - {{ oldStart }}</h5>
             <h5><b>Visit End Hour</b> - {{ oldEnd }}</h5>
-            <button class="btn btn-default" v-on:click="editToday = !editToday">Edit</button>
+            <button class="btn btn-default" v-on:click="editToday">{{ todayButton }}</button>
         </section>
-        <section id="today-edit" class="today col-md-12" v-show="editToday">
+        <section id="today-edit" class="today col-md-12" v-show="showToday">
             <h4>
                 Edit today's limitation
             </h4>
@@ -34,8 +46,9 @@
             <div class="form-group">
                 <label for="today-edit-end">Visit End Hour</label>
                 <input v-model.number="newEnd" id="today-edit-end" class="form-control" placeholder="Visit End Hour">
-            </div> 
+            </div>
+            <h6 class="col-md-12">{{ todayError }}</h6>
             <button class="btn btn-default" v-on:click="saveToday">Save</button>
         </section>
-    </aside>
+    </main>
 </div>

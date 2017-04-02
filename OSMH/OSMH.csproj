@@ -277,7 +277,6 @@
     <Content Include="Views\Contact\Create.cshtml" />
     <Content Include="Views\Contact\Edit.cshtml" />
     <Content Include="Views\Contact\Delete.cshtml" />
-    <Content Include="Views\Shared\_Visitor.cshtml" />
     <Content Include="Views\Visitor\Admin.cshtml" />
     <Content Include="Views\Doctor\Admin.cshtml" />
     <Content Include="Views\Patient\Dashboard.cshtml" />

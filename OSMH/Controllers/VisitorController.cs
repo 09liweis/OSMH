@@ -17,9 +17,6 @@ namespace OSMH.Controllers
             return View();
         }
         // Post: Read Public Page
-
-
-      
         // GET: Visitor Admin Page
         public ActionResult Admin()
         {
@@ -46,8 +43,6 @@ namespace OSMH.Controllers
         public JsonResult updateToday(VisitorLimit today)
         {
             DateTime timer = today.VisitorLimit_date.Value.Date;
-            System.Diagnostics.Debug.WriteLine(timer);
-
             if (db.VisitorLimit.Any(v => v.VisitorLimit_date == timer))
             {
                 VisitorLimit old = db.VisitorLimit.First(v => v.VisitorLimit_date == timer);
@@ -64,6 +59,18 @@ namespace OSMH.Controllers
             db.SaveChanges();
             var result = new { Success = "true"};
             return Json(result, JsonRequestBehavior.AllowGet);
+        }
+        //POST: search a special day
+        public JsonResult searchDay(string date)
+        {
+            DateTime choice = Convert.ToDateTime(date);
+            VisitorLimit special = db.VisitorLimit.FirstOrDefault(s => s.VisitorLimit_date == choice.Date);
+            if (special == null)
+            {
+                int id = (int)choice.DayOfWeek;
+                special = db.VisitorLimit.Find(id);
+            }
+            return Json(special);
         }
     }
 }
