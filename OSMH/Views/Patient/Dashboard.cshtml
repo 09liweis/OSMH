@@ -1,6 +1,4 @@
-﻿@model OSMH.Models.PatientDashboard
-
-@{
+﻿@{
     ViewBag.Title = "Dashboard";
 }
 
@@ -15,11 +13,13 @@
             <th>Doctor</th>
             <th>Date</th>
             <th>Time</th>
+            <th>Actions</th>
         </tr>
         <tr v-for="appointment in appointments">
             <td>{{ appointment.Doctor}}</td>
             <td>{{ appointment.Date }}</td>
             <td>{{ appointment.Time }}</td>
+            <td><button class="btn btn-danger" v-on:click="cancelAppointment(appointment)">Cancel</button></td>
         </tr>
     </table>
 

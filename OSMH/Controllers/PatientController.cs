@@ -17,22 +17,13 @@ namespace OSMH.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
-
-            ViewBag.doctors = db.users.Where(u => u.Role == "doctor").ToList();
-            List<Schedule> schedules = db.Schedules.Where(s => s.Booked == false).ToList();
-            PatientDashboard pd = new PatientDashboard()
-            {
-                doctors = db.doctors.ToList(),
-                schedules = schedules
-            };
-            return View(pd);
+            return View();
         }
 
         public JsonResult getAppointments()
         {
             int patientId = Convert.ToInt32(Session["patientId"]);
-            //List<Appointment> appointments = db.Appointments.Where(a => a.Patient_Id == patientId).ToList();
-            var appointments = db.Appointments.Where(a => a.Patient_Id == patientId).Select(a => new { a.schedule.Date, a.schedule.StartTime, a.schedule.EndTime, a.schedule.Doctor.User.UserName }).ToList();
+            var appointments = db.Appointments.Where(a => a.Patient_Id == patientId).Select(a => new { a.Id, a.Schedule_Id, a.schedule.Date, a.schedule.StartTime, a.schedule.EndTime, a.schedule.Doctor.User.UserName }).ToList();
             return new JsonResult { Data = appointments, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
@@ -50,6 +41,22 @@ namespace OSMH.Controllers
             };
             db.Appointments.Add(appointment);
             db.SaveChanges();
+            return new JsonResult { Data = "success" };
+        }
+
+        [HttpPost]
+        public JsonResult CancelAppointment(int id)
+        {
+            Appointment appointment = db.Appointments.Find(id);
+            int scheduleId = appointment.Schedule_Id;
+            db.Appointments.Remove(appointment);
+            db.SaveChanges();
+
+            Schedule schedule = db.Schedules.Find(scheduleId);
+            schedule.Booked = false;
+            db.Entry(schedule).State = EntityState.Modified;
+            db.SaveChanges();
+
             return new JsonResult { Data = "success" };
         }
     }

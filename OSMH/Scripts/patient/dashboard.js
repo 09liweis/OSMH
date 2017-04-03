@@ -31,10 +31,18 @@
                 },
             },
             methods: {
+                resetData() {
+                    this.doctorId = null;
+                    this.date = null;
+                    this.timeslot = null;
+                    this.doctors = [];
+                    this.dates = [];
+                    this.timeslots = [];
+                },
                 getAppointments() {
                     this.$http.get('/Patient/getAppointments').then(function (appointments) {
                         this.appointments = appointments.data.map(function (a) {
-                            return { Date: formatDate(a.Date), Time: renderFullTimeSlot(a.StartTime, a.EndTime), Doctor: a.UserName }
+                            return { AppointmentId: a.Id, ScheduleId: a.Schedule_Id, Date: formatDate(a.Date), Time: renderFullTimeSlot(a.StartTime, a.EndTime), Doctor: a.UserName }
                         });
                     });
                 },
@@ -51,9 +59,19 @@
                 bookAppointment() {
                     if (this.timeslot != null) {
                         this.$http.post('/Patient/BookAppointment/' + this.timeslot).then(function (result) {
-                            console.log(result.data);
+                            if (result.data == 'success') {
+                                this.resetData();
+                                this.getAppointments();
+                            }
                         });
                     }
+                },
+                cancelAppointment(appointment) {
+                    this.$http.post('/Patient/CancelAppointment/' + appointment.AppointmentId).then(function (result) {
+                        if (result.data == 'success') {
+                            this.getAppointments();
+                        }
+                    });
                 },
                 getTimeSlots() {
                     this.$http.get('/Schedules/TimeSlot/' + this.date + '?doctorId=' + this.doctorId).then(function (timeslots) {
