@@ -45,7 +45,43 @@ aside {
     margin-top: 50px;
 }
 
-#special{
+#special-pick{
     border-left: 3px solid #8d0101;
     padding-left: 6%;
+}
+
+#special-edit{
+    border: 1px dashed black;
+    margin-top:30px;
+}
+
+#special-edit h6 {
+    color: red;
+}
+
+#special-edit button{
+    margin-bottom:10px;
+}
+
+#preset h3{
+    margin-top: 0 !important;
+}
+
+#preset button{
+    margin-bottom: 10px;
+    margin-right: 5%;
+    width: 40%;
+    text-align:center;
+    padding-left: 0;
+    padding-right:0;
+}
+
+#preset-display{
+    background-color: aliceblue;
+    margin-top: 10px;
+}
+
+#preset-display-date{
+    border-bottom: 1px solid black;
+    padding-bottom: 10px;
 }

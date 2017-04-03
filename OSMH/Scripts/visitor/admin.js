@@ -44,27 +44,31 @@
                         this.newEnd = parseInt(this.newEnd);
                         if (this.newMax >= 0) {
                             if (this.newStart >= 0 && this.newStart <= 23 && this.newEnd >= 0 && this.newEnd <= 23) {
-                                this.oldMax = this.newMax;
-                                this.oldStart = this.newStart + ":00";
-                                this.oldEnd = this.newEnd + ":00";
-                                this.todayButton = "Edit";
-                                this.showToday = false;
-                                $.ajax({
-                                    type: "POST",
-                                    contentType: "application/json",
-                                    url: "./updateToday",
-                                    data: JSON.stringify({
-                                        "VisitorLimit_max": this.newMax,
-                                        "VisitorLimit_start": this.newStart,
-                                        "VisitorLimit_end": this.newEnd,
-                                        "VisitorLimit_date": new Date()
-                                    }),
-                                    error: function (request, status, error) {
-                                        console.log(request.responseText);
-                                    }
-                                });
+                                if (this.newStart <= this.newEnd) {
+                                    this.oldMax = this.newMax;
+                                    this.oldStart = this.newStart + ":00";
+                                    this.oldEnd = this.newEnd + ":00";
+                                    this.todayButton = "Edit";
+                                    this.showToday = false;
+                                    $.ajax({
+                                        type: "POST",
+                                        contentType: "application/json",
+                                        url: "./updateToday",
+                                        data: JSON.stringify({
+                                            "VisitorLimit_max": this.newMax,
+                                            "VisitorLimit_start": this.newStart,
+                                            "VisitorLimit_end": this.newEnd,
+                                            "VisitorLimit_date": new Date()
+                                        }),
+                                        error: function (request, status, error) {
+                                            console.log(request.responseText);
+                                        }
+                                    });
+                                } else {
+                                    this.todayError = "End hour must larger than start hour";
+                                }
                             } else {
-                                this.todayError = "Visit Hours should between 0 - 23"
+                                this.todayError = "Visit Hours should between 0 - 23";
                             }
                         } else {
                             this.todayError = "Maximun Visitors must > 0";
@@ -89,13 +93,71 @@
                     console.log(result);
                     var specialMax = result.VisitorLimit_max,
                         specialStart = result.VisitorLimit_start + ":00",
-                        specialEnd = result.VisitorLimit_end + ":00";
+                        specialEnd = result.VisitorLimit_end + ":00",
+                        changeMax = result.VisitorLimit_max,
+                        changeStart = result.VisitorLimit_start,
+                        changeEnd = result.VisitorLimit_end;
+                        specialDate = selectedDate;
                     var special = new Vue({
                         el: "#special",
                         data: {
                             specialMax: specialMax,
                             specialStart: specialStart,
-                            specialEnd: specialEnd
+                            specialEnd: specialEnd,
+                            specialButton: "Edit",
+                            specialDate: specialDate,
+                            showSpecial: false,
+                            changeStart: changeStart,
+                            changeMax: changeMax,
+                            changeEnd: changeEnd,
+                            specialError: ""
+                        },
+                        methods: {
+                            editSpecial: function () {
+                                if (this.showSpecial === false) {
+                                    this.specialButton = "Close";
+                                    this.showSpecial = true;
+                                } else {
+                                    this.specialButton = "Edit";
+                                    this.showSpecial = false;
+                                }
+                            },
+                            saveSpecial: function () {
+                                this.changeMax = parseInt(this.changeMax);
+                                this.changeStart = parseInt(this.changeStart);
+                                this.changeEnd = parseInt(this.changeEnd);
+                                if (this.changeMax >= 0) {
+                                    if (this.changeStart >= 0 && this.changeStart <= 23 && this.changeEnd >= 0 && this.changeEnd <= 23) {
+                                        if (this.changeStart <= this.changeEnd) {
+                                            this.specialMax = this.changeMax;
+                                            this.specialStart = this.changeStart + ":00";
+                                            this.specialEnd = this.changeEnd + ":00";
+                                            this.specialButton = "Edit";
+                                            this.showSpecial = false;
+                                            $.ajax({
+                                                type: "POST",
+                                                contentType: "application/json",
+                                                url: "./updateToday",
+                                                data: JSON.stringify({
+                                                    "VisitorLimit_max": this.changeMax,
+                                                    "VisitorLimit_start": this.changeStart,
+                                                    "VisitorLimit_end": this.changeEnd,
+                                                    "VisitorLimit_date": this.specialDate
+                                                }),
+                                                error: function (request, status, error) {
+                                                    console.log(request.responseText);
+                                                }
+                                            });
+                                        } else {
+                                            this.specialError = "End hour must larger than start hour";
+                                        }
+                                    } else {
+                                        this.specialError = "Visit Hours should between 0 - 23";
+                                    }
+                                } else {
+                                    this.specialError = "Maximun Visitors must > 0";
+                                }
+                            }
                         }
                     });
                 },
@@ -105,4 +167,60 @@
             });
         }
     });
+
+    var preset = new Vue({
+        el: "#preset",
+        data: {
+            presetDay: null,
+            presetMax: null,
+            presetStart: null,
+            presetEnd: null,
+            showDisplay: false,
+            showPreset: false,
+            presetButton: "Edit"
+        },
+        methods: {
+            searchPreset: function (num) {
+                this.$http.post('./readPreset', { date: num }).then(function (result) {
+                    console.log(result.data);
+                    this.presetDay = IdToDay(result.data.VisitorLimit_id);
+                    this.presetMax = result.data.VisitorLimit_max;
+                    this.presetStart = result.data.VisitorLimit_start;
+                    this.presetEnd = result.data.VisitorLimit_end;
+                    this.showDisplay = true;
+                });
+            },
+            editPreset: function () {
+                this.showPreset = true;
+            }
+        }
+    });
 });
+
+function IdToDay(num) {
+    var result = "";
+    switch (num) {
+        case 0:
+            result = "Sunday";
+            break;
+        case 1:
+            result = "Monday";
+            break;
+        case 2:
+            result = "Tuesday";
+            break;
+        case 3:
+            result = "Wednesday";
+            break;
+        case 4:
+            result =  "Thursday";
+            break;
+        case 5:
+            result = "Friday";
+            break;
+        case 6:
+            result = "Saturday";
+            break;
+    }
+    return result;
+}

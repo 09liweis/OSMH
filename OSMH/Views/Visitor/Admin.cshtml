@@ -7,23 +7,42 @@
 
 
 <div class="row">
-    <aside class="col-md-4">
+    <aside id="special" class="col-md-4">
         <div class="form-group">
             <label for="datepicker">Check a date:</label>
             <input type="text" id="datepicker">
-        </div> 
-        <section id="special" class="col-md-12" v-cloak>
+        </div>
+        <section id="special-pick" class="col-md-12" v-cloak>
+            <h5>{{ specialDate }}</h5>
             <h5>Maxmium Visitors - {{ specialMax }}</h5>
             <h5>Visit Start Hour - {{ specialStart }}</h5>
             <h5>Visit End Hour - {{ specialEnd }}</h5>
+            <button class="btn btn-default" v-on:click="editSpecial">{{ specialButton }}</button>
+        </section>
+        <section id="special-edit" class="col-md-12" v-show="showSpecial" v-cloak>
+            <h4>
+                Edit Limitation
+            </h4>
+            <div class="form-group">
+                <label for="special-edit-max">Maximun Visitors</label>
+                <input v-model.number="changeMax" id="special-edit-max" class="form-control" placeholder="Maxmium Visitors">
+            </div>
+            <div class="form-group">
+                <label for="special-edit-start">Visit Start Hour</label>
+                <input v-model.number="changeStart" id="special-edit-start" class="form-control" placeholder="Visit Start Hour">
+            </div>
+            <div class="form-group">
+                <label for="special-edit-end">Visit End Hour</label>
+                <input v-model.number="changeEnd" id="special-edit-end" class="form-control" placeholder="Visit End Hour">
+            </div>
+            <h6 class="col-md-12">{{ specialError }}</h6>
+            <button class="btn btn-default" v-on:click="saveSpecial">Save</button>
         </section>
     </aside>
     
     <main id="today" class="col-md-4" v-cloak>
         <section id="today-display" class="today col-md-12">
-            <h4>
-                Status Today
-            </h4>
+            <h4>Status Today</h4>
             <h5>{{ today }}</h5>
             <h5><b>Maxmium Visitors</b> - {{ oldMax }}</h5>
             <h5><b>Registered Visitors</b> - {{ registered }}</h5>
@@ -51,4 +70,43 @@
             <button class="btn btn-default" v-on:click="saveToday">Save</button>
         </section>
     </main>
+
+    <aside id="preset" class="col-md-3 col-md-offset-1">
+        <h3>Preset Limitation</h3>
+        <button class="btn btn-danger" v-on:click="searchPreset(1)">Monday</button>
+        <button class="btn btn-danger" v-on:click="searchPreset(2)">Tuesday</button>
+        <button class="btn btn-danger" v-on:click="searchPreset(3)">Wednesday</button>
+        <button class="btn btn-danger" v-on:click="searchPreset(4)">Thursday</button>
+        <button class="btn btn-danger" v-on:click="searchPreset(5)">Friday</button>
+        <button class="btn btn-danger" v-on:click="searchPreset(6)">Saturday</button>
+        <button class="btn btn-danger" v-on:click="searchPreset(0)">Sunday</button>
+        <section id="preset-display" class="today col-md-12" v-show="showDisplay">
+            <h4>Preset Limitation</h4>
+            <h5 id="preset-display-date">Limitation for {{ presetDay }}</h5>
+            <h5><b>Maxmium Visitors</b> - {{ presetMax }}</h5>
+            <h5><b>Visit Start Hour</b> - {{ presetStart }}</h5>
+            <h5><b>Visit End Hour</b> - {{ presetEnd }}</h5>
+            <button class="btn btn-default" v-on:click="editPreset">{{ presetButton }}</button>
+        </section>
+        <section id="preset-edit" class="today col-md-12" v-show="showPreset">
+            <h4>
+                Edit {{ presetDay }}'s limitation
+            </h4>
+            <div class="form-group">
+                <label for="prese-edit-max">Maximun Visitors</label>
+                <input v-model.number="presetMax" id="preset-edit-max" class="form-control" placeholder="Maxmium Visitors">
+            </div>
+            <div class="form-group">
+                <label for="prese-edit-start">Visit Start Hour</label>
+                <input v-model.number="presetStart" id="prese-edit-start" class="form-control" placeholder="Visit Start Hour">
+            </div>
+            <div class="form-group">
+                <label for="prese-edit-end">Visit End Hour</label>
+                <input v-model.number="presetEnd" id="prese-edit-end" class="form-control" placeholder="Visit End Hour">
+            </div>
+            <h6 class="col-md-12">{{ presetError }}</h6>
+            <button class="btn btn-default" v-on:click="savePreset">Save</button>
+        </section>
+    </aside>
+
 </div>

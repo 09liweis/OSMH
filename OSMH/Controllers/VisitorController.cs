@@ -23,6 +23,7 @@ namespace OSMH.Controllers
             return View();
         }
         // Post: Read Admin Page
+        [HttpPost]
         public JsonResult readAdmin()
         {
             VisitorLimit limitation = db.VisitorLimit.FirstOrDefault(l => l.VisitorLimit_date == DateTime.Today);
@@ -40,6 +41,7 @@ namespace OSMH.Controllers
             return Json(visitorAdmin);
         }
         // POST: Update today's limitation
+        [HttpPost]
         public JsonResult updateToday(VisitorLimit today)
         {
             DateTime timer = today.VisitorLimit_date.Value.Date;
@@ -61,6 +63,7 @@ namespace OSMH.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
         //POST: search a special day
+        [HttpPost]
         public JsonResult searchDay(string date)
         {
             DateTime choice = Convert.ToDateTime(date);
@@ -71,6 +74,13 @@ namespace OSMH.Controllers
                 special = db.VisitorLimit.Find(id);
             }
             return Json(special);
+        }
+        //POST: read a preset day
+        [HttpPost]
+        public JsonResult readPreset(int date)
+        {
+            VisitorLimit preset = db.VisitorLimit.Find(date);
+            return Json(preset);
         }
     }
 }
