@@ -94,15 +94,15 @@
             </h4>
             <div class="form-group">
                 <label for="prese-edit-max">Maximun Visitors</label>
-                <input v-model.number="presetMax" id="preset-edit-max" class="form-control" placeholder="Maxmium Visitors">
+                <input v-model.number="finalMax" id="preset-edit-max" class="form-control" placeholder="Maxmium Visitors">
             </div>
             <div class="form-group">
                 <label for="prese-edit-start">Visit Start Hour</label>
-                <input v-model.number="presetStart" id="prese-edit-start" class="form-control" placeholder="Visit Start Hour">
+                <input v-model.number="finalStart" id="prese-edit-start" class="form-control" placeholder="Visit Start Hour">
             </div>
             <div class="form-group">
                 <label for="prese-edit-end">Visit End Hour</label>
-                <input v-model.number="presetEnd" id="prese-edit-end" class="form-control" placeholder="Visit End Hour">
+                <input v-model.number="finalEnd" id="prese-edit-end" class="form-control" placeholder="Visit End Hour">
             </div>
             <h6 class="col-md-12">{{ presetError }}</h6>
             <button class="btn btn-default" v-on:click="savePreset">Save</button>

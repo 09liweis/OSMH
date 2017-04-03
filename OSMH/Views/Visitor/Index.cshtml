@@ -3,13 +3,20 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Visitor.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="row">
-    <aside class="col-md-3">
-    </aside>
-    <main id="main" class="col-md-9">
-        <input placeholder="Your full name" v-model="name" />
+    <main id="today" class="col-md-4" v-cloak>
+        <section id="today-display" class="today col-md-12">
+            <h4>Status Today</h4>
+            <h5>{{ todayDay }}</h5>
+            <h5>{{ regStatues }}</h5>
+            <h5><b>Maxmium Visitors</b> - {{ todayMax }}</h5>
+            <h5><b>Registered Visitors</b> - {{ todayReg }}</h5>
+            <h5><b>Visit Start Hour</b> - {{ todayStart }}</h5>
+            <h5><b>Visit End Hour</b> - {{ todayEnd }}</h5>
+            <button class="btn btn-default" v-on:click="regToday">Register</button>
+        </section>
     </main>
 </div>

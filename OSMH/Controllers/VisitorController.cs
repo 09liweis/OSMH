@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using OSMH.Models;
 using System.Data.Entity;
+using System.Net.Mail;
+using System.Net;
 
 namespace OSMH.Controllers
 {
@@ -16,12 +18,35 @@ namespace OSMH.Controllers
         {
             return View();
         }
-        // Post: Read Public Page
-        // GET: Visitor Admin Page
-        public ActionResult Admin()
+        // Post: Register visitor
+        [HttpPost]
+        public JsonResult regVisitor()
         {
-            return View();
+            var result = new { Success = "true" };
+            SmtpClient smtpClient = new SmtpClient();
+            smtpClient.Credentials = new NetworkCredential("marvelcanada@outlook.com", "hb2017cms");
+            smtpClient.EnableSsl = true;
+            MailMessage message = new MailMessage();
+            try
+            {
+                MailAddress fromAddress = new MailAddress("marvelcanada@outlook.com");
+                smtpClient.Host = "smtp-mail.outlook.com";
+                smtpClient.Port = 587;
+                message.From = fromAddress;
+                message.To.Add("byn9826@gmail.com");
+                message.Subject = "Test";
+                message.IsBodyHtml = true;
+                message.Body = "test test test";
+                smtpClient.Send(message);
+            }
+            catch (Exception ex)
+            {
+                result = new { Success = ex.Message };
+            }
+            return Json(result, JsonRequestBehavior.DenyGet);
         }
+
+
         // Post: Read Admin Page
         [HttpPost]
         public JsonResult readAdmin()
@@ -81,6 +106,15 @@ namespace OSMH.Controllers
         {
             VisitorLimit preset = db.VisitorLimit.Find(date);
             return Json(preset);
+        }
+        // POST: Update day's limitation
+        [HttpPost]
+        public JsonResult updatePreset(VisitorLimit preset)
+        {
+            db.Entry(preset).State = EntityState.Modified;
+            db.SaveChanges();
+            var result = new { Success = "true" };
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
     }
 }
