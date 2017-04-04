@@ -35,7 +35,6 @@
                     this.doctorId = null;
                     this.date = null;
                     this.timeslot = null;
-                    this.doctors = [];
                     this.dates = [];
                     this.timeslots = [];
                 },
