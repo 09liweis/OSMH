@@ -1,0 +1,65 @@
+﻿@model IEnumerable<OSMH.Models.Alert>
+
+@{
+	ViewBag.Title = "Index";
+}
+
+@{
+	if (ViewBag.error != null)
+	{
+		<h2>@ViewBag.error</h2>
+	}
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@foreach (var item in Model)
+{
+	<div>
+		<p>
+			@Html.DisplayFor(modelItem => item.Title)
+		</p>
+		<p>
+			@Html.DisplayFor(modelItem => item.Classification)
+		</p>
+		<p>
+			@Html.DisplayFor(modelItem => item.Message)
+		</p>
+		<p>
+			@Html.DisplayFor(modelItem => item.AlertStatus)
+		</p>
+		<p>
+			@Html.DisplayFor(modelItem => item.Publisher)
+		</p>
+		<p>
+			@Html.DisplayFor(modelItem => item.CreatingTime)
+		</p>
+		<p>
+			@Html.DisplayFor(modelItem => item.PublishingTime)
+		</p>
+		<p>
+			@Html.ActionLink("Edit", "Edit", new { id = item.AlertID })
+		</p>
+		<p>
+			@Html.ActionLink("Details", "Details", new { id = item.AlertID })
+		</p>
+		<p>
+			@Html.ActionLink("Add to archive", "AddtoArchive", new { id = item.AlertID })
+		</p>
+		<p>
+			@if (item.AlertStatus == OSMH.Models.Alert.Status.Inactive)
+			{
+				@Html.ActionLink("Active", "SwitchActive", new { id = item.AlertID })
+			}
+			else if (item.AlertStatus == OSMH.Models.Alert.Status.Ongoing)
+			{
+				@Html.ActionLink("Inactive", "SwitchActive", new { id = item.AlertID })
+			}
+		</p>
+
+	</div>
+}

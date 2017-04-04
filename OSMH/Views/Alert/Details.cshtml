@@ -1,0 +1,74 @@
+﻿@model OSMH.Models.Alert
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Alert</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Classification)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Classification)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Message)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Message)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AlertStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AlertStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Publisher)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Publisher)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatingTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatingTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PublishingTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PublishingTime)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AlertID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

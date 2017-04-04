@@ -1,0 +1,38 @@
+﻿@model IEnumerable<OSMH.Models.Alert>
+
+@{
+    ViewBag.Title = "Archive";
+}
+
+<h2>Archive</h2>
+
+@foreach (var item in Model)
+{
+	<div>
+		<p>
+			@Html.DisplayFor(modelItem => item.Title)
+		</p>
+		<p>
+			@Html.DisplayFor(modelItem => item.Classification)
+		</p>
+		<p>
+			@Html.DisplayFor(modelItem => item.Message)
+		</p>
+		<p>
+			@Html.DisplayFor(modelItem => item.AlertStatus)
+		</p>
+		<p>
+			@Html.DisplayFor(modelItem => item.Publisher)
+		</p>
+		<p>
+			@Html.DisplayFor(modelItem => item.CreatingTime)
+		</p>
+		<p>
+			@Html.DisplayFor(modelItem => item.PublishingTime)
+		</p>
+		<p>
+			@Html.ActionLink("Details", "Details", new { id = item.AlertID })
+		</p>
+
+	</div>
+}
