@@ -57,13 +57,11 @@ namespace OSMH.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AlertID,Title,Classification,Message,AlertStatus")] Alert alert)
+        public ActionResult Create([Bind(Include = "AlertID,Title,Classification,Message,AlertStatus, Publisher, CreatingTime")] Alert alert)
         {
-            if (ModelState.IsValid)
+
+			if (ModelState.IsValid)
             {
-				alert.CreatingTime = DateTime.Now;
-				//The publish will be the admin
-				alert.Publisher = "Admin";
                 db.Alerts.Add(alert);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -112,23 +110,17 @@ namespace OSMH.Controllers
 
 			int activeAlert = db.Alerts.Where(m => m.AlertStatus == Alert.Status.Ongoing).Count();
 
-			/*if (activeAlert > 0)
+			if (activeAlert >= 1)
 			{
-				
-				return RedirectToAction("Index");
-			}*/
+				ViewBag.ActiveAlertError = "Only one alert can be active.";
+				List<Alert> allAlerts = db.Alerts.Where(m => m.AlertStatus != Alert.Status.Archived).ToList();
+				return View("Index", allAlerts);
+			}
 
 			Alert alert = db.Alerts.Find(id);
 
-			if (alert.AlertStatus == Alert.Status.Inactive)
-			{
-				alert.AlertStatus = Alert.Status.Ongoing;
-				alert.PublishingTime = DateTime.Now;
-			}
-			else if (alert.AlertStatus == Alert.Status.Ongoing)
-			{
-				alert.AlertStatus = Alert.Status.Inactive;
-			}
+			alert.AlertStatus = Alert.Status.Ongoing;
+			alert.PublishingTime = DateTime.Now;
 			
 			db.Entry(alert).State = EntityState.Modified;
 			db.SaveChanges();
@@ -137,7 +129,30 @@ namespace OSMH.Controllers
 			{
 				return HttpNotFound();
 			}
-			return RedirectToAction("Index");
+			List<Alert> alerts = db.Alerts.Where(m => m.AlertStatus != Alert.Status.Archived).ToList();
+			return View("Index", alerts);
+		}
+
+		public ActionResult SwitchInactive(int? id)
+		{
+			if (id == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+
+			Alert alert = db.Alerts.Find(id);
+
+			alert.AlertStatus = Alert.Status.Inactive;
+
+			db.Entry(alert).State = EntityState.Modified;
+			db.SaveChanges();
+
+			if (alert == null)
+			{
+				return HttpNotFound();
+			}
+			List<Alert> alerts = db.Alerts.Where(m => m.AlertStatus != Alert.Status.Archived).ToList();
+			return View("Index", alerts);
 		}
 
 		// GET: Alert/Delete/5
@@ -174,11 +189,24 @@ namespace OSMH.Controllers
 							  where a.AlertStatus == Alert.Status.Ongoing
 							  select a;
 			List<Alert> alersList = alertsQuery.ToList();
-			Alert alert = alersList[0];
-			alertView.Title = alert.Title;
-			alertView.Message = alert.Message;
-			alertView.Status = "Ongoing";
-			alertView.PublishingTime = alert.PublishingTime;
+
+			if (alersList.Count == 1 )
+			{
+				Alert alert = alersList[0];
+				alertView.Active = true;
+				alertView.Title = alert.Title;
+				alertView.Message = alert.Message;
+				alertView.Status = "Ongoing";
+				if (alert.PublishingTime.HasValue)
+					alertView.PublishingTime = alert.PublishingTime.Value.ToString();
+				else
+					alertView.PublishingTime = DateTime.Now.ToString();
+			}
+			else
+			{
+				alertView.Active = false;
+			} 
+
 			return Json(alertView, JsonRequestBehavior.AllowGet);
 		}
 

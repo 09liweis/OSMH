@@ -11,6 +11,7 @@ namespace OSMH.Models.helper
 		public string Title { get; set; }
 		public string Message { get; set; }
 		public string Status { get; set; }
-		public DateTime? PublishingTime { get; set; }
+		public string PublishingTime { get; set; }
+		public Boolean Active { get; set; }
 	}
 }

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 
 namespace OSMH.Models
-{	
+{
 	[Table("Alert")]
 	public class Alert
 	{
@@ -16,7 +16,7 @@ namespace OSMH.Models
 		}
 
 		public enum AlertClass
-		{	[Display(Name = "Fire investigation")]
+		{[Display(Name = "Fire investigation")]
 			FireInvestigation,
 			[Display(Name = "Police investigation")]
 			PoliceInvestigation,
@@ -29,14 +29,23 @@ namespace OSMH.Models
 		}
 
 		public int AlertID { get; set; }
+		[StringLength(20, MinimumLength = 5)]
 		public string Title { get; set; }
+		[Required]
 		public AlertClass Classification { get; set; }
+		[StringLength(200, MinimumLength = 10)]
 		public string Message { get; set; }
+		[Required]
+		[Display(Name = "Alert Status")]
 		public Status AlertStatus { get; set; }
+		[Required]
 		public string Publisher { get; set; }
 		[Display(Name = "Created at")]
+		[DataType(DataType.DateTime)]
+		[Required]
 		public DateTime? CreatingTime { get; set; }
 		[Display(Name = "Published at")]
+		[DataType(DataType.DateTime)]
 		public DateTime? PublishingTime { get; set; }
 	}
 }

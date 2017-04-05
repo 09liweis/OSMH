@@ -4,71 +4,64 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2 class="alertDetail_pageTitle">@Html.DisplayFor(model => model.Title)</h2>
 
-<div>
-    <h4>Alert</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
+<article class="alertDetail">
+	<div class="alertDetail_item row">
+		<p class="alertDetail_title col-sm-6">
+			@Html.DisplayNameFor(model => model.Classification):
+		</p>
+		<p class="alertDetail_body col-sm-6">
+			@Html.DisplayFor(model => model.Classification)
+		</p>
+	</div>
+	<div class="alertDetail_item row">
+		<p class="alertDetail_title col-sm-6">
+			@Html.DisplayNameFor(model => model.Message):
+		</p>
+		<p class="alertDetail_body col-sm-6">
+			@Html.DisplayFor(model => model.Message)
+		</p>
+	</div>
+	<div class="alertDetail_item row">
+		<p class="alertDetail_title col-sm-6">
+			@Html.DisplayNameFor(model => model.AlertStatus):
+		</p>
+		<p class="alertDetail_body col-sm-6">
+			@Html.DisplayFor(model => model.AlertStatus)
+		</p>
+	</div>
+	<div class="alertDetail_item row">
+		<p class="alertDetail_title col-sm-6">
+			@Html.DisplayNameFor(model => model.Publisher):
+		</p>
+		<p class="alertDetail_body col-sm-6">
+			@Html.DisplayFor(model => model.Publisher)
+		</p>
+	</div>
+	<div class="alertDetail_item row">
+		<p class="alertDetail_title col-sm-6">
+			@Html.DisplayNameFor(model => model.CreatingTime):
+		</p>
+		<p class="alertDetail_body col-sm-6">
+			@Html.DisplayFor(model => model.CreatingTime)
+		</p>
+	</div>
+	<div class="alertDetail_item row">
+		<p class="alertDetail_title col-sm-6">
+			@Html.DisplayNameFor(model => model.PublishingTime):
+		</p>
+		<p class="alertDetail_body col-sm-6">
+			@Html.DisplayFor(model => model.PublishingTime)
+		</p>
+	</div>
+</article>
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Classification)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Classification)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Message)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Message)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AlertStatus)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AlertStatus)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Publisher)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Publisher)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatingTime)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatingTime)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PublishingTime)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PublishingTime)
-        </dd>
-
-    </dl>
+<div class="alertDetail_buttons">
+	<p>
+		@Html.ActionLink("Edit", "Edit", new { id = Model.AlertID }, new { @class = "btn btn-primary" })
+	</p>
+	<p>
+		@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+	</p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.AlertID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
