@@ -177,7 +177,12 @@
             presetEnd: null,
             showDisplay: false,
             showPreset: false,
-            presetButton: "Edit"
+            presetButton: "Edit",
+            presetError: "",
+            finalMax: null,
+            finalStart: null,
+            finalEnd: null,
+            presetId: null
         },
         methods: {
             searchPreset: function (num) {
@@ -185,13 +190,59 @@
                     console.log(result.data);
                     this.presetDay = IdToDay(result.data.VisitorLimit_id);
                     this.presetMax = result.data.VisitorLimit_max;
-                    this.presetStart = result.data.VisitorLimit_start;
-                    this.presetEnd = result.data.VisitorLimit_end;
+                    this.presetStart = result.data.VisitorLimit_start + ":00";
+                    this.presetEnd = result.data.VisitorLimit_end + ":00";
+                    this.presetId = result.data.VisitorLimit_id;
                     this.showDisplay = true;
+                    this.finalMax = result.data.VisitorLimit_max;
+                    this.finalStart = result.data.VisitorLimit_start;
+                    this.finalEnd = result.data.VisitorLimit_end;
                 });
             },
             editPreset: function () {
-                this.showPreset = true;
+                if (this.showPreset === false) {
+                    this.presetButton = "Close";
+                    this.showPreset = true;
+                } else {
+                    this.presetButton = "Edit";
+                    this.showPreset = false;
+                }
+            },
+            savePreset: function () {
+                this.finalMax = parseInt(this.finalMax);
+                this.finalStart = parseInt(this.finalStart);
+                this.finalEnd = parseInt(this.finalEnd);
+                if (this.finalMax >= 0) {
+                    if (this.finalStart >= 0 && this.finalStart <= 23 && this.finalEnd >= 0 && this.finalEnd <= 23) {
+                        if (this.finalStart <= this.finalEnd) {
+                            this.presetMax = this.finalMax;
+                            this.presetStart = this.finalStart + ":00";
+                            this.presetEnd = this.finalEnd + ":00";
+                            this.presetButton = "Edit";
+                            this.showPreset = false;
+                            $.ajax({
+                                type: "POST",
+                                contentType: "application/json",
+                                url: "./updatePreset",
+                                data: JSON.stringify({
+                                    "VisitorLimit_max": this.finalMax,
+                                    "VisitorLimit_start": this.finalStart,
+                                    "VisitorLimit_end": this.finalEnd,
+                                    "VisitorLimit_id": this.presetId
+                                }),
+                                error: function (request, status, error) {
+                                    console.log(request.responseText);
+                                }
+                            });
+                        } else {
+                            this.presetError = "End hour must larger than start hour";
+                        }
+                    } else {
+                        this.presetError = "Visit Hours should between 0 - 23";
+                    }
+                } else {
+                    this.presetError = "Maximun Visitors must > 0";
+                }
             }
         }
     });
