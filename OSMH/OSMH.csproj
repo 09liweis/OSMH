@@ -296,7 +296,6 @@
     <Content Include="Views\Doctor\Admin.cshtml" />
     <Content Include="Views\Patient\Dashboard.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Alert\Create.cshtml" />
     <Content Include="Views\Alert\AddtoArchive.cshtml" />
     <Content Include="Views\Alert\Details.cshtml" />
@@ -305,9 +304,7 @@
     <Content Include="Views\Alert\Archive.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
-=======
     <Content Include="Views\Visitor\Index.cshtml" />
->>>>>>> 5075393452f80b718f00ee673b0d11a4e7ee59e9
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
