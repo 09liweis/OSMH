@@ -58,9 +58,13 @@
 </article>
 
 <div class="alertDetail_buttons">
+	@if (Model.AlertStatus == OSMH.Models.Alert.Status.Inactive || Model.AlertStatus == OSMH.Models.Alert.Status.Ongoing)
+	{
 	<p>
 		@Html.ActionLink("Edit", "Edit", new { id = Model.AlertID }, new { @class = "btn btn-primary" })
 	</p>
+	}
+
 	<p>
 		@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
 	</p>
