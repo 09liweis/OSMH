@@ -45,6 +45,7 @@ namespace SomeeTest.Controllers
                 FormsAuthentication.SetAuthCookie(user.UserName, false);
                 Session["userId"] = user.Id.ToString();
                 Session["name"] = user.UserName.ToString();
+
                 if (user.Role == "admin")
                 {
                     Session["adminId"] = user.Id;
@@ -89,6 +90,7 @@ namespace SomeeTest.Controllers
             if (Session["userId"] != null)
             {
                 Session.Abandon();
+                FormsAuthentication.SignOut();
             }
             return RedirectToAction("Login");
 

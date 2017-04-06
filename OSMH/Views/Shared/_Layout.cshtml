@@ -123,7 +123,14 @@
                                 </li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a href="/Account/Login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <li><a href="/Account/Logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="/Account/Login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                                }
                             </ul>
                         </div>
                         <!-- /.navbar-collapse -->
@@ -233,14 +240,6 @@
         <!-- Bootstrap Core JavaScript -->
         <script src="~/Scripts/bootstrap.min.js"></script>
         <script src="~/Scripts/patient/dashboard.js"></script>
-        <script>
-                $(document).ready(function () {
-                    $('.date').datepicker({
-                        dateFormat: 'yy-mm-dd',
-                        changeMonth: true,
-                        changeYear: true,
-                    });
-                });
-            </script>
+        <script src="~/Scripts/blog/admin.js"></script>
     </body>
 </html>

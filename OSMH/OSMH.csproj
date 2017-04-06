@@ -192,6 +192,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Scripts\admin\doctor.js" />
+    <Content Include="Scripts\blog\admin.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
@@ -281,6 +283,7 @@
     <Content Include="Views\Patient\Dashboard.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Visitor\Index.cshtml" />
+    <Content Include="Views\Admin\Doctors.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
