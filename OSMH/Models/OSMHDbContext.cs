@@ -18,6 +18,7 @@ namespace OSMH.Models
         public DbSet<Schedule> Schedules { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
 		public DbSet<Alert> Alerts { get; set; }
+		public DbSet<Suggestion> Suggestions { get; set; }
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -26,6 +27,7 @@ namespace OSMH.Models
             modelBuilder.Entity<Appointment>().HasRequired(a => a.schedule).WithMany(a => a.Appointments).HasForeignKey(a => a.Schedule_Id);
             modelBuilder.Entity<Appointment>().HasRequired(a => a.patient).WithMany(a => a.appointments).HasForeignKey(a => a.Patient_Id);
             modelBuilder.Entity<User>().HasOptional(u => u.Doctor).WithRequired(d => d.User);
+			modelBuilder.Entity<Suggestion>().HasRequired(u => u.User);
         }
     }
 }

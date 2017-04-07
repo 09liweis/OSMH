@@ -28,5 +28,6 @@ namespace OSMH.Models
         public string Role { get; set; }
 
         public virtual Doctor Doctor { get; set; }
-    }
+		public virtual ICollection<Suggestion> Suggestions { get; set; }
+	}
 }

@@ -1,0 +1,72 @@
+﻿@model IEnumerable<OSMH.Models.helper.UserSuggestion>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm())
+{
+	<p>
+		Find Suggestion: @Html.TextBox("SearchString")
+		<input type="submit" value="Search" />
+	</p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.TitleSortParm })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.ActionLink("Group", "Index", new { sortOrder = ViewBag.GroupSortParm})
+        </th>
+        <th>
+            @Html.ActionLink("Vote", "Index", new { sortOrder = ViewBag.VoteSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Created at", "Index", new { sortOrder = ViewBag.DateSortParm })
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GroupName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vote)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatingTime)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.SuggestionId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.SuggestionId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.SuggestionId })
+        </td>
+    </tr>
+}
+
+</table>
