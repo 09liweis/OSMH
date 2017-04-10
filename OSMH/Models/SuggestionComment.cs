@@ -7,30 +7,25 @@ using System.Web;
 
 namespace OSMH.Models
 {
-	[Table("Suggestion")]
-	public class Suggestion
+	[Table("SuggestionComment")]
+	public class SuggestionComment
 	{
-		public enum Group
-		{
-			Patient, Stuff
-		}
+
 		[Key]
-		public int SuggestionId { get; set; }
+		public int CommentId { get; set; }
 		[Required]
 		[ForeignKey("User")]
 		public int UserId { get; set; }
-		[StringLength(200, MinimumLength = 5)]
-		public string Title { get; set; }
-		[StringLength(5000, MinimumLength = 10)]
-		public string Description { get; set; }
 		[Required]
-		public Group GroupName { get; set; }
-		public int Vote { get; set; }
+		[ForeignKey("Suggestion")]
+		public int SuggestionId { get; set; }
+		[StringLength(1000, MinimumLength = 10)]
+		public string Description { get; set; }
 		[DataType(DataType.DateTime)]
 		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}", ApplyFormatInEditMode = true)]
 		public DateTime CreatingTime { get; set; }
 
 		public virtual User User { get; set; }
-		public virtual ICollection<SuggestionComment> SuggestionComments { get; set; } 
+		public virtual Suggestion Suggestion { get; set; }
 	}
 }

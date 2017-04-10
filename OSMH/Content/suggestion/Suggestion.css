@@ -1,0 +1,47 @@
+﻿.suggestionsSortLinks {
+	display: block;
+	width: 100%;
+	margin: 20px 0;
+	border: 1px solid black;
+	padding: 5px;
+	border-radius: 10px;
+}
+.suggestionsSortLinks p {
+	margin: 0;
+	text-align: center;
+}
+.allSuggestions_title h2 {
+	margin: 0;
+}
+.allSuggestions_title_search p {
+	margin: 0;
+}
+.suggestionItem_vote_number {
+	text-align: center;
+}
+.suggestionItem_vote_upvote {
+	width: 100%;
+}
+.suggestionItem_vote_number {
+	text-align: center;
+	font-size: 20px;
+}
+.suggestionItem {
+	padding: 20px;
+}
+span.label {
+	vertical-align: top;
+}
+.suggestionItem_detail_title {
+	font-size: 20px;
+}
+.suggestionItem_count-number {
+	color: darkgray;
+	text-align: right;
+}
+.suggestionItem_count {
+	padding-top: 30px;
+}
+.suggestionItem_detail_author {
+	color: darkgray;
+}

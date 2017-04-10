@@ -27,7 +27,12 @@ namespace OSMH.Models
             modelBuilder.Entity<Appointment>().HasRequired(a => a.schedule).WithMany(a => a.Appointments).HasForeignKey(a => a.Schedule_Id);
             modelBuilder.Entity<Appointment>().HasRequired(a => a.patient).WithMany(a => a.appointments).HasForeignKey(a => a.Patient_Id);
             modelBuilder.Entity<User>().HasOptional(u => u.Doctor).WithRequired(d => d.User);
-			modelBuilder.Entity<Suggestion>().HasRequired(u => u.User);
+			modelBuilder.Entity<User>().HasMany(s => s.Suggestions);
+			modelBuilder.Entity<User>().HasMany(s => s.SuggestionComments);
+			modelBuilder.Entity<Suggestion>().HasRequired(u => u.User).WithMany(s => s.Suggestions).HasForeignKey(u => u.UserId);
+			modelBuilder.Entity<SuggestionComment>().HasRequired(u => u.User);
+			modelBuilder.Entity<SuggestionComment>().HasRequired(s => s.Suggestion).WithMany(s => s.SuggestionComments).HasForeignKey(s => s.SuggestionId);
+
         }
     }
 }

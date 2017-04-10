@@ -29,5 +29,6 @@ namespace OSMH.Models
 
         public virtual Doctor Doctor { get; set; }
 		public virtual ICollection<Suggestion> Suggestions { get; set; }
+		public virtual ICollection<SuggestionComment> SuggestionComments { get; set; }
 	}
 }
