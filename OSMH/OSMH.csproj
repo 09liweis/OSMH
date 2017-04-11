@@ -238,6 +238,7 @@
     <Content Include="Scripts\patient\dashboard.js" />
     <Content Include="Scripts\visitor\admin.js" />
     <Content Include="Scripts\visitor\public.js" />
+    <None Include="Todo.md" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
