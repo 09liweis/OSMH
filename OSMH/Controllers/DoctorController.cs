@@ -12,7 +12,6 @@ namespace OSMH.Controllers
     public class DoctorController : Controller
     {
         private OSMHDbContext db = new OSMHDbContext();
-        // GET: Doctor
         public ActionResult Admin()
         {
             //Temporary test
@@ -22,8 +21,7 @@ namespace OSMH.Controllers
                 return RedirectToAction("Login", "Account");
             }
 
-            List<Schedule> schedules = db.Schedules.Include(s => s.Doctor).ToList();
-            return View(schedules);
+            return View();
         }
 
         public ActionResult CreateSchedule()
@@ -56,6 +54,20 @@ namespace OSMH.Controllers
             }
 
             return RedirectToAction("Admin");
+        }
+
+        public JsonResult getAppointments()
+        {
+            int doctorId = Convert.ToInt32(Session["doctorId"]);
+            var appointments = db.Appointments.Where(a => a.schedule.Doctor_id == doctorId).Select(a => new { a.Id, a.patient.user.FirstName, a.patient.user.LastName, a.schedule.Date, a.schedule.StartTime, a.schedule.EndTime }).ToList();
+            return new JsonResult { Data = appointments, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+
+        public JsonResult getSchedules()
+        {
+            int doctorId = Convert.ToInt32(Session["doctorId"]);
+            var schedules = db.Schedules.Where(s => s.Doctor_id == doctorId).Select(s => new { s.Id, s.Date, s.StartTime, s.EndTime, s.Booked }).ToList();
+            return new JsonResult { Data = schedules, JsonRequestBehavior = JsonRequestBehavior.AllowGet};
         }
 
         //
