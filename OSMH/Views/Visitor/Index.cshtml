@@ -6,17 +6,33 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="row">
-    <main id="today" class="col-md-4" v-cloak>
+<div id="container" class="row">
+    <aside class="col-md-4 col-md-offset-1">
+        <h4>Notice:</h4>
+        <h5>
+            If you plan to visit a patient, you must obtain a visit code.
+        </h5>
+        <h5>
+            You can request a visit code on this right side of this page.
+        </h5>
+    </aside>
+    <main id="today" class="col-md-5 col-md-offset-1" v-cloak>
         <section id="today-display" class="today col-md-12">
-            <h4>Status Today</h4>
+            <h4>Register Today</h4>
             <h5>{{ todayDay }}</h5>
-            <h5>{{ regStatues }}</h5>
-            <h5><b>Maxmium Visitors</b> - {{ todayMax }}</h5>
-            <h5><b>Registered Visitors</b> - {{ todayReg }}</h5>
-            <h5><b>Visit Start Hour</b> - {{ todayStart }}</h5>
-            <h5><b>Visit End Hour</b> - {{ todayEnd }}</h5>
-            <button class="btn btn-default" v-on:click="regToday">Register</button>
+            <h4>{{ regStatues }}</h4>
+            <h5>Maxmium Visitors - {{ todayMax }}</h5>
+            <h5>Registered Visitors - {{ todayReg }}</h5>
+            <h5>Visit Start Hour - {{ todayStart }}</h5>
+            <h5>Visit End Hour - {{ todayEnd }}</h5>
+            <div v-show="showReg">
+                <h4 id="today-display-desc">Get a visit code here:</h4>
+                <input id="today-display-email" type="email" class="form-control" placeholder="Email">
+                <button class="btn btn-default" v-on:click="regToday">Register</button>
+            </div>
+            <div v-show="showSuccess">
+                <h4 id="today-display-desc">Success, just display the email you receive when you arraive!</h4>
+            </div>
         </section>
     </main>
 </div>

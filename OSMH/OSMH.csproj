@@ -188,6 +188,7 @@
     <Content Include="Content\visitor\admin.css" />
     <Content Include="Content\themes\heroic-features.css" />
     <Content Include="Content\themes\homepage.css" />
+    <Content Include="Content\visitor\public.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -306,7 +307,6 @@
     <Content Include="Views\Testimonials\Create.cshtml" />
     <Content Include="Views\Testimonials\Index.cshtml" />
     <Content Include="Views\Testimonials\Admin.cshtml" />
-
     <Content Include="Views\Patient\Dashboard.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Alert\Create.cshtml" />

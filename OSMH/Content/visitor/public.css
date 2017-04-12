@@ -1,0 +1,45 @@
+﻿[v-cloak] {
+    display: none;
+}
+
+#container{
+    margin-top: 50px;
+}
+
+#container aside h4{
+    text-align:center;
+    font-weight:bold;
+}
+
+#container aside h5{
+    line-height: 30px;
+}
+
+#today{
+    background-color: aliceblue;
+    padding-bottom: 20px;
+}
+
+#today-display{
+    text-align: center;
+}
+
+#today-display h4{
+    font-weight:bold;
+    margin-top: 20px;
+    margin-bottom:10px;
+}
+
+#today-display h5{
+    margin: 20px 0;
+}
+
+#today-display-email{
+    margin-bottom:10px;
+}
+
+#today-display-desc{
+    margin-top:30px;
+    padding-top: 20px;
+    border-top: 1px dashed #808080;
+}

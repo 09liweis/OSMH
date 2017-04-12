@@ -20,9 +20,25 @@ namespace OSMH.Controllers
         }
         // Post: Register visitor
         [HttpPost]
-        public JsonResult regVisitor()
+        public JsonResult regVisitor(require require)
         {
+            string email = require.email;
             var result = new { Success = "true" };
+            //generate random code from http://stackoverflow.com/questions/1344221/how-can-i-generate-random-alphanumeric-strings-in-c
+            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            var stringChars = new char[6];
+            var random = new Random();
+            for (int i = 0; i < stringChars.Length; i++)
+            {
+                stringChars[i] = chars[random.Next(chars.Length)];
+            }
+            var finalString = new String(stringChars);
+            VisitorReg newReg = new VisitorReg();
+            newReg.VisitorReg_code = finalString;
+            newReg.VisitorReg_email = email;
+            newReg.VisitorReg_date = DateTime.Now.Date;
+            db.VisitorReg.Add(newReg);
+            db.SaveChanges();
             SmtpClient smtpClient = new SmtpClient();
             smtpClient.Credentials = new NetworkCredential("marvelcanada@outlook.com", "hb2017cms");
             smtpClient.EnableSsl = true;
@@ -33,10 +49,10 @@ namespace OSMH.Controllers
                 smtpClient.Host = "smtp-mail.outlook.com";
                 smtpClient.Port = 587;
                 message.From = fromAddress;
-                message.To.Add("byn9826@gmail.com");
-                message.Subject = "Test";
+                message.To.Add(email);
+                message.Subject = "Your visit code for OSMH";
                 message.IsBodyHtml = true;
-                message.Body = "test test test";
+                message.Body = "Please present this code when you visit us: " + finalString;
                 smtpClient.Send(message);
             }
             catch (Exception ex)
@@ -44,6 +60,12 @@ namespace OSMH.Controllers
                 result = new { Success = ex.Message };
             }
             return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
+        // GET: Visitor
+        public ActionResult Admin()
+        {
+            return View();
         }
 
 
@@ -116,5 +138,10 @@ namespace OSMH.Controllers
             var result = new { Success = "true" };
             return Json(result, JsonRequestBehavior.AllowGet);
         }
+    }
+
+    public class require
+    {
+        public string email { get; set; }
     }
 }
