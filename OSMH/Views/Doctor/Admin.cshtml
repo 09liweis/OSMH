@@ -1,6 +1,4 @@
-﻿@model IEnumerable<OSMH.Models.Schedule>
-
-@{
+﻿@{
     ViewBag.Title = "Admin";
 }
 
@@ -12,49 +10,35 @@
 <h2>Doctor @Session["name"], Welcome to Dashboard</h2>
 @Html.ActionLink("Create Schedule", "CreateSchedule")
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Doctor_id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StartTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EndTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Booked)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Doctor_id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EndTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Booked)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
-
-</table>
+<div id="dashboard">
+    <div>
+        <button class="btn btn-primary" v-on:click="changeView('appointments')">Appointments</button>
+        <button class="btn btn-primary pull-right" v-on:click="changeView('schedules')">Manage Schedules</button>
+    </div>
+    <table class="table" v-if="view == 'appointments'">
+        <tr>
+            <td>Date</td>
+            <td>Time</td>
+            <td>Name</td>
+        </tr>
+        <tr v-for="a in appointments">
+            <td>{{a.Date}}</td>
+            <td>{{a.Time}}</td>
+            <td>{{a.Patient}}</td>
+        </tr>
+    </table>
+    <div class="" v-if="view == 'schedules'">
+        <div>
+            <span class="label label-success">Available</span>
+            <span class="label label-danger">Booked</span>
+        </div>
+        <div class="row" v-for="(timeslots, date) in schedules">
+            <h3>{{date}}</h3>
+            <div class="col-xs-2 timeslot" v-for="t in timeslots">
+                <button v-bind:class="t.Booked ? 'btn btn-danger' : 'btn btn-success'">{{t.Time}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/helper/datetime.js"></script>
+<script src="~/Scripts/doctor/dashboard.js"></script>

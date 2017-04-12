@@ -2,20 +2,86 @@
     display: none;
 }
 
-aside{
+main{
     margin-top:50px;
     border-radius:10px;
-    background-color:antiquewhite;
-    padding: 10px 0;
 }
 
-#today h4{
+.today {
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+.today h4{
     font-weight:bold;
     text-align:center;
 }
 
-#today > :nth-child(2) {
+#today-display {
+    background-color: antiquewhite;
+    border-radius: 5px 5px 0 0;
+}
+
+#today-display >:nth-child(2) {
     border-bottom: 1px solid black;
     padding-bottom: 5px;
     text-align: center;
+}
+
+#today-edit {
+    background-color: #f2f1ed;
+    border-radius: 0 0 5px 5px;
+}
+
+#today-edit input {
+    margin-bottom: 10px;
+}
+
+#today-edit h6{
+    color:red;
+}
+
+aside {
+    margin-top: 50px;
+}
+
+#special-pick{
+    border-left: 3px solid #8d0101;
+    padding-left: 6%;
+}
+
+#special-edit{
+    border: 1px dashed black;
+    margin-top:30px;
+}
+
+#special-edit h6 {
+    color: red;
+}
+
+#special-edit button{
+    margin-bottom:10px;
+}
+
+#preset h3{
+    margin-top: 0 !important;
+}
+
+#preset button{
+    margin-bottom: 10px;
+    margin-right: 5%;
+    width: 40%;
+    text-align:center;
+    padding-left: 0;
+    padding-right:0;
+}
+
+#preset-display{
+    background-color: aliceblue;
+    margin-top: 10px;
+}
+
+#preset-display-date{
+    border-bottom: 1px solid black;
+    padding-bottom: 10px;
 }

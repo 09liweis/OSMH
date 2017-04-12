@@ -13,6 +13,7 @@ namespace OSMH.Models
         public int Id { get; set; }
         [Required]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-mm-dd}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
         [Required]
         [DataType(DataType.Time)]
@@ -23,6 +24,7 @@ namespace OSMH.Models
         public bool Booked { get; set; }
 
         public int Doctor_id { get; set; }
-        //public virtual Doctor Doctor { get; set; }
+        public virtual Doctor Doctor { get; set; }
+        public ICollection<Appointment> Appointments { get; set; }
     }
 }

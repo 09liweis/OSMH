@@ -1,0 +1,68 @@
+﻿@model IEnumerable<OSMH.Models.Alert>
+
+@{
+	ViewBag.Title = "Index";
+}
+
+@{
+	if (ViewBag.ActiveAlertError != null)
+	{
+		<p class="alert alert-danger">@ViewBag.ActiveAlertError</p>
+	}
+}
+
+<h2>All Alerts</h2>
+
+<div class="allAlert-buttons">
+	<p class="allAlert-button">
+		@Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary"})
+	</p>
+	<p class="allAlert-button">
+		@Html.ActionLink("Go to the Alerts Archive", "Archive", null,new { @class = "btn btn-primary" })
+	</p>
+</div>
+
+<section class="allAlert row">
+	@foreach (var item in Model)
+	{
+		<article class="allAlert_item col-sm-6">
+			<p class="allAlert_item_detail">
+				<span>@Html.DisplayNameFor(model => model.Title): </span>
+				@Html.DisplayFor(modelItem => item.Title)
+			</p>
+			<p class="allAlert_item_detail">
+				<span>@Html.DisplayNameFor(model => model.AlertStatus): </span>
+				@Html.DisplayFor(modelItem => item.AlertStatus)
+			</p>
+			<p class="allAlert_item_detail">
+				<span>@Html.DisplayNameFor(model => model.CreatingTime): </span>
+				@Html.DisplayFor(modelItem => item.CreatingTime)
+			</p>
+			<p class="allAlert_item_detail">
+				<span>@Html.DisplayNameFor(model => model.PublishingTime): </span>
+				@Html.DisplayFor(modelItem => item.PublishingTime)
+			</p>
+			<div class="allAlert_item_links">
+				<p class="allAlert_item_link">
+					@Html.ActionLink("Edit", "Edit", new { id = item.AlertID }, new { @class = "btn btn-default" })
+				</p>
+				<p class="allAlert_item_link">
+					@Html.ActionLink("Details", "Details", new { id = item.AlertID }, new { @class = "btn btn-default" })
+				</p>
+				<p class="allAlert_item_link">
+					@Html.ActionLink("Archive", "AddtoArchive", new { id = item.AlertID }, new { @class = "btn btn-danger" })
+				</p>
+				<p class="allAlert_item_link">
+					@if (item.AlertStatus == OSMH.Models.Alert.Status.Inactive)
+				{
+						@Html.ActionLink("Active", "SwitchActive", new { id = item.AlertID }, new { @class = "btn btn-warning" })
+				}
+				else if (item.AlertStatus == OSMH.Models.Alert.Status.Ongoing)
+				{
+						@Html.ActionLink("Inactive", "SwitchInactive", new { id = item.AlertID }, new { @class = "btn btn-danger" })
+				}
+				</p>
+			</div>
+		</article>
+	}
+</section>

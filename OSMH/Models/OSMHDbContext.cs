@@ -16,6 +16,17 @@ namespace OSMH.Models
         public DbSet<VisitorReg> VisitorReg { get; set; }
         public DbSet<Patient> patients { get; set; }
         public DbSet<Testimonial> Testimonials { get; set; }
-        public System.Data.Entity.DbSet<OSMH.Models.Schedule> Schedules { get; set; }
+        public DbSet<Schedule> Schedules { get; set; }
+        public DbSet<Appointment> Appointments { get; set; }
+		public DbSet<Alert> Alerts { get; set; }
+
+		protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Schedule>().HasRequired(s => s.Doctor).WithMany(s => s.Schedules).HasForeignKey(r => r.Doctor_id);
+            modelBuilder.Entity<Appointment>().HasRequired(a => a.schedule).WithMany(a => a.Appointments).HasForeignKey(a => a.Schedule_Id);
+            modelBuilder.Entity<Appointment>().HasRequired(a => a.patient).WithMany(a => a.appointments).HasForeignKey(a => a.Patient_Id);
+            modelBuilder.Entity<Doctor>().HasRequired(d => d.User).WithMany(d => d.Doctors).HasForeignKey(d => d.User_id);
+        }
     }
 }

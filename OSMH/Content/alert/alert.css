@@ -1,0 +1,58 @@
+﻿#activeAlert {
+	margin: -20px 0 10px 0;
+	width: 100%;
+	padding: 0;
+}
+#activeAlert_title {
+	display: block;
+	margin: 0;
+	padding: 10px;
+}
+#activeAlert_body {
+	margin: 0;
+	padding: 10px;
+}
+.allAlert_item {
+	margin-bottom: 10px;
+}
+.allAlert_item_detail span{
+	font-weight: bold;
+}
+.allAlert_item_links {
+	width: 100%;
+}
+.allAlert_item_link {
+	display:inline-block;
+}
+.allAlert-buttons {
+	width: 100%;
+	margin: 20px 0 20px 0;
+}
+.allAlert-button {
+	display: inline-block;
+}
+.alertDetail_pageTitle {
+	text-align: center;
+	margin: 20px 0;
+}
+.alertDetail {
+	width: 100%;
+}
+.alertDetail_title {
+	text-align: right;
+}
+.alertDetail_buttons {
+	margin-top: 20px;
+}
+.alertDetail_buttons p{
+	text-align:center;
+}
+input.form-control, textarea.form-control, select.form-control {
+	max-width: none;
+}
+.alertDetail_title {
+	font-weight: bold;
+}
+.message-input {
+	height: 2rem;
+}
