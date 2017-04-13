@@ -239,6 +239,7 @@
     <Content Include="Scripts\patient\dashboard.js" />
     <Content Include="Scripts\visitor\admin.js" />
     <Content Include="Scripts\visitor\public.js" />
+    <None Include="Todo.md" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -324,6 +325,7 @@
     <Content Include="Views\Message\Index.cshtml" />
     <Content Include="Views\Message\Admin.cshtml" />
     <Content Include="Views\Message\Create.cshtml" />
+    <Content Include="Views\Patient\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

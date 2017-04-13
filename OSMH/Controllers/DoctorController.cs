@@ -60,7 +60,7 @@ namespace OSMH.Controllers
         public JsonResult getAppointments()
         {
             int doctorId = Convert.ToInt32(Session["doctorId"]);
-            var appointments = db.Appointments.Where(a => a.schedule.Doctor_id == doctorId).Select(a => new { a.Id, a.patient.user.FirstName, a.patient.user.LastName, a.schedule.Date, a.schedule.StartTime, a.schedule.EndTime }).ToList();
+            var appointments = db.Appointments.Where(a => a.schedule.Doctor_id == doctorId).Select(a => new { a.Id, a.patient.User.FirstName, a.patient.User.LastName, a.schedule.Date, a.schedule.StartTime, a.schedule.EndTime }).ToList();
             return new JsonResult { Data = appointments, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 

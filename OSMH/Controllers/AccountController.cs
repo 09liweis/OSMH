@@ -22,17 +22,26 @@ namespace SomeeTest.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (user.Role == null)
+                {
+                    user.Role = "patient";
+                }
                 db.users.Add(user);
                 db.SaveChanges();
 
                 ModelState.Clear();
-                ViewBag.Message = user.UserName + " Succesfully registered";
+                TempData["Message"] = "Registration Succesfully, please login.";
+                return RedirectToAction("Login");
             }
             return View();
         }
 
         public ActionResult Login()
         {
+            if (TempData["Message"] != null)
+            {
+                ViewBag.Message = TempData["Message"];
+            }
             return View();
         }
 
@@ -49,6 +58,10 @@ namespace SomeeTest.Controllers
                 if (user.Role == "patient")
                 {
                     Patient patient = db.patients.Where(p => p.User_id == user.Id).FirstOrDefault();
+                    if (patient == null)
+                    {
+                        return RedirectToAction("Create", "Patient");
+                    }
                     Session["patientId"] = patient.Id.ToString();
                     return RedirectToAction("Dashboard", "Patient");
                 }
@@ -59,11 +72,9 @@ namespace SomeeTest.Controllers
                     return RedirectToAction("Admin", "Doctor");
 
                 }
-                if (user.Role == "doctor")
+                if (user.Role == "admin")
                 {
-                    Doctor doctor = db.doctors.Where(d => d.User_id == user.Id).FirstOrDefault();
-                    Session["doctorId"] = doctor.Id.ToString();
-                    return RedirectToAction("Admin", "Doctor");
+                    return RedirectToAction("Index", "Admin");
                 }
                 return RedirectToAction("Loggedin");
             }

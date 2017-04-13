@@ -20,14 +20,14 @@
         <th>
             @Html.DisplayNameFor(model => model.PublishDate)
         </th>
-        <th></th>
+        <th>Actions</th>
     </tr>
 
     @foreach (var item in Model)
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Title)
+                @Html.ActionLink(item.Title, "Edit", new { id = item.Id })
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Published)
