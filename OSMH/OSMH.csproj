@@ -249,6 +249,7 @@
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\TestimonialsController.cs" />
     <Compile Include="Controllers\SchedulesController.cs" />
     <Compile Include="Controllers\VisitorController.cs" />
@@ -262,6 +263,7 @@
     <Compile Include="Models\ContactUs.cs" />
     <Compile Include="Models\Doctor.cs" />
     <Compile Include="Models\helper\Auth.cs" />
+    <Compile Include="Models\Message.cs" />
     <Compile Include="Models\OSMHDbContext.cs" />
     <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\Schedule.cs" />
@@ -306,7 +308,6 @@
     <Content Include="Views\Testimonials\Create.cshtml" />
     <Content Include="Views\Testimonials\Index.cshtml" />
     <Content Include="Views\Testimonials\Admin.cshtml" />
-
     <Content Include="Views\Patient\Dashboard.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Alert\Create.cshtml" />
@@ -319,6 +320,9 @@
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\Visitor\Index.cshtml" />
     <Content Include="Views\Admin\Doctors.cshtml" />
+    <Content Include="Views\Message\Index.cshtml" />
+    <Content Include="Views\Message\Admin.cshtml" />
+    <Content Include="Views\Message\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
