@@ -15,6 +15,7 @@ namespace OSMH.Models
         public DbSet<VisitorLimit> VisitorLimit { get; set; }
         public DbSet<VisitorReg> VisitorReg { get; set; }
         public DbSet<Patient> patients { get; set; }
+        public DbSet<Testimonial> Testimonials { get; set; }
         public DbSet<Schedule> Schedules { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
 		public DbSet<Alert> Alerts { get; set; }

@@ -7,14 +7,16 @@
             todayStart: null,
             todayEnd: null,
             todayReg: 0,
-            regStatues: "Can't register now."
+            regStatues: "Can't register now.",
+            showReg: false,
+            showSuccess: false
         },
         mounted() {
             this.readToday();
         },
         methods: {
             readToday: function () {
-                this.$http.post('./readAdmin').then(function (result) {
+                this.$http.post('visitor/readAdmin').then(function (result) {
                     console.log(result.data);
                     this.todayMax = result.data.visitorLimit.VisitorLimit_max;
                     this.todayStart = result.data.visitorLimit.VisitorLimit_start + ":00";
@@ -24,13 +26,18 @@
                     this.todayDay = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
                     var hour = date.getHours();
                     if (this.todayMax > this.todayReg && hour >= result.data.visitorLimit.VisitorLimit_start && hour < result.data.visitorLimit.VisitorLimit_end) {
-                        this.regStatues = "You can register now!"
+                        this.regStatues = "You can register now!";
+                        this.showReg = true;
                     }
                 });
             },
             regToday: function () {
-                this.$http.post('./regVisitor').then(function (result) {
-                    console.log(result.data);
+                this.$http.post('visitor/regVisitor', { email: document.getElementById("today-display-email").value }).then(function (result) {
+                    if (result.data.Success == "true") {
+                        this.showReg = false;
+                        this.showSuccess = true;
+                        this.todayReg += 1;
+                    }
                 });
             }
         }

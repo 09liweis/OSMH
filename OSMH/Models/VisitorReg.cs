@@ -14,6 +14,6 @@ namespace OSMH.Models
         public int VisitorReg_id { get; set; }
         public Nullable<DateTime> VisitorReg_date { get; set; }
         public string VisitorReg_code { get; set; }
-        public string VisitorReg_name { get; set; }
+        public string VisitorReg_email { get; set; }
     }
 }

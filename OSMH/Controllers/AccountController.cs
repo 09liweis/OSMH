@@ -44,18 +44,20 @@ namespace SomeeTest.Controllers
             {
                 FormsAuthentication.SetAuthCookie(user.UserName, false);
                 Session["userId"] = user.Id.ToString();
-                Session["name"] = user.UserName.ToString();
 
-                if (user.Role == "admin")
-                {
-                    Session["adminId"] = user.Id;
-                    return RedirectToAction("Index", "Admin");
-                }
+                Session["name"] = user.FirstName.ToString() + " " + user.LastName.ToString();
                 if (user.Role == "patient")
                 {
                     Patient patient = db.patients.Where(p => p.User_id == user.Id).FirstOrDefault();
                     Session["patientId"] = patient.Id.ToString();
                     return RedirectToAction("Dashboard", "Patient");
+                }
+                if (user.Role == "doctor")
+                {
+                    Doctor doctor = db.doctors.Where(d => d.User_id == user.Id).FirstOrDefault();
+                    Session["doctorId"] = doctor.Id.ToString();
+                    return RedirectToAction("Admin", "Doctor");
+
                 }
                 if (user.Role == "doctor")
                 {

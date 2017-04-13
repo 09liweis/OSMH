@@ -18,6 +18,7 @@ namespace OSMH.Controllers
                 return RedirectToAction("Login", "Account");
             }
             return View();
+
         }
 
         public JsonResult getAppointments()
