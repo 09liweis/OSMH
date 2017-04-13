@@ -21,6 +21,11 @@ namespace OSMH.Controllers
 
         }
 
+        public ActionResult Create()
+        {
+            return View();
+        }
+
         public JsonResult getAppointments()
         {
             int patientId = Convert.ToInt32(Session["patientId"]);

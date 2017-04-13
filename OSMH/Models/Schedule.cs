@@ -17,9 +17,11 @@ namespace OSMH.Models
         public DateTime Date { get; set; }
         [Required]
         [DataType(DataType.Time)]
+        [Display(Name ="Start Time")]
         public TimeSpan StartTime { get; set; }
         [Required]
         [DataType(DataType.Time)]
+        [Display(Name ="End Time")]
         public TimeSpan EndTime { get; set; }
         public bool Booked { get; set; }
 

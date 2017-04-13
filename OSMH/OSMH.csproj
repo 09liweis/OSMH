@@ -320,6 +320,7 @@
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\Visitor\Index.cshtml" />
     <Content Include="Views\Admin\Doctors.cshtml" />
+    <Content Include="Views\Patient\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
