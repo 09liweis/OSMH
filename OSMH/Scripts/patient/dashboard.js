@@ -3,6 +3,7 @@
         var dashboard = new Vue({
             el: '#dashboard',
             data: {
+                view: 'appointments',
                 doctorId: null,
                 date: null,
                 timeslot: null,
@@ -38,10 +39,13 @@
                     this.dates = [];
                     this.timeslots = [];
                 },
+                changeView(view) {
+                    this.view = view;
+                },
                 getAppointments() {
                     this.$http.get('/Patient/getAppointments').then(function (appointments) {
                         this.appointments = appointments.data.map(function (a) {
-                            return { AppointmentId: a.Id, ScheduleId: a.Schedule_Id, Date: formatDate(a.Date), Time: renderFullTimeSlot(a.StartTime, a.EndTime), Doctor: a.UserName }
+                            return { AppointmentId: a.Id, ScheduleId: a.Schedule_Id, Date: formatDate(a.Date), Time: renderFullTimeSlot(a.StartTime, a.EndTime), Doctor: a.FirstName }
                         });
                     });
                 },
@@ -61,6 +65,7 @@
                             if (result.data == 'success') {
                                 this.resetData();
                                 this.getAppointments();
+                                this.changeView('appointments');
                             }
                         });
                     }
