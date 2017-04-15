@@ -47,11 +47,11 @@ namespace OSMH
             throw new NotImplementedException();
         }
 
-        public override string[] GetRolesForUser(string username)
+        public override string[] GetRolesForUser(string email)
         {
             //throw new NotImplementedException();
             OSMHDbContext db = new OSMHDbContext();
-            string roleResult = db.users.Where(u => u.UserName == username).FirstOrDefault().Role;
+            string roleResult = db.users.Where(u => u.Email == email).FirstOrDefault().Role;
             string[] results = { roleResult };
             return results;
         }

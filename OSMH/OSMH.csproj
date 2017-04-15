@@ -321,11 +321,12 @@
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\Visitor\Index.cshtml" />
-    <Content Include="Views\Admin\Doctors.cshtml" />
     <Content Include="Views\Message\Index.cshtml" />
     <Content Include="Views\Message\Admin.cshtml" />
     <Content Include="Views\Message\Create.cshtml" />
     <Content Include="Views\Patient\Create.cshtml" />
+    <Content Include="Views\Admin\CreateMember.cshtml" />
+    <Content Include="Views\Admin\Members.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
