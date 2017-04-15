@@ -252,6 +252,7 @@
     <Compile Include="Controllers\BlogsController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
+    <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\TestimonialsController.cs" />
@@ -266,6 +267,8 @@
     <Compile Include="Models\Blog.cs" />
     <Compile Include="Models\ContactUs.cs" />
     <Compile Include="Models\Doctor.cs" />
+    <Compile Include="Models\EmailCategory.cs" />
+    <Compile Include="Models\EmailPost.cs" />
     <Compile Include="Models\helper\Auth.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\OSMHDbContext.cs" />
@@ -329,6 +332,7 @@
     <Content Include="Views\Message\Create.cshtml" />
     <Content Include="Views\Patient\Create.cshtml" />
     <Content Include="Views\Visitor\Verify.cshtml" />
+    <Content Include="Views\Email\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
