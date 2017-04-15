@@ -4,5 +4,11 @@
 }
 
 <h2>Admin</h2>
-@Html.ActionLink("Blog", "Admin", "Blogs")
-@Html.ActionLink("Members", "Members", "Admin")
+<div class="row">
+    <div class="col-xs-6 col-sm-4 col-md-3">
+        @Html.ActionLink("Blog", "Admin", "Blogs")
+    </div>
+    <div class="col-xs-6 col-sm-4 col-md-3">
+        @Html.ActionLink("Members", "Members", "Admin")
+    </div>
+</div>
