@@ -1,0 +1,63 @@
+﻿@model IEnumerable<OSMH.Models.helper.UserSuggestion>
+
+@{
+	ViewBag.Title = "All Suggestions";
+	ViewBag.count = 1;
+}
+
+<!--This is the admin's view of the suggestion board, the admin cannot create, edit or upvote-->
+
+<div class="allSuggestions_title row">
+	<h2 class="col-sm-6">All Suggestions</h2>
+	<div class="allSuggestions_title_search col-sm-6">
+		@using (Html.BeginForm())
+		{
+			<p>
+				Find Suggestion: @Html.TextBox("SearchString")
+				<input type="submit" value="Search" />
+			</p>
+		}
+	</div>
+</div>
+
+<div class="suggestionsSortLinks row">
+	<p class="col-sm-4">
+		@Html.ActionLink("Sort by Title", "Index", new { sortOrder = ViewBag.TitleSortParm })
+	</p>
+	<p class="col-sm-4">
+		@Html.ActionLink("Sort by Vote", "Index", new { sortOrder = ViewBag.VoteSortParm })
+	</p>
+	<p class="col-sm-4">
+		@Html.ActionLink("Sort by Creation Time", "Index", new { sortOrder = ViewBag.DateSortParm })
+	</p>
+</div>
+
+<section class="suggestionItems">
+	@foreach (var item in Model)
+	{
+		<div class="suggestionItem row">
+			<div class="suggestionItem_count col-sm-1">
+				<p class="suggestionItem_count-number">
+					@ViewBag.count
+				</p>
+			</div>
+
+			<div class="suggestionItem_vote col-sm-2">
+				<p class="suggestionItem_vote_number" data-id=@Html.DisplayFor(modelItem => item.SuggestionId)>
+					@Html.DisplayFor(modelItem => item.Vote)
+				</p>
+			</div>
+
+			<div class="suggestionItem_detail col-sm-8">
+				<p class="suggestionItem_detail_title">
+					@Html.ActionLink(item.Title, "Details", new { id = item.SuggestionId })
+				</p>
+				<p class="suggestionItem_detail_author">
+					Submitted by: <span class="suggestionItem_detail_authorname">@Html.DisplayFor(modelItem => item.UserName)</span> at <span class="suggestionItem_detail_authortime">@Html.DisplayFor(modelItem => item.CreatingTime)</span>
+				</p>
+			</div>
+
+		</div>
+		ViewBag.count++;
+	}
+</section>

@@ -144,6 +144,7 @@
     <Content Include="Content\images\icon9.png" />
     <Content Include="Content\images\mainlogo.jpg" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\suggestion\Suggestion.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -238,6 +239,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\patient\dashboard.js" />
+    <Content Include="Scripts\suggestion.js" />
     <Content Include="Scripts\visitor\admin.js" />
     <Content Include="Scripts\visitor\public.js" />
     <None Include="Todo.md" />
@@ -255,7 +257,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\TestimonialsController.cs" />
+    <Compile Include="Controllers\PatientSuggestionController.cs" />
     <Compile Include="Controllers\SchedulesController.cs" />
+    <Compile Include="Controllers\SuggestionController.cs" />
     <Compile Include="Controllers\VisitorController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Global.asax.cs">
@@ -272,6 +276,16 @@
     <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\Schedule.cs" />
     <Compile Include="Models\Testimonial.cs" />
+    <Compile Include="Models\helper\SuggestionCommentView.cs" />
+    <Compile Include="Models\helper\SuggestionUpvoteJsonReturnView.cs" />
+    <Compile Include="Models\helper\SuggestionUpvoteView.cs" />
+    <Compile Include="Models\helper\UserSuggestion.cs" />
+    <Compile Include="Models\OSMHDbContext.cs" />
+    <Compile Include="Models\Patient.cs" />
+    <Compile Include="Models\Schedule.cs" />
+    <Compile Include="Models\Suggestion.cs" />
+    <Compile Include="Models\SuggestionComment.cs" />
+    <Compile Include="Models\SuggestionUpvote.cs" />
     <Compile Include="Models\visitorAdmin.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\VisitorLimit.cs" />
@@ -330,6 +344,16 @@
     <Content Include="Views\Admin\CreateMember.cshtml" />
     <Content Include="Views\Admin\Members.cshtml" />
     <Content Include="Views\Visitor\Verify.cshtml" />
+    <Content Include="Views\Suggestion\Delete.cshtml" />
+    <Content Include="Views\Suggestion\Details.cshtml" />
+    <Content Include="Views\Suggestion\Index.cshtml" />
+    <Content Include="Views\PatientSuggestion\Create.cshtml" />
+    <Content Include="Views\PatientSuggestion\Delete.cshtml" />
+    <Content Include="Views\PatientSuggestion\Details.cshtml" />
+    <Content Include="Views\PatientSuggestion\Edit.cshtml" />
+    <Content Include="Views\PatientSuggestion\Index.cshtml" />
+    <Content Include="Views\PatientSuggestion\MySuggestion.cshtml" />
+    <Content Include="Views\PatientSuggestion\_CreateComment.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

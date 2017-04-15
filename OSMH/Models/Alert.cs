@@ -16,7 +16,8 @@ namespace OSMH.Models
 		}
 
 		public enum AlertClass
-		{[Display(Name = "Fire investigation")]
+		{
+			[Display(Name = "Fire investigation")]
 			FireInvestigation,
 			[Display(Name = "Police investigation")]
 			PoliceInvestigation,
@@ -42,9 +43,11 @@ namespace OSMH.Models
 		public string Publisher { get; set; }
 		[Display(Name = "Created at")]
 		[DataType(DataType.DateTime)]
+		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
 		[Required]
 		public DateTime? CreatingTime { get; set; }
 		[Display(Name = "Published at")]
+		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
 		[DataType(DataType.DateTime)]
 		public DateTime? PublishingTime { get; set; }
 	}

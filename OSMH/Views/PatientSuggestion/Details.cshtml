@@ -1,0 +1,117 @@
+﻿@model OSMH.Models.helper.UserSuggestion
+
+@{
+	ViewBag.Title = "Details";
+}
+
+@if (!String.IsNullOrWhiteSpace(Model.SystemMessage))
+{
+	<div class="alert alert-danger" role="alert">
+		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		<span class="sr-only">Error:</span>
+		@Model.SystemMessage
+	</div>
+}
+
+<h2 class="suggestionTitle">Suggestion: @Html.DisplayFor(model => model.Title)</h2>
+
+<section class="panel panel-info">
+	<div class="panel-heading suggestionDetail row">
+		<div class="suggestionDetail_vote col-sm-1">
+			<p class="suggestionDetail_vote-number">
+				Number of Upvotes:
+			</p>
+			<p class="suggestionDetail_vote-number">
+				@Html.DisplayFor(model => model.Vote)
+			</p>
+		</div>
+		<div class="suggestionDetail_user col-sm-4">
+			<p class="suggestionDetail_user-author">
+				Username: @Html.DisplayFor(model => model.UserName)
+			</p>
+			@if (!(String.IsNullOrWhiteSpace(Model.LastName) && String.IsNullOrWhiteSpace(Model.FirstName)))
+			{
+				<p>
+					Full Name: @Html.DisplayFor(model => model.LastName), @Html.DisplayFor(model => model.FirstName)
+				</p>
+			}
+			else if (!(String.IsNullOrWhiteSpace(Model.LastName)) && String.IsNullOrWhiteSpace(Model.FirstName))
+			{
+				<p>
+					Name: @Html.DisplayFor(model => model.LastName)
+				</p>
+			}
+			else if (String.IsNullOrWhiteSpace(Model.LastName) && !(String.IsNullOrWhiteSpace(Model.FirstName)))
+			{
+				<p>
+					Name: @Html.DisplayFor(model => model.FirstName)
+				</p>
+			}
+			<p>
+				Email: @Html.DisplayFor(model => model.Email)
+			</p>
+		</div>
+		<div class="suggestionDetail_title col-sm-7">
+			<p class="suggestionDetail_title-title">
+				<span>Title: </span>@Html.DisplayFor(model => model.Title)
+			</p>
+			<p class="suggestionDetail_title-infor">
+				<span class="label label-default">@Html.DisplayFor(model => model.NumComments) comments</span>  Submit at: @Html.DisplayFor(model => model.CreatingTime)
+			</p>
+		</div>
+	</div>
+	<div class="panel-body">
+		<p class="title-font">
+			Suggestion:
+		</p>
+		<p>
+			@Html.DisplayFor(model => model.Description)
+		</p>
+		@if (User.Identity.Name == Model.UserName)
+		{
+		<p>
+			<button type="button" class="btn btn-danger">@Html.ActionLink("Delete", "Delete")</button>
+		</p>
+		}
+	</div>
+
+</section>
+
+
+@if (Model.SuggestionCommentViews != null)
+{
+	<h3>Comments:</h3>
+	<section class="suggestionComments">
+		@foreach (var comment in Model.SuggestionCommentViews)
+		{
+			<div class="suggestionComment row">
+				<div class="suggestionComment_infor col-sm-3">
+					<p>
+						<span>User ID: </span>@comment.UserId
+					</p>
+					<p>
+						<span>User Name: </span>@comment.UserName
+					</p>
+				</div>
+				<div class="suggestionComment_detail col-sm-9">
+					<p class="suggestionComment_detail-description">
+						@comment.Description
+					</p>
+					<p class="suggestionComment_detail-infor">
+						@comment.CreatingTime
+					</p>
+				</div>
+			</div>
+		}
+	</section>
+}
+
+<h2>Make A New Comment</h2>
+
+@Html.Partial("_CreateComment", new OSMH.Models.SuggestionComment(), new ViewDataDictionary(this.ViewData) { { "SuggestionId", Model.SuggestionId }, {"UserId", Model.UserId } })
+
+
+
+<p>
+	@Html.ActionLink("Back to List", "Index")
+</p>
