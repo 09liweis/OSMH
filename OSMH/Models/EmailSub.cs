@@ -8,12 +8,13 @@ using System.Web.Mvc;
 
 namespace OSMH.Models
 {
-    [Table("EmailCategory")]
-    public class EmailCategory
+    [Table("EmailSub")]
+    public class EmailSub
     {
         [Key]
         public int Id { get; set; }
-        [Required]
-        public string category { get; set; }
+        [Display(Name = "Contact Email")]
+        [DataType(DataType.EmailAddress)]
+        public string Email { get; set; }
     }
 }

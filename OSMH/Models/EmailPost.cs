@@ -22,7 +22,5 @@ namespace OSMH.Models
         [DataType(DataType.Date)]
         [Display(Name = "Publish Date")]
         public DateTime date { get; set; }
-        [Required]
-        public string category { get; set; }
     }
 }
