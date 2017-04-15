@@ -71,9 +71,10 @@ namespace OSMH.Controllers
             return new JsonResult { Data = schedules, JsonRequestBehavior = JsonRequestBehavior.AllowGet};
         }
 
-        //
+        //get a list of doctors with availabe future schedules
         public JsonResult List()
         {
+            //var doctors = db.Schedules.Where(s => s.Date >= DateTime.Today).Select(s => new { s.Doctor.Id, s.Doctor.User.FirstName, s.Doctor.User.LastName }).GroupBy(s => s.Id).ToList();
             var doctors = db.doctors.Select(d => new { d.Id, d.User.FirstName, d.User.LastName }).ToList();
             return new JsonResult { Data = doctors, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }

@@ -51,7 +51,7 @@ namespace SomeeTest.Controllers
             var user = db.users.Where(ur => ur.Email == u.Email && ur.Password == u.Password).FirstOrDefault();
             if (user != null)
             {
-                FormsAuthentication.SetAuthCookie(user.UserName, false);
+                FormsAuthentication.SetAuthCookie(user.Email, false);
                 Session["userId"] = user.Id.ToString();
 
                 Session["name"] = user.FirstName.ToString() + " " + user.LastName.ToString();

@@ -113,7 +113,14 @@
                                     <ul class="dropdown-menu">
                                         <li><a href="#">Mission,Vision, Values, History</a></li>
                                         <li><a href="#">Staff Members</a></li>
-                                        <li><a href="#">Staff Admin Login</a></li>
+                                        @if (User.IsInRole("admin"))
+                                        {
+                                            <li>@Html.ActionLink("Admin Dashboard", "Index", "Admin")</li>
+                                        }
+                                        else
+                                        {
+                                            <li>@Html.ActionLink("Admin Login", "Index", "Admin")</li>
+                                        }
                                         <li><a href="#">Directions</a></li>
                                         <li><a href="#">Testimonials</a></li>
                                         <li>@Html.ActionLink("Blog", "Index", "Blogs")</li>
