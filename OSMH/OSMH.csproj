@@ -189,6 +189,7 @@
     <Content Include="Content\themes\heroic-features.css" />
     <Content Include="Content\themes\homepage.css" />
     <Content Include="Content\visitor\public.css" />
+    <Content Include="Content\visitor\verify.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -240,6 +241,7 @@
     <Content Include="Scripts\visitor\admin.js" />
     <Content Include="Scripts\visitor\public.js" />
     <None Include="Todo.md" />
+    <Content Include="Scripts\visitor\verify.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -326,6 +328,7 @@
     <Content Include="Views\Message\Admin.cshtml" />
     <Content Include="Views\Message\Create.cshtml" />
     <Content Include="Views\Patient\Create.cshtml" />
+    <Content Include="Views\Visitor\Verify.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

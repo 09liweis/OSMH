@@ -9,7 +9,7 @@
                 newMax = visitorLimit.VisitorLimit_max,
                 oldStart = visitorLimit.VisitorLimit_start + ":00",
                 newStart = visitorLimit.VisitorLimit_start,
-                oldEnd = visitorLimit.VisitorLimit_end + ":00",
+                oldEnd = visitorLimit.VisitorLimit_end + ":59",
                 newEnd = visitorLimit.VisitorLimit_end;
             var date = new Date();
             var now = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
@@ -47,7 +47,7 @@
                                 if (this.newStart <= this.newEnd) {
                                     this.oldMax = this.newMax;
                                     this.oldStart = this.newStart + ":00";
-                                    this.oldEnd = this.newEnd + ":00";
+                                    this.oldEnd = this.newEnd + ":59";
                                     this.todayButton = "Edit";
                                     this.showToday = false;
                                     $.ajax({
@@ -93,7 +93,7 @@
                     console.log(result);
                     var specialMax = result.VisitorLimit_max,
                         specialStart = result.VisitorLimit_start + ":00",
-                        specialEnd = result.VisitorLimit_end + ":00",
+                        specialEnd = result.VisitorLimit_end + ":59",
                         changeMax = result.VisitorLimit_max,
                         changeStart = result.VisitorLimit_start,
                         changeEnd = result.VisitorLimit_end;
@@ -131,7 +131,7 @@
                                         if (this.changeStart <= this.changeEnd) {
                                             this.specialMax = this.changeMax;
                                             this.specialStart = this.changeStart + ":00";
-                                            this.specialEnd = this.changeEnd + ":00";
+                                            this.specialEnd = this.changeEnd + ":59";
                                             this.specialButton = "Edit";
                                             this.showSpecial = false;
                                             $.ajax({
@@ -191,7 +191,7 @@
                     this.presetDay = IdToDay(result.data.VisitorLimit_id);
                     this.presetMax = result.data.VisitorLimit_max;
                     this.presetStart = result.data.VisitorLimit_start + ":00";
-                    this.presetEnd = result.data.VisitorLimit_end + ":00";
+                    this.presetEnd = result.data.VisitorLimit_end + ":59";
                     this.presetId = result.data.VisitorLimit_id;
                     this.showDisplay = true;
                     this.finalMax = result.data.VisitorLimit_max;
@@ -217,7 +217,7 @@
                         if (this.finalStart <= this.finalEnd) {
                             this.presetMax = this.finalMax;
                             this.presetStart = this.finalStart + ":00";
-                            this.presetEnd = this.finalEnd + ":00";
+                            this.presetEnd = this.finalEnd + ":59";
                             this.presetButton = "Edit";
                             this.showPreset = false;
                             $.ajax({

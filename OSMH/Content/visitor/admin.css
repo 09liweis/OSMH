@@ -5,6 +5,7 @@
 main{
     margin-top:50px;
     border-radius:10px;
+    margin-bottom:50px;
 }
 
 .today {
@@ -43,6 +44,7 @@ main{
 
 aside {
     margin-top: 50px;
+    margin-bottom:50px;
 }
 
 #special-pick{
@@ -84,4 +86,11 @@ aside {
 #preset-display-date{
     border-bottom: 1px solid black;
     padding-bottom: 10px;
+}
+
+#title{
+    margin-top:40px;
+    padding-bottom:20px;
+    margin-bottom:20px;
+    border-bottom: 1px solid black;
 }
