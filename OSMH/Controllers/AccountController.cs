@@ -39,7 +39,6 @@ namespace SomeeTest.Controllers
         [HttpPost]
         public ActionResult Login(User u)
         {
-			var x = db.users.Single();
             var user = db.users.Where(ur => ur.Email == u.Email && ur.Password == u.Password).FirstOrDefault();
             if (user != null)
             {
