@@ -6,10 +6,21 @@
 
 <link rel="stylesheet" href="~/Content/contact/contact.css" />
 
-<main id="main" class="col-md-8 row">
+<aside id="aside" class="col-md-4 visible-lg visible-md row">
+    <h4>Quick Contact:</h4>
     @foreach (var contact in Model)
     {
-        <section class="main-list col-md-12 row">
+        <a href="#@contact.ContactUs_name">
+            <h5>@Html.DisplayFor(modelItem => contact.ContactUs_name)</h5>
+        </a>
+    }
+</aside>
+
+<main id="main" class="col-md-8 row">
+    <h3>Contact OSMH</h3>
+    @foreach (var contact in Model)
+    {
+        <section id="@contact.ContactUs_name" class="main-list col-md-12 row">
             <h4>@Html.DisplayFor(modelItem => contact.ContactUs_name)</h4>
             <h5>@Html.DisplayFor(modelItem => contact.ContactUs_info)</h5>
             <h6>@Html.DisplayFor(modelItem => contact.ContactUs_email)</h6>

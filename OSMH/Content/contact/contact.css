@@ -1,5 +1,11 @@
 ﻿#main{
-    margin-top:50px;
+    margin-top:20px;
+}
+
+#main h3{
+    font-weight:bold;
+    text-align:center;
+    margin-bottom:20px;
 }
 
 #main section{
@@ -14,4 +20,13 @@
 
 .main-list h4{
     font-weight:bold;
+}
+
+#aside{
+    margin-top:70px;
+}
+
+#aside h5{
+    margin-bottom: 10px 0;
+    cursor:pointer;
 }
