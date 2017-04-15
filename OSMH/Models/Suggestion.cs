@@ -31,6 +31,7 @@ namespace OSMH.Models
 		public DateTime CreatingTime { get; set; }
 
 		public virtual User User { get; set; }
-		public virtual ICollection<SuggestionComment> SuggestionComments { get; set; } 
+		public virtual ICollection<SuggestionComment> SuggestionComments { get; set; }
+		public virtual ICollection<SuggestionUpvote> SuggestionUpvotes { get; set; }
 	}
 }

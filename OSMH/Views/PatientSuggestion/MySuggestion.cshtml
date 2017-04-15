@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<OSMH.Models.helper.UserSuggestion>
 
 @{
-    ViewBag.Title = "All Suggestions";
+	ViewBag.Title = "All Suggestions";
 	ViewBag.count = 1;
 }
 
@@ -21,16 +21,13 @@
 </div>
 
 <div class="suggestionsSortLinks row">
-	<p class="col-sm-3">
+	<p class="col-sm-4">
 		@Html.ActionLink("Sort by Title", "Index", new { sortOrder = ViewBag.TitleSortParm })
 	</p>
-	<p class="col-sm-3">
-		@Html.ActionLink("Sort by Group", "Index", new { sortOrder = ViewBag.GroupSortParm })
-	</p>
-	<p class="col-sm-3">
+	<p class="col-sm-4">
 		@Html.ActionLink("Sort by Vote", "Index", new { sortOrder = ViewBag.VoteSortParm })
 	</p>
-	<p class="col-sm-3">
+	<p class="col-sm-4">
 		@Html.ActionLink("Sort by Creation Time", "Index", new { sortOrder = ViewBag.DateSortParm })
 	</p>
 </div>
@@ -46,10 +43,9 @@
 			</div>
 
 			<div class="suggestionItem_vote col-sm-2">
-				<p class="suggestionItem_vote_number">
+				<p class="suggestionItem_vote_number" data-id=@Html.DisplayFor(modelItem => item.SuggestionId)>
 					@Html.DisplayFor(modelItem => item.Vote)
 				</p>
-				<p>Upvotes</p>
 			</div>
 
 			<div class="suggestionItem_detail col-sm-8">
@@ -58,13 +54,10 @@
 				</p>
 				<p class="suggestionItem_detail_author">
 					Submitted by: <span class="suggestionItem_detail_authorname">@Html.DisplayFor(modelItem => item.UserName)</span> at <span class="suggestionItem_detail_authortime">@Html.DisplayFor(modelItem => item.CreatingTime)</span>
-					<span class="label label-info">
-						@Html.DisplayFor(modelItem => item.GroupName)
-					</span>
 				</p>
 			</div>
 
 		</div>
-			ViewBag.count++;
-		}
+		ViewBag.count++;
+	}
 </section>

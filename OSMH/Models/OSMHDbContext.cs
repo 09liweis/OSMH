@@ -19,6 +19,7 @@ namespace OSMH.Models
         public DbSet<Appointment> Appointments { get; set; }
 		public DbSet<Alert> Alerts { get; set; }
 		public DbSet<Suggestion> Suggestions { get; set; }
+		public DbSet<SuggestionUpvote> SuggestionUpvotes { get; set; }
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -30,9 +31,13 @@ namespace OSMH.Models
 			modelBuilder.Entity<User>().HasMany(s => s.Suggestions);
 			modelBuilder.Entity<User>().HasMany(s => s.SuggestionComments);
 			modelBuilder.Entity<Suggestion>().HasRequired(u => u.User).WithMany(s => s.Suggestions).HasForeignKey(u => u.UserId);
+			modelBuilder.Entity<Suggestion>().HasMany(s => s.SuggestionUpvotes);
+			modelBuilder.Entity<Suggestion>().HasMany(s => s.SuggestionComments);
 			modelBuilder.Entity<SuggestionComment>().HasRequired(u => u.User);
 			modelBuilder.Entity<SuggestionComment>().HasRequired(s => s.Suggestion).WithMany(s => s.SuggestionComments).HasForeignKey(s => s.SuggestionId);
-
+			modelBuilder.Entity<SuggestionUpvote>().HasRequired(s => s.Suggestion).WithMany(s => s.SuggestionUpvotes).HasForeignKey(s => s.SuggestionId);
         }
-    }
+
+		public System.Data.Entity.DbSet<OSMH.Models.SuggestionComment> SuggestionComments { get; set; }
+	}
 }

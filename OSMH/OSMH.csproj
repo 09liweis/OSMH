@@ -230,6 +230,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\patient\dashboard.js" />
+    <Content Include="Scripts\suggestion.js" />
     <Content Include="Scripts\visitor\admin.js" />
     <Content Include="Scripts\visitor\public.js" />
     <Content Include="Web.config" />
@@ -243,6 +244,7 @@
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PatientSuggestionController.cs" />
     <Compile Include="Controllers\SchedulesController.cs" />
     <Compile Include="Controllers\SuggestionController.cs" />
     <Compile Include="Controllers\VisitorController.cs" />
@@ -256,11 +258,16 @@
     <Compile Include="Models\ContactUs.cs" />
     <Compile Include="Models\Doctor.cs" />
     <Compile Include="Models\helper\Auth.cs" />
+    <Compile Include="Models\helper\SuggestionCommentView.cs" />
+    <Compile Include="Models\helper\SuggestionUpvoteJsonReturnView.cs" />
+    <Compile Include="Models\helper\SuggestionUpvoteView.cs" />
     <Compile Include="Models\helper\UserSuggestion.cs" />
     <Compile Include="Models\OSMHDbContext.cs" />
     <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\Schedule.cs" />
     <Compile Include="Models\Suggestion.cs" />
+    <Compile Include="Models\SuggestionComment.cs" />
+    <Compile Include="Models\SuggestionUpvote.cs" />
     <Compile Include="Models\visitorAdmin.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\VisitorLimit.cs" />
@@ -309,11 +316,16 @@
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\Visitor\Index.cshtml" />
-    <Content Include="Views\Suggestion\Create.cshtml" />
     <Content Include="Views\Suggestion\Delete.cshtml" />
     <Content Include="Views\Suggestion\Details.cshtml" />
-    <Content Include="Views\Suggestion\Edit.cshtml" />
     <Content Include="Views\Suggestion\Index.cshtml" />
+    <Content Include="Views\PatientSuggestion\Create.cshtml" />
+    <Content Include="Views\PatientSuggestion\Delete.cshtml" />
+    <Content Include="Views\PatientSuggestion\Details.cshtml" />
+    <Content Include="Views\PatientSuggestion\Edit.cshtml" />
+    <Content Include="Views\PatientSuggestion\Index.cshtml" />
+    <Content Include="Views\PatientSuggestion\MySuggestion.cshtml" />
+    <Content Include="Views\PatientSuggestion\_CreateComment.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

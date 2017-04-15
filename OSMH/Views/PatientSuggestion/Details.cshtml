@@ -1,7 +1,16 @@
 ﻿@model OSMH.Models.helper.UserSuggestion
 
 @{
-    ViewBag.Title = "Details";
+	ViewBag.Title = "Details";
+}
+
+@if (!String.IsNullOrWhiteSpace(Model.SystemMessage))
+{
+	<div class="alert alert-danger" role="alert">
+		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		<span class="sr-only">Error:</span>
+		@Model.SystemMessage
+	</div>
 }
 
 <h2 class="suggestionTitle">Suggestion: @Html.DisplayFor(model => model.Title)</h2>
@@ -19,9 +28,6 @@
 		<div class="suggestionDetail_user col-sm-4">
 			<p class="suggestionDetail_user-author">
 				Username: @Html.DisplayFor(model => model.UserName)
-				<span class="label label-info">
-					@Html.DisplayFor(model => model.GroupName)
-				</span>
 			</p>
 			@if (!(String.IsNullOrWhiteSpace(Model.LastName) && String.IsNullOrWhiteSpace(Model.FirstName)))
 			{
@@ -61,6 +67,12 @@
 		<p>
 			@Html.DisplayFor(model => model.Description)
 		</p>
+		@if (User.Identity.Name == Model.UserName)
+		{
+		<p>
+			<button type="button" class="btn btn-danger">@Html.ActionLink("Delete", "Delete")</button>
+		</p>
+		}
 	</div>
 
 </section>
@@ -94,7 +106,12 @@
 	</section>
 }
 
+<h2>Make A New Comment</h2>
 
-	<p>
-		@Html.ActionLink("Back to List", "Index")
-	</p>
+@Html.Partial("_CreateComment", new OSMH.Models.SuggestionComment(), new ViewDataDictionary(this.ViewData) { { "SuggestionId", Model.SuggestionId }, {"UserId", Model.UserId } })
+
+
+
+<p>
+	@Html.ActionLink("Back to List", "Index")
+</p>
