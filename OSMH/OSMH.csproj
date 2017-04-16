@@ -131,6 +131,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\contact\contact.css" />
+    <Content Include="Content\email\admin.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\images\banner.jpg" />
     <Content Include="Content\images\icon1.png" />
@@ -255,6 +256,7 @@
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\Helper\ISuggestionController.cs" />
+    <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\TestimonialsController.cs" />
@@ -271,6 +273,8 @@
     <Compile Include="Models\Blog.cs" />
     <Compile Include="Models\ContactUs.cs" />
     <Compile Include="Models\Doctor.cs" />
+    <Compile Include="Models\EmailPost.cs" />
+    <Compile Include="Models\EmailSub.cs" />
     <Compile Include="Models\helper\Auth.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Schedule.cs" />
@@ -353,6 +357,12 @@
     <Content Include="Views\PatientSuggestion\MySuggestion.cshtml" />
     <Content Include="Views\PatientSuggestion\_CreateComment.cshtml" />
     <Content Include="Views\PatientSuggestion\_EditComment.cshtml" />
+    <Content Include="Views\Email\Create.cshtml" />
+    <Content Include="Views\Email\Admin.cshtml" />
+    <Content Include="Views\Email\Delete.cshtml" />
+    <Content Include="Views\Email\Details.cshtml" />
+    <Content Include="Views\Email\subscribe.cshtml" />
+    <Content Include="Views\Email\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
