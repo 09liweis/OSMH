@@ -13,7 +13,7 @@ namespace OSMH.Models
 		[Key]
 		public int VoteId { get; set; }
 		[Required]
-		public string UserName { get; set; }
+		public string FirstName { get; set; }
 		[Required]
 		[ForeignKey("Suggestion")]
 		public int SuggestionId { get; set; }

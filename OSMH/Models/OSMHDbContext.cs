@@ -21,6 +21,7 @@ namespace OSMH.Models
 		public DbSet<Alert> Alerts { get; set; }
         public DbSet<Message> Messages { get; set; }
 		public DbSet<Suggestion> Suggestions { get; set; }
+		public DbSet<SuggestionComment> SuggestionComments { get; set; }
 		public DbSet<SuggestionUpvote> SuggestionUpvotes { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -31,7 +32,7 @@ namespace OSMH.Models
             modelBuilder.Entity<Appointment>().HasRequired(a => a.patient).WithMany(a => a.appointments).HasForeignKey(a => a.Patient_Id);
             modelBuilder.Entity<Doctor>().HasRequired(d => d.User).WithMany(d => d.Doctors).HasForeignKey(d => d.User_id);
             modelBuilder.Entity<Patient>().HasRequired(p => p.User).WithMany(p => p.Patients).HasForeignKey(p => p.User_id);
-            modelBuilder.Entity<User>().HasOptional(u => u.Doctor).WithRequired(d => d.User);
+            //modelBuilder.Entity<User>().HasOptional(u => u.Doctor).WithRequired(d => d.User);
 			modelBuilder.Entity<User>().HasMany(s => s.Suggestions);
 			modelBuilder.Entity<User>().HasMany(s => s.SuggestionComments);
 			modelBuilder.Entity<Suggestion>().HasRequired(u => u.User).WithMany(s => s.Suggestions).HasForeignKey(u => u.UserId);
@@ -41,7 +42,5 @@ namespace OSMH.Models
 			modelBuilder.Entity<SuggestionComment>().HasRequired(s => s.Suggestion).WithMany(s => s.SuggestionComments).HasForeignKey(s => s.SuggestionId);
 			modelBuilder.Entity<SuggestionUpvote>().HasRequired(s => s.Suggestion).WithMany(s => s.SuggestionUpvotes).HasForeignKey(s => s.SuggestionId);
         }
-
-		public System.Data.Entity.DbSet<OSMH.Models.SuggestionComment> SuggestionComments { get; set; }
 	}
 }

@@ -10,6 +10,7 @@ namespace OSMH.Models.helper
 		public int CommentId { get; set; }
 		public int UserId { get; set; }
 		public string UserName { get; set; }
+		public string Email { get; set; }
 		public int SuggestionId { get; set; }
 		public string Description { get; set; }
 		public DateTime CreatingTime { get; set; }

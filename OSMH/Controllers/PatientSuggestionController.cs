@@ -12,7 +12,7 @@ using OSMH.Models.helper;
 namespace OSMH.Controllers
 {
 	[Authorize(Roles = "patient")]
-	public class PatientSuggestionController : SuggestionController
+	public class PatientSuggestionController : ISuggestionController
     {
         // GET: PaitentSuggestion
         public override ActionResult Index(string sortOrder, string searchString)
@@ -21,7 +21,7 @@ namespace OSMH.Controllers
 			ViewBag.TitleSortParm = String.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
 			ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
 			ViewBag.VoteSortParm = sortOrder == "mostPopular" ? "leastPopular" : "mostPopular";
-			var suggestions = from s in db.Suggestions.Include(s => s.User).Include(s => s.SuggestionComments).Include(s => s.SuggestionUpvotes).Where(s => s.GroupName == Models.Suggestion.Group.Patient)
+			var suggestions = from s in db.Suggestions.Include(s => s.User).Where(s => s.GroupName == Models.Suggestion.Group.Patient)
 							  select s;		
 
 			if (!String.IsNullOrEmpty(searchString))

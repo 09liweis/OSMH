@@ -111,3 +111,6 @@ h2.suggestionTitle {
 .suggestionNotDisplay {
 	display: none;
 }
+form.edit-comment-form {
+	height: inherit;
+}

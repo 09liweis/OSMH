@@ -46,9 +46,9 @@
 				<p class="suggestionItem_vote_number" data-id=@Html.DisplayFor(modelItem => item.SuggestionId)>
 					@Html.DisplayFor(modelItem => item.Vote)
 				</p>
-				@if (!(item.UserName == User.Identity.Name))
+				@if (!(item.Email == User.Identity.Name))
 				{
-					if (!item.SuggestionUpvotes.Any(u => u.UserName == User.Identity.Name))
+					if (!item.SuggestionUpvotes.Any(s => s.FirstName == User.Identity.Name))
 					{
 						<button type="button" class="btn btn-default suggestionItem_vote_upvote" data-id=@Html.DisplayFor(modelItem => item.SuggestionId)>
 							<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true">Upvote</span>

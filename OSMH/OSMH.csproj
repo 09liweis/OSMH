@@ -254,6 +254,7 @@
     <Compile Include="Controllers\BlogsController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
+    <Compile Include="Controllers\Helper\ISuggestionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\TestimonialsController.cs" />
@@ -272,8 +273,6 @@
     <Compile Include="Models\Doctor.cs" />
     <Compile Include="Models\helper\Auth.cs" />
     <Compile Include="Models\Message.cs" />
-    <Compile Include="Models\OSMHDbContext.cs" />
-    <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\Schedule.cs" />
     <Compile Include="Models\Testimonial.cs" />
     <Compile Include="Models\helper\SuggestionCommentView.cs" />
@@ -282,7 +281,6 @@
     <Compile Include="Models\helper\UserSuggestion.cs" />
     <Compile Include="Models\OSMHDbContext.cs" />
     <Compile Include="Models\Patient.cs" />
-    <Compile Include="Models\Schedule.cs" />
     <Compile Include="Models\Suggestion.cs" />
     <Compile Include="Models\SuggestionComment.cs" />
     <Compile Include="Models\SuggestionUpvote.cs" />
@@ -354,6 +352,7 @@
     <Content Include="Views\PatientSuggestion\Index.cshtml" />
     <Content Include="Views\PatientSuggestion\MySuggestion.cshtml" />
     <Content Include="Views\PatientSuggestion\_CreateComment.cshtml" />
+    <Content Include="Views\PatientSuggestion\_EditComment.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -15,38 +15,46 @@
 
 <h2 class="suggestionTitle">Suggestion: @Html.DisplayFor(model => model.Title)</h2>
 
+@if (!(Model.Email == User.Identity.Name))
+{
+	if (!Model.SuggestionUpvotes.Any(s => s.FirstName == User.Identity.Name))
+	{
+		<button type="button" class="btn btn-default suggestionItem_vote_upvote" data-id=@Html.DisplayFor(model => model.SuggestionId)>
+			<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true">Upvote</span>
+		</button>
+						<button type="button" class="btn btn-default suggestionItem_vote_downvote suggestionNotDisplay" data-id=@Html.DisplayFor(model => model.SuggestionId) data-current="@User.Identity.Name">
+							<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true">Downvote</span>
+						</button>
+	}
+	else
+	{
+		<button type="button" class="btn btn-default suggestionItem_vote_upvote suggestionNotDisplay" data-id=@Html.DisplayFor(model => model.SuggestionId)>
+			<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true">Upvote</span>
+		</button>
+						<button type="button" class="btn btn-default suggestionItem_vote_downvote" data-id=@Html.DisplayFor(model => model.SuggestionId) data-current="@User.Identity.Name">
+							<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true">Downvote</span>
+						</button>
+	}
+}
+else
+{
+	<p>My Suggestion</p>
+}
+
 <section class="panel panel-info">
 	<div class="panel-heading suggestionDetail row">
 		<div class="suggestionDetail_vote col-sm-1">
 			<p class="suggestionDetail_vote-number">
 				Number of Upvotes:
 			</p>
-			<p class="suggestionDetail_vote-number">
+			<p class="suggestionDetail_vote-number number-of-vote">
 				@Html.DisplayFor(model => model.Vote)
 			</p>
 		</div>
 		<div class="suggestionDetail_user col-sm-4">
 			<p class="suggestionDetail_user-author">
-				Username: @Html.DisplayFor(model => model.UserName)
+				Full Name: @Html.DisplayFor(model => model.UserName)
 			</p>
-			@if (!(String.IsNullOrWhiteSpace(Model.LastName) && String.IsNullOrWhiteSpace(Model.FirstName)))
-			{
-				<p>
-					Full Name: @Html.DisplayFor(model => model.LastName), @Html.DisplayFor(model => model.FirstName)
-				</p>
-			}
-			else if (!(String.IsNullOrWhiteSpace(Model.LastName)) && String.IsNullOrWhiteSpace(Model.FirstName))
-			{
-				<p>
-					Name: @Html.DisplayFor(model => model.LastName)
-				</p>
-			}
-			else if (String.IsNullOrWhiteSpace(Model.LastName) && !(String.IsNullOrWhiteSpace(Model.FirstName)))
-			{
-				<p>
-					Name: @Html.DisplayFor(model => model.FirstName)
-				</p>
-			}
 			<p>
 				Email: @Html.DisplayFor(model => model.Email)
 			</p>
@@ -67,10 +75,11 @@
 		<p>
 			@Html.DisplayFor(model => model.Description)
 		</p>
-		@if (User.Identity.Name == Model.UserName)
+		@if (User.Identity.Name == Model.Email)
 		{
 		<p>
-			<button type="button" class="btn btn-danger">@Html.ActionLink("Delete", "Delete")</button>
+			@Html.ActionLink("Edit", "Edit", new { id = Model.SuggestionId }, new { @class = "btn btn-default" })
+			@Html.ActionLink("Delete", "Delete", new { id = Model.SuggestionId }, new { @class = "btn btn-default" })
 		</p>
 		}
 	</div>
@@ -93,14 +102,35 @@
 						<span>User Name: </span>@comment.UserName
 					</p>
 				</div>
-				<div class="suggestionComment_detail col-sm-9">
-					<p class="suggestionComment_detail-description">
-						@comment.Description
-					</p>
-					<p class="suggestionComment_detail-infor">
-						@comment.CreatingTime
-					</p>
+				<div class="suggestionComment_detail col-sm-7">
+					<div class="comment-detail">
+						<p class="suggestionComment_detail-description">
+							@comment.Description
+						</p>
+						<p class="suggestionComment_detail-infor">
+							@comment.CreatingTime
+						</p>
+					</div>
+
+					@Html.Partial("_EditComment", comment)
+					
 				</div>
+				@if (comment.Email == User.Identity.Name)
+				{
+				<div class="col-sm-2">
+					@Html.ActionLink("Edit", "EditComment", new { id = Model.SuggestionId }, new { @class = "btn btn-default edit-comment" })
+
+					@using (Html.BeginForm("DeleteComment", "PatientSuggestion", new { id = comment.CommentId }))
+					{
+						@Html.AntiForgeryToken()
+
+						<div class="form-actions no-color">
+							<input type="submit" value="Delete" class="btn btn-default" />
+						</div>
+					}
+
+				</div>
+				}
 			</div>
 		}
 	</section>
@@ -108,7 +138,7 @@
 
 <h2>Make A New Comment</h2>
 
-@Html.Partial("_CreateComment", new OSMH.Models.SuggestionComment(), new ViewDataDictionary(this.ViewData) { { "SuggestionId", Model.SuggestionId }, {"UserId", Model.UserId } })
+@Html.Partial("_CreateComment", new OSMH.Models.SuggestionComment(), new ViewDataDictionary(this.ViewData) { { "SuggestionId", Model.SuggestionId } })
 
 
 

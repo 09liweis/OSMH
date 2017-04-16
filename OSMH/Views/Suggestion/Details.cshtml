@@ -18,29 +18,11 @@
 		</div>
 		<div class="suggestionDetail_user col-sm-4">
 			<p class="suggestionDetail_user-author">
-				Username: @Html.DisplayFor(model => model.UserName)
+				Full Name: @Html.DisplayFor(model => model.UserName)
 				<span class="label label-info">
 					@Html.DisplayFor(model => model.GroupName)
 				</span>
 			</p>
-			@if (!(String.IsNullOrWhiteSpace(Model.LastName) && String.IsNullOrWhiteSpace(Model.FirstName)))
-			{
-				<p>
-					Full Name: @Html.DisplayFor(model => model.LastName), @Html.DisplayFor(model => model.FirstName)
-				</p>
-			}
-			else if (!(String.IsNullOrWhiteSpace(Model.LastName)) && String.IsNullOrWhiteSpace(Model.FirstName))
-			{
-				<p>
-					Name: @Html.DisplayFor(model => model.LastName)
-				</p>
-			}
-			else if (String.IsNullOrWhiteSpace(Model.LastName) && !(String.IsNullOrWhiteSpace(Model.FirstName)))
-			{
-				<p>
-					Name: @Html.DisplayFor(model => model.FirstName)
-				</p>
-			}
 			<p>
 				Email: @Html.DisplayFor(model => model.Email)
 			</p>
@@ -78,7 +60,7 @@
 						<span>User ID: </span>@comment.UserId
 					</p>
 					<p>
-						<span>User Name: </span>@comment.UserName
+						<span>Full Name: </span>@comment.UserName
 					</p>
 				</div>
 				<div class="suggestionComment_detail col-sm-9">
