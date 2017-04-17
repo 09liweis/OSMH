@@ -17,7 +17,7 @@
 }
 
 body{
-	padding-top: 20px;
+	padding-top: 0px;
 }
 
 #banner-text{
@@ -40,14 +40,16 @@ form.navbar-form{
 /* Footer */
 
 footer{
-	margin: 0;
+    margin: 0;
 }
 
 #bottomnav{
-	margin-bottom: 0;
+	margin-bottom: 0 !important;
     margin-top: 2em;
 }
-
+.navbar{
+    margin-bottom: 0;
+}
 #footerlogo{
 	margin-top: 50%;
 }
@@ -68,6 +70,7 @@ footer{
 	width: 100%;
 	border-bottom: 1px solid #CCCCCC;
 	border-top: 1px solid #DDDDDD;
+    margin: 0;
 }
 .footer p {
 	margin: 0;
@@ -197,4 +200,8 @@ footer{
 	.jumbotron{
 	display: none;
 	}
+
+    .logo{
+        margin: 0 auto;
+    }
 }

@@ -160,7 +160,7 @@ namespace OSMH.Controllers
 			{
 				db.Suggestions.Add(suggestion);
 				db.SaveChanges();
-				return RedirectToAction("Index");
+				return RedirectToAction("Admin");
 			}
 
 			return View(suggestion);
@@ -205,7 +205,7 @@ namespace OSMH.Controllers
 			{
 				db.Entry(suggestion).State = EntityState.Modified;
 				db.SaveChanges();
-				return RedirectToAction("Index");
+				return RedirectToAction("Admin");
 			}
 			return View(suggestion);
 		}
@@ -218,7 +218,7 @@ namespace OSMH.Controllers
 			Suggestion suggestion = db.Suggestions.Find(id);
 			db.Suggestions.Remove(suggestion);
 			db.SaveChanges();
-			return RedirectToAction("Index");
+			return RedirectToAction("Admin");
 		}
 
 		protected UserSuggestion MakeAUserSuggestion(Suggestion suggestion, string flag = "index")

@@ -59,7 +59,7 @@ namespace OSMH.Controllers
             {
                 db.Testimonials.Add(test);
                 db.SaveChanges();
-                return RedirectToAction("Index", "Testimonials");
+                return RedirectToAction("Admin", "Testimonials");
             }
 
             return View(test);
@@ -80,7 +80,7 @@ namespace OSMH.Controllers
             {
                 // TODO: Add update logic here
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Admin");
             }
             catch
             {
@@ -102,7 +102,7 @@ namespace OSMH.Controllers
             {
                 // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Admin");
             }
             catch
             {
