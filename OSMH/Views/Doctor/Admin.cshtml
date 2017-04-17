@@ -8,23 +8,23 @@
 }
 
 <h2>Doctor @Session["name"], Welcome to Dashboard</h2>
-@Html.ActionLink("Create Schedule", "CreateSchedule")
+@Html.ActionLink("Create Schedule", "CreateSchedule", new { area = "" }, new { @class="btn btn-success" })
 
 <div id="dashboard">
     <div>
         <button class="btn btn-primary" v-on:click="changeView('appointments')">Appointments</button>
-        <button class="btn btn-primary pull-right" v-on:click="changeView('schedules')">Manage Schedules</button>
+        <button class="btn btn-primary pull-right" v-on:click="changeView('schedules')">Cancel Available Schedules</button>
     </div>
     <table class="table" v-if="view == 'appointments'">
         <tr>
+            <td>Patient</td>
             <td>Date</td>
             <td>Time</td>
-            <td>Name</td>
         </tr>
         <tr v-for="a in appointments">
+            <td>{{a.Patient}}</td>
             <td>{{a.Date}}</td>
             <td>{{a.Time}}</td>
-            <td>{{a.Patient}}</td>
         </tr>
     </table>
     <div class="" v-if="view == 'schedules'">
@@ -34,8 +34,11 @@
         </div>
         <div class="row" v-for="(timeslots, date) in schedules">
             <h3>{{date}}</h3>
-            <div class="col-xs-2 timeslot" v-for="t in timeslots">
-                <button v-bind:class="t.Booked ? 'btn btn-danger' : 'btn btn-success'">{{t.Time}}</button>
+            <div class="col-md-3 col-sm-3 col-xs-6 timeslot" v-for="(t, index) in timeslots">
+                <div v-bind:class="t.Booked ? 'alert alert-danger' : 'alert alert-success'">
+                    {{t.Time}}
+                    <span v-if="t.Booked == false" class="clickable glyphicon glyphicon-trash" v-on:click="cancelSchedule(date, t.Id, index)"></span>
+                </div>
             </div>
         </div>
     </div>

@@ -20,3 +20,7 @@ textarea {
     max-width: 600px;
     margin: auto;
 }
+
+.clickable {
+    cursor: pointer;
+}
