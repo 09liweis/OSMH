@@ -114,3 +114,12 @@ h2.suggestionTitle {
 form.edit-comment-form {
 	height: inherit;
 }
+.suggestion-control {
+	margin: 20px 0;
+}
+.suggestionItem_vote_downvote {
+	width: 100%;
+}
+section.panel {
+	margin-top: 10px;
+}

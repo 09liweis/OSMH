@@ -12,7 +12,7 @@ namespace OSMH.Models
 	{
 		public enum Group
 		{
-			Patient, Stuff
+			Patient, Staff
 		}
 		[Key]
 		public int SuggestionId { get; set; }

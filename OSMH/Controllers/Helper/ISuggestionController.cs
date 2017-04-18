@@ -55,7 +55,7 @@ namespace OSMH.Controllers
 					suggestions = suggestions.OrderBy(s => s.GroupName == Suggestion.Group.Patient);
 					break;
 				case "patient":
-					suggestions = suggestions.OrderBy(s => s.GroupName == Suggestion.Group.Stuff);
+					suggestions = suggestions.OrderBy(s => s.GroupName == Suggestion.Group.Staff);
 					break;
 				default:
 					suggestions = suggestions.OrderBy(s => s.Title);

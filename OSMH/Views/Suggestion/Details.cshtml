@@ -43,6 +43,9 @@
 		<p>
 			@Html.DisplayFor(model => model.Description)
 		</p>
+		<p>
+			@Html.ActionLink("Delete", "Delete", new { id = Model.SuggestionId }, new { @class = "btn btn-default" })
+		</p>
 	</div>
 
 </section>
@@ -63,13 +66,25 @@
 						<span>Full Name: </span>@comment.UserName
 					</p>
 				</div>
-				<div class="suggestionComment_detail col-sm-9">
+				<div class="suggestionComment_detail col-sm-7">
 					<p class="suggestionComment_detail-description">
 						@comment.Description
 					</p>
 					<p class="suggestionComment_detail-infor">
 						@comment.CreatingTime
 					</p>
+				</div>
+				<div class="col-sm-2">
+
+					@using (Html.BeginForm("DeleteComment", "Suggestion", new { id = comment.CommentId }))
+					{
+						@Html.AntiForgeryToken()
+
+						<div class="form-actions no-color">
+							<input type="submit" value="Delete" class="btn btn-default" />
+						</div>
+					}
+
 				</div>
 			</div>
 		}

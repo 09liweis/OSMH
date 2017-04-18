@@ -259,6 +259,7 @@
     <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
+    <Compile Include="Controllers\StaffSuggestionController.cs" />
     <Compile Include="Controllers\TestimonialsController.cs" />
     <Compile Include="Controllers\PatientSuggestionController.cs" />
     <Compile Include="Controllers\SchedulesController.cs" />
@@ -363,6 +364,16 @@
     <Content Include="Views\Email\Details.cshtml" />
     <Content Include="Views\Email\subscribe.cshtml" />
     <Content Include="Views\Email\Index.cshtml" />
+    <Content Include="Views\StaffSuggestion\Index.cshtml" />
+    <Content Include="Views\PatientSuggestion\_Menu.cshtml" />
+    <Content Include="Views\StaffSuggestion\Details.cshtml" />
+    <Content Include="Views\StaffSuggestion\MySuggestion.cshtml" />
+    <Content Include="Views\StaffSuggestion\Edit.cshtml" />
+    <Content Include="Views\StaffSuggestion\Delete.cshtml" />
+    <Content Include="Views\StaffSuggestion\Create.cshtml" />
+    <Content Include="Views\StaffSuggestion\_Menu.cshtml" />
+    <Content Include="Views\StaffSuggestion\_EditComment.cshtml" />
+    <Content Include="Views\StaffSuggestion\_CreateComment.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,10 +1,20 @@
 ﻿$(document).ready(function () {
-	var regex = /\/(P|p)atientSuggestion(\/Index|\/Details)?/;
+	var regex = /\/((P|p)atient|(S|s)taff)Suggestion(\/Index|\/Details)?/;
 	if (regex.test(location.pathname)) {
 		var upvotebutton = $('button.suggestionItem_vote_upvote');
 		var downvotebutton = $('button.suggestionItem_vote_downvote');
 		var editComment = $('a.edit-comment');
 		var deleteComment = $('a.delete-comment');
+		var urlUpvote;
+		var urlDownvote;
+		var controller = location.pathname.match(regex)[1];
+		if (controller === "patient" || controller === "Patient") {
+			urlUpvote = "http://localhost:50367/PatientSuggestion/Upvote";
+			urlDownvote = "http://localhost:50367/PatientSuggestion/Downvote";
+		} else if (controller === "staff" || controller === "Staff") {
+			urlUpvote = "http://localhost:50367/StaffSuggestion/Upvote";
+			urlDownvote = "http://localhost:50367/StaffSuggestion/Downvote";
+		}
 		$.each(upvotebutton, function (index, value) {
 			$(value).on('click', function (event) {
 				var id = $(this).data('id');
@@ -12,8 +22,8 @@
 				var votes;
 				$.ajax({
 					method: "POST",
-					url: "http://localhost:50367/PatientSuggestion/Upvote",
-					data: { id: id }
+					url: urlUpvote,
+					data: { "id": id }
 				})
 					.done(function (json) {
 						if (json.Success === true) {
@@ -38,7 +48,7 @@
 				var votes;
 				$.ajax({
 					method: "POST",
-					url: "http://localhost:50367/PatientSuggestion/downvote",
+					url: urlDownvote,
 					data: {
 						id: id,
 						userName: userName
