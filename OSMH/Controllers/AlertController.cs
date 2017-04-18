@@ -69,7 +69,7 @@ namespace OSMH.Controllers
             {
                 db.Alerts.Add(alert);
                 db.SaveChanges();
-                return RedirectToAction("Admin");
+                return RedirectToAction("Index");
             }
 
             return View(alert);
@@ -103,7 +103,7 @@ namespace OSMH.Controllers
             {
 				db.Entry(alert).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Admin");
+                return RedirectToAction("Index");
             }
             return View(alert);
         }
@@ -122,7 +122,7 @@ namespace OSMH.Controllers
 			{
 				ViewBag.ActiveAlertError = "Only one alert can be active.";
 				List<Alert> allAlerts = db.Alerts.Where(m => m.AlertStatus != Alert.Status.Archived).ToList();
-				return View("Admin", allAlerts);
+				return View("Index", allAlerts);
 			}
 
 			Alert alert = db.Alerts.Find(id);
@@ -138,7 +138,7 @@ namespace OSMH.Controllers
 				return HttpNotFound();
 			}
 			List<Alert> alerts = db.Alerts.Where(m => m.AlertStatus != Alert.Status.Archived).ToList();
-			return View("Admin", alerts);
+			return View("Index", alerts);
 		}
 
 		[Authorize(Roles = "admin")]
@@ -161,7 +161,7 @@ namespace OSMH.Controllers
 				return HttpNotFound();
 			}
 			List<Alert> alerts = db.Alerts.Where(m => m.AlertStatus != Alert.Status.Archived).ToList();
-			return View("Admin", alerts);
+			return View("Index", alerts);
 		}
 
 		// GET: Alert/Delete/5

@@ -74,7 +74,7 @@ namespace SomeeTest.Controllers
                 }
                 if (user.Role == "admin")
                 {
-                    return RedirectToAction("Admin", "Admin");
+                    return RedirectToAction("Index", "Admin");
                 }
                 return RedirectToAction("Loggedin");
             }
