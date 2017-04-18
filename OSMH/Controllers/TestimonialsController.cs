@@ -18,7 +18,9 @@ namespace OSMH.Controllers
         // GET: Testimonials
         public ActionResult Index()
         {
-            return View();
+            List<Testimonial> Testimonials = db.Testimonials.ToList();
+            
+            return View(Testimonials);
         }
 
         // GET: Testimonials/Details/5
@@ -65,49 +67,72 @@ namespace OSMH.Controllers
             return View(test);
         }
 
+    
+        // POST: Testimonial/Edit/5
         
-        // GET: Testimonials/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Testimonial test = db.Testimonials.Find(id);
+            if (test == null)
+            {
+                return HttpNotFound();
+            }
+            return View(test);
         }
 
-        // POST: Testimonials/Edit/5
+        // POST: Testimonial/Edit/5
+        
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Id,Date,FName,LName,Email,Contact,Title,Message")] Testimonial test)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                db.Entry(test).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Admin", "Testimonials");
             }
-            catch
-            {
-                return View();
-            }
+            return View(test);
         }
 
-        // GET: Testimonials/Delete/5
-        public ActionResult Delete(int id)
+
+        // GET: Testimonial/Delete/5
+        public ActionResult Delete(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Testimonial test = db.Testimonials.Find(id);
+            if (test == null)
+            {
+                return HttpNotFound();
+            }
+            return View(test);
         }
 
-        // POST: Testimonials/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        // POST: Testimonial/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            Testimonial test = db.Testimonials.Find(id);
+            db.Testimonials.Remove(test);
+            db.SaveChanges();
+            return RedirectToAction("Admin", "Testimonials");
+        }
 
-                return RedirectToAction("Index");
-            }
-            catch
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
             {
-                return View();
+                db.Dispose();
             }
+            base.Dispose(disposing);
         }
     }
 }

@@ -38,7 +38,7 @@ namespace OSMH.Controllers
         }
 
 
-        // GET: Testimonials/Create
+        // GET: Messages/Create
         public ActionResult Admin()
         {
             return View(db.Messages.ToList());
@@ -51,26 +51,26 @@ namespace OSMH.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Message")] Message msg)
+        public ActionResult Create([Bind(Include = "Id,Title,YourMessage")] Message msg)
         {
             if (ModelState.IsValid)
             {
                 db.Messages.Add(msg);
                 db.SaveChanges();
-                return RedirectToAction("Index", "Messages");
+                return RedirectToAction("Index", "Message");
             }
 
             return View(msg);
         }
 
 
-        // GET: Testimonials/Edit/5
+        // GET: Messages/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Testimonials/Edit/5
+        // POST: Messages/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -86,13 +86,13 @@ namespace OSMH.Controllers
             }
         }
 
-        // GET: Testimonials/Delete/5
+        // GET: Messages/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Testimonials/Delete/5
+        // POST: TestimonialsMessagesDelete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
