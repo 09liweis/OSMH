@@ -12,11 +12,12 @@
         <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
         <link href="~/Content/Site.css" rel="stylesheet" />
         <!-- Custom CSS -->
-        <link href="~/Content/themes/heroic-features.css" rel="stylesheet">
         <link href="~/Content/themes/homepage.css" rel="stylesheet">
+        <link href="~/Content/themes/heroic-features.css" rel="stylesheet">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="~/Content/alert/alert.css">
 		<link rel="stylesheet" href="~/Content/suggestion/Suggestion.css"/>
+        <link rel="stylesheet" href="~/Content/themes/base/datepicker.css"/>
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -36,225 +37,229 @@
         <script>tinymce.init({ selector:'textarea' });</script>
 
     </head>
-    <body>
-        <header>
-            <div class="container" id="header">
-                <div class="row">
-                    <div class="col-sm-3">
-                        @Html.ActionLink(".", "Index", "Home", null, new { @class="logo"})
-                        <!--<img src="../Content/images/mainlogo.jpg" width="300" height="77">-->
-                    </div>
-                    <div class="col-sm-3 col-sm-offset-4">
-                        <form class="navbar-form" role="search">
-                            <div class="input-group add-on">
-                                <input class="form-control" placeholder="Search" name="srch-term" id="srch-term" type="text">
-                                <div class="input-group-btn">
-                                    <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="col-sm-1">
-                        <button class="btn btn-danger" type="button">DONATE</button>
-                    </div>
-                </div>
-            </div>
-            <!--Navigation-->
-            <div id="navigation">
-                <nav class="navbar navbar-inverse" role="navigation">
-                    <div class="container">
-                        <!-- Brand and toggle get grouped for better mobile display -->
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                            @Html.ActionLink("OSMH", "Index", "Home", null, new { @class = "navbar-brand" })
+  <body>
+      <header>
+          <h5 class="text-center">DISCLAIMER: THIS IS A PROJECT FOR HUMBER INSTITUTE OF TECHNOLOGY AND ADVANCED LEARNING</h5>
+          <h5 class="text-center">IF YOU ARE IN NEED OF IMMEDIATE MEDICAL ATTENTION, PLEASE CONTACT 911</h5>
+          <div class="container" id="header">
+              <div class="row">
+                  <div class="col-sm-3">
+                      @Html.ActionLink(".", "Index", "Home", null, new { @class = "logo" })
+                      <!--<img src="../Content/images/mainlogo.jpg" width="300" height="77">-->
+                  </div>
+                  <div class="col-sm-3 col-sm-offset-4">
+                      <form class="navbar-form" role="search">
+                          <div class="input-group add-on">
+                              <input class="form-control" placeholder="Search" name="srch-term" id="srch-term" type="text">
+                              <div class="input-group-btn">
+                                  <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                              </div>
+                          </div>
+                      </form>
+                  </div>
+                  <div class="col-sm-1">
+                      <button class="btn btn-danger" type="button">DONATE</button>
+                  </div>
+              </div>
+          </div>
+          <!--Navigation-->
+          <div id="navigation">
+              <nav class="navbar navbar-inverse" role="navigation">
+                  <div class="container">
+                      <!-- Brand and toggle get grouped for better mobile display -->
+                      <div class="navbar-header">
+                          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                              <span class="sr-only">Toggle navigation</span>
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                          </button>
+                          @Html.ActionLink("OSMH", "Index", "Home", null, new { @class = "navbar-brand" })
                           <!--  <a class="navbar-brand" href="#">OSMH</a>-->
-                        </div>
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav">
-                                <li class="dropdown">
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Service<span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <h6 class="dropdown-header">Cure</h6>
-                                            <li><a href="#">Diagnostic Imaging</a></li>
-                                            <li><a href="#">Surgical Services</a></li>
-                                            <li><a href="#">Emergency Services</a></li>
-                                            <li><a href="#">Chronic Disease</a></li>
-                                        <h6 class="dropdown-header">Care</h6>
-                                            <li><a href="#">Critical Care</a></li>
-                                            <li><a href="#">Cancer Care</a></li>
-                                            <li><a href="#">Kidney Care</a></li>
-                                            <li><a href="#">Infection Prevention</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Patients<span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Discharge</a></li>
-                                        <li><a href="#">Declaration of Values</a></li>
-                                        <li><a href="#">Privacy</a></li>
-                                        <li><a href="#">Online Payment</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Visitors<span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Discharge</a></li>
-                                        <li><a href="#">Declaration of Values</a></li>
-                                        <li><a href="#">Privacy</a></li>
-                                        <li><a href="#">Online Payment</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Who We Are<span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Mission,Vision, Values, History</a></li>
-                                        <li><a href="#">Staff Members</a></li>
-                                        @if (User.IsInRole("admin"))
-                                        {
-                                            <li>@Html.ActionLink("Admin Dashboard", "Index", "Admin")</li>
-                                        }
-                                        else
-                                        {
-                                            <li>@Html.ActionLink("Admin Login", "Index", "Admin")</li>
-                                        }
-                                        <li><a href="#">Directions</a></li>
-                                        <li><a href="#">Testimonials</a></li>
-                                        <li>@Html.ActionLink("Blog", "Index", "Blogs")</li>
-                                    </ul>
-                                </li> 
-                                <li>
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Contact Us<span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Patient Relations</a></li>
-                                        <li><a href="#">Online Appointment</a></li>
-                                        <li>@Html.ActionLink("Contact Information","Index","Contact")</li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <ul class="nav navbar-nav navbar-right">
-                                @if (User.Identity.IsAuthenticated)
-                                {
-                                    <li><a href="/Account/Logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-                                }
-                                else
-                                {
-                                    <li><a href="/Account/Login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                                }
-                            </ul>
-                        </div>
-                        <!-- /.navbar-collapse -->
-                    </div>
-                    <!-- /.container -->
-                </nav>
-            </div>
-        </header>
-            <div class="container body-content">
-                @RenderBody()
-            </div>
-                <!-- Bottom Navigation -->
-                <nav id="bottomnav" class="navbar navbar-inverse" role="navigation">
-                    <div class="container">
-                        <!-- Brand and toggle get grouped for better mobile display -->
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                            @Html.ActionLink("OSMH", "Index", "Home", null, new { @class = "navbar-brand" })
-                        </div>
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse">
-                            <ul class="nav navbar-nav">
-                                <li>
-                                    <a href="#">Services</a>
-                                </li>
-                                <li>
-                                    <a href="#">Patients</a>
-                                </li>
-                                <li>
-                                    <a href="#">Visitors</a>
-                                </li>
-                                <li>
-                                    <a href="#">Who We Are</a>
-                                </li>
-                                <li>
-                                    @Html.ActionLink("Contact Us", "Index", "Contact")
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- /.navbar-collapse -->
-                    </div>
-                    <!-- /.container -->
-                </nav>
-                <!-- Footer -->
-                <footer>
-                    <div class="footer" id="footer">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-2 col-md-2">
-                                    <img src="../Content/images/mainlogo.jpg" id="footerlogo">
-                                </div>
-                                <div class="col-lg-2  col-md-2 col-xs-12">
-                                    <h3> Resources </h3>
-                                    <ul>
-                                        <li> <a href="#"> Publication </a> </li>
-                                        <li> <a href="#"> Education Library </a> </li>
-                                        <li> <a href="#"> F.A.Q. </a> </li>
-                                    </ul>
-                                </div>
-                                <div class="col-lg-2 col-md-2 col-xs-12">
-                                    <h3>Additional</h3>
-                                    <ul>
-                                        <li> <a href="#"> Leave Message</a> </li>
-                                        <li> <a href="#"> Careers </a> </li>
-                                        <li> <a href="#"> Email Subscribe </a> </li>
-                                    </ul>
-                                </div>
-                                <div class="col-lg-2  col-md-2 col-xs-12">
-                                    <h3> Legal </h3>
-                                    <ul>
-                                        <li> <a href="#"> Acessibility </a> </li>
-                                        <li> <a href="#"> Dislcaimer </a> </li>
-                                        <li> <a href="#"> Privacy </a> </li>
-                                    </ul>
-                                </div>
-                                <div class="col-lg-3 col-md-3 col-xs-12 ">
-                                    <h3> Social Media</h3>
-                                    <ul class="social">
-                                        <li> <a href="#"> <i class="fa fa-facebook"> </i> </a> </li>
-                                        <li> <a href="#"> <i class="fa fa-twitter">   </i> </a> </li>
-                                        <li> <a href="#"> <i class="fa fa-google-plus">   </i> </a> </li>
-                                        <li><a href="#"><i class="fa fa-youtube"></i> </a> </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!--/.row-->
-                        </div>
-                        <!--/.container-->
-                    </div>
-                    <!--/.footer-->
+                      </div>
+                      <!-- Collect the nav links, forms, and other content for toggling -->
+                      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                          <ul class="nav navbar-nav">
+                              <li class="dropdown">
+                                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Service<span class="caret"></span></a>
+                                  <ul class="dropdown-menu">
+                                      <h6 class="dropdown-header">Cure</h6>
+                                      <li><a href="#">Diagnostic Imaging</a></li>
+                                      <li><a href="#">Surgical Services</a></li>
+                                      <li><a href="#">Emergency Services</a></li>
+                                      <li><a href="#">Chronic Disease</a></li>
+                                      <h6 class="dropdown-header">Care</h6>
+                                      <li><a href="#">Critical Care</a></li>
+                                      <li><a href="#">Cancer Care</a></li>
+                                      <li><a href="#">Kidney Care</a></li>
+                                      <li><a href="#">Infection Prevention</a></li>
+                                  </ul>
+                              </li>
+                              <li>
+                                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Patients<span class="caret"></span></a>
+                                  <ul class="dropdown-menu">
+                                      <li><a href="#">Discharge</a></li>
+                                      <li><a href="#">Declaration of Values</a></li>
+                                      <li><a href="#">Privacy</a></li>
+                                      <li><a href="#">Online Payment</a></li>
+                                  </ul>
+                              </li>
+                              <li>
+                                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Visitors<span class="caret"></span></a>
+                                  <ul class="dropdown-menu">
+                                      <li><a href="#">Discharge</a></li>
+                                      <li><a href="#">Declaration of Values</a></li>
+                                      <li><a href="#">Privacy</a></li>
+                                      <li><a href="#">Online Payment</a></li>
+                                  </ul>
+                              </li>
+                              <li>
+                                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Who We Are<span class="caret"></span></a>
+                                  <ul class="dropdown-menu">
+                                      <li><a href="#">Mission,Vision, Values, History</a></li>
+                                      <li><a href="#">Staff Members</a></li>
+                                      @if (User.IsInRole("admin"))
+                                      {
+                                          <li>@Html.ActionLink("Admin Dashboard", "Index", "Admin")</li>
+                                      }
+                                      else
+                                      {
+                                          <li>@Html.ActionLink("Admin Login", "Index", "Admin")</li>
+                                      }
+                                      <li><a href="#">Directions</a></li>
+                                      <li><a href="#">Testimonials</a></li>
+                                      <li>@Html.ActionLink("Blog", "Index", "Blogs")</li>
+                                  </ul>
+                              </li>
+                              <li>
+                                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Contact Us<span class="caret"></span></a>
+                                  <ul class="dropdown-menu">
+                                      <li><a href="#">Patient Relations</a></li>
+                                      <li><a href="#">Online Appointment</a></li>
+                                      <li>@Html.ActionLink("Contact Information", "Index", "Contact")</li>
+                                  </ul>
+                              </li>
+                          </ul>
+                          <ul class="nav navbar-nav navbar-right">
+                              @if (User.Identity.IsAuthenticated)
+                              {
+                                  <li><a href="/Account/Logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                              }
+                              else
+                              {
+                                  <li><a href="/Account/Login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                              }
+                          </ul>
+                      </div>
+                      <!-- /.navbar-collapse -->
+                  </div>
+                  <!-- /.container -->
+              </nav>
+          </div>
+      </header>
+      <div class="container body-content">
+          @RenderBody()
+      </div>
+      <!-- Bottom Navigation -->
+      <div id="bottomnav">
+          <nav class="navbar navbar-inverse" role="navigation">
+              <div class="container">
+                  <!-- Brand and toggle get grouped for better mobile display -->
+                  <div class="navbar-header">
+                      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+                          <span class="sr-only">Toggle navigation</span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                      </button>
+                      @Html.ActionLink("OSMH", "Index", "Home", null, new { @class = "navbar-brand" })
+                  </div>
+                  <!-- Collect the nav links, forms, and other content for toggling -->
+                  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+                      <ul class="nav navbar-nav">
+                          <li>
+                              <a href="#">Services</a>
+                          </li>
+                          <li>
+                              <a href="#">Patients</a>
+                          </li>
+                          <li>
+                              <a href="#">Visitors</a>
+                          </li>
+                          <li>
+                              <a href="#">Who We Are</a>
+                          </li>
+                          <li>
+                              @Html.ActionLink("Contact Us", "Index", "Contact")
+                          </li>
+                      </ul>
+                  </div>
+                  <!-- /.navbar-collapse -->
+              </div>
+              <!-- /.container -->
+           </nav>
+          </div>
+          <!-- Footer -->
+          <footer>
+              <div class="footer">
+                  <div class="container">
+                      <div class="row">
+                          <div class="col-lg-2 col-md-2">
+                              <img src="../Content/images/mainlogo.jpg" id="footerlogo">
+                          </div>
+                          <div class="col-lg-2  col-md-2 col-xs-12">
+                              <h3> Resources </h3>
+                              <ul>
+                                  <li> <a href="#"> Publication </a> </li>
+                                  <li> <a href="#"> Education Library </a> </li>
+                                  <li> <a href="#"> F.A.Q. </a> </li>
+                              </ul>
+                          </div>
+                          <div class="col-lg-2 col-md-2 col-xs-12">
+                              <h3>Additional</h3>
+                              <ul>
+                                  <li> <a href="#"> Leave Message</a> </li>
+                                  <li> <a href="#">@Html.ActionLink("Careers", "Index", "Careers")</a> </li>
+                                  <li> <a href="#"> Email Subscribe </a> </li>
+                              </ul>
+                          </div>
+                          <div class="col-lg-2  col-md-2 col-xs-12">
+                              <h3> Legal </h3>
+                              <ul>
+                                  <li> <a href="#"> Acessibility </a> </li>
+                                  <li> <a href="#"> Dislcaimer </a> </li>
+                                  <li> <a href="#"> Privacy </a> </li>
+                              </ul>
+                          </div>
+                          <div class="col-lg-3 col-md-3 col-xs-12 ">
+                              <h3> Social Media</h3>
+                              <ul class="social">
+                                  <li> <a href="#"> <i class="fa fa-facebook"> </i> </a> </li>
+                                  <li> <a href="#"> <i class="fa fa-twitter">   </i> </a> </li>
+                                  <li> <a href="#"> <i class="fa fa-google-plus">   </i> </a> </li>
+                                  <li><a href="#"><i class="fa fa-youtube"></i> </a> </li>
+                              </ul>
+                          </div>
+                      </div>
+                      <!--/.row-->
+                  </div>
+                  <!--/.container-->
+              </div>
+              <!--/.footer-->
 
-                    <div class="footer-bottom">
-                        <div class="container">
-                            <p class="pull-left"> &copy; This is a course project from Humber College @DateTime.Now.Year. Please visit <a href="http://www.osmh.on.ca/welcometoosmh.aspx">OSMH</a> for real service</p>
-                        </div>
-                    </div>
-                    <!--/.footer-bottom-->
-                </footer>
-                <!-- /.container -->
-            
-        <!-- jQuery -->
-        <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
-        <!-- Bootstrap Core JavaScript -->
-        <script src="~/Scripts/bootstrap.min.js"></script>
-        <script src="~/Scripts/blog/admin.js"></script>
-    </body>
+              <div class="footer-bottom">
+                  <div class="container">
+                      <p class="pull-left"> &copy; This is a course project from Humber College @DateTime.Now.Year. Please visit <a href="http://www.osmh.on.ca/welcometoosmh.aspx">OSMH</a> for real service</p>
+                  </div>
+              </div>
+              <!--/.footer-bottom-->
+          </footer>
+          <!-- /.container -->
+          <!-- jQuery -->
+          <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+          <!-- Bootstrap Core JavaScript -->
+          <script src="~/Scripts/bootstrap.min.js"></script>
+          <script src="~/Scripts/blog/admin.js"></script>
+  </body>
+
 </html>

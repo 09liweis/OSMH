@@ -25,6 +25,10 @@ namespace OSMH.Models
 		public DbSet<Suggestion> Suggestions { get; set; }
 		public DbSet<SuggestionComment> SuggestionComments { get; set; }
 		public DbSet<SuggestionUpvote> SuggestionUpvotes { get; set; }
+        public DbSet<Job> Jobs { get; set; }
+        public DbSet<Applicant> Applicants { get; set; }
+        public DbSet<JobType> JobTypes { get; set; }
+        public DbSet<Department> Departments { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -43,6 +47,7 @@ namespace OSMH.Models
 			modelBuilder.Entity<SuggestionComment>().HasRequired(u => u.User);
 			modelBuilder.Entity<SuggestionComment>().HasRequired(s => s.Suggestion).WithMany(s => s.SuggestionComments).HasForeignKey(s => s.SuggestionId);
 			modelBuilder.Entity<SuggestionUpvote>().HasRequired(s => s.Suggestion).WithMany(s => s.SuggestionUpvotes).HasForeignKey(s => s.SuggestionId);
+            modelBuilder.Entity<Applicant>().HasMany<Job>(a => a.Jobs).WithMany(j => j.Applicants).Map(aj => { aj.MapLeftKey("ApplicantsId"); aj.MapRightKey("JobsId"); aj.ToTable("Jobs_Applicants"); });
         }
 	}
 }

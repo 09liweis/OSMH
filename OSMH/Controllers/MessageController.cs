@@ -57,7 +57,7 @@ namespace OSMH.Controllers
             {
                 db.Messages.Add(msg);
                 db.SaveChanges();
-                return RedirectToAction("Index", "Messages");
+                return RedirectToAction("Admin", "Messages");
             }
 
             return View(msg);
@@ -78,7 +78,7 @@ namespace OSMH.Controllers
             {
                 // TODO: Add update logic here
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Admin");
             }
             catch
             {
@@ -100,7 +100,7 @@ namespace OSMH.Controllers
             {
                 // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Admin");
             }
             catch
             {

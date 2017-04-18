@@ -35,5 +35,6 @@ namespace OSMH.Models
 
 		public virtual ICollection<Suggestion> Suggestions { get; set; }
 		public virtual ICollection<SuggestionComment> SuggestionComments { get; set; }
+        public virtual ICollection<Applicant> Applicants { get; set; }
 	}
 }

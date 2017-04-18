@@ -215,6 +215,7 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Career\datepicker.js" />
     <Content Include="Scripts\doctor\dashboard.js" />
     <Content Include="Scripts\helper\datetime.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -231,6 +232,7 @@
     <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
+    <Content Include="Scripts\jquery-ui-date.js" />
     <Content Include="Scripts\jquery.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -252,12 +254,14 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AlertController.cs" />
+    <Compile Include="Controllers\ApplicantsController.cs" />
     <Compile Include="Controllers\BlogsController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\Helper\ISuggestionController.cs" />
     <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\CareersController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\StaffSuggestionController.cs" />
     <Compile Include="Controllers\TestimonialsController.cs" />
@@ -270,9 +274,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Alert.cs" />
+    <Compile Include="Models\Departments.cs" />
+    <Compile Include="Models\JobType.cs" />
+    <Compile Include="Models\Jobs.cs" />
     <Compile Include="Models\Appointment.cs" />
     <Compile Include="Models\Blog.cs" />
     <Compile Include="Models\ContactUs.cs" />
+    <Compile Include="Models\Applicant.cs" />
     <Compile Include="Models\Doctor.cs" />
     <Compile Include="Models\EmailPost.cs" />
     <Compile Include="Models\EmailSub.cs" />
@@ -364,6 +372,7 @@
     <Content Include="Views\Email\Details.cshtml" />
     <Content Include="Views\Email\subscribe.cshtml" />
     <Content Include="Views\Email\Index.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\StaffSuggestion\Index.cshtml" />
     <Content Include="Views\PatientSuggestion\_Menu.cshtml" />
     <Content Include="Views\StaffSuggestion\Details.cshtml" />
@@ -374,6 +383,20 @@
     <Content Include="Views\StaffSuggestion\_Menu.cshtml" />
     <Content Include="Views\StaffSuggestion\_EditComment.cshtml" />
     <Content Include="Views\StaffSuggestion\_CreateComment.cshtml" />
+=======
+    <Content Include="Views\Applicants\Create.cshtml" />
+    <Content Include="Views\Applicants\Delete.cshtml" />
+    <Content Include="Views\Applicants\Details.cshtml" />
+    <Content Include="Views\Applicants\Edit.cshtml" />
+    <Content Include="Views\Applicants\Index.cshtml" />
+    <Content Include="Views\Careers\Create.cshtml" />
+    <Content Include="Views\Careers\Delete.cshtml" />
+    <Content Include="Views\Careers\Details.cshtml" />
+    <Content Include="Views\Careers\Edit.cshtml" />
+    <Content Include="Views\Careers\Admin.cshtml" />
+    <Content Include="Views\Careers\Index.cshtml" />
+    <Content Include="Views\Careers\ApplyNow.cshtml" />
+>>>>>>> 8ba63707b4590752e85834ad14e6fcaa0508a1bb
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
