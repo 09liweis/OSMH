@@ -21,6 +21,7 @@ namespace OSMH.Controllers
             return View(contacts);
         }
         // GET: Contact Us Admin Page
+        [Authorize]
         public ActionResult Admin()
         {
             List<ContactUs> contacts = db.ContactUs.OrderBy(s => s.ContactUs_id)
@@ -28,6 +29,7 @@ namespace OSMH.Controllers
             return View(contacts);
         }
         // GET: Contact Us Admin Create Page
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -46,6 +48,7 @@ namespace OSMH.Controllers
             return RedirectToAction("Create");
         }
         // GET: edit contact page
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -73,6 +76,7 @@ namespace OSMH.Controllers
             return View(contact);
         }
         // GET: Contact Admin Delete Page
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -95,6 +99,15 @@ namespace OSMH.Controllers
             db.ContactUs.Remove(contact);
             db.SaveChanges();
             return RedirectToAction("Admin");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

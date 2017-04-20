@@ -4,5 +4,17 @@
 }
 
 <h2>Admin</h2>
-@Html.ActionLink("Blog", "Admin", "Blogs")
-@Html.ActionLink("Register Doctor", "Doctors", "Admin")
+<div class="row">
+    <div class="col-xs-6 col-sm-4 col-md-3">
+        @Html.ActionLink("Blog", "Admin", "Blogs")
+    </div>
+    <div class="col-xs-6 col-sm-4 col-md-3">
+        @Html.ActionLink("Members", "Members", "Admin")
+        </div>
+    <div class="col-xs-6 col-sm-4 col-md-3">
+        @Html.ActionLink("Manage Job Listings", "Admin", "Careers")
+    </div>
+
+</div>
+@Html.ActionLink("Blogs", "Index", "Blogs")
+@Html.ActionLink("Alert", "Index", "Alert")

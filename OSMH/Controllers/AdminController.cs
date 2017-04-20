@@ -17,25 +17,34 @@ namespace OSMH.Controllers
             return View();
         }
 
-        public ActionResult Doctors()
+        public ActionResult Members()
+        {
+            return View(db.users.ToList());
+        }
+
+        [HttpGet]
+        public ActionResult CreateMember()
         {
             return View();
         }
 
-        public JsonResult CreateDoctor(User user)
+        [HttpPost]
+        public ActionResult CreateMember(User user)
         {
-            user.Role = "doctor";
             db.users.Add(user);
             db.SaveChanges();
 
-            Doctor doctor = new Doctor()
+            if (user.Role == "doctor")
             {
-                User = user
-            };
-            db.doctors.Add(doctor);
-            db.SaveChanges();
+                Doctor doctor = new Doctor()
+                {
+                    User = user
+                };
+                db.doctors.Add(doctor);
+                db.SaveChanges();
+            }
 
-            return new JsonResult { };
+            return RedirectToAction("Doctors");
         }
     }
 }

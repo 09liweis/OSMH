@@ -1,0 +1,125 @@
+﻿.suggestionsSortLinks {
+	display: block;
+	width: 100%;
+	margin: 20px 0;
+	border: 1px solid black;
+	padding: 5px;
+	border-radius: 10px;
+}
+.suggestionsSortLinks p {
+	margin: 0;
+	text-align: center;
+}
+.allSuggestions_title h2 {
+	margin: 0;
+}
+.allSuggestions_title_search p {
+	margin: 0;
+}
+.suggestionItem_vote p {
+	text-align: center;
+}
+.suggestionItem_vote_upvote {
+	width: 100%;
+}
+.suggestionItem_vote_number {
+	font-size: 20px;
+}
+.suggestionItem {
+	padding: 20px;
+}
+span.label {
+	vertical-align: top;
+}
+.suggestionItem_detail_title {
+	font-size: 20px;
+}
+.suggestionItem_count-number {
+	color: darkgray;
+	text-align: right;
+}
+.suggestionItem_count {
+	padding-top: 30px;
+}
+.suggestionItem_detail_author {
+	color: darkgray;
+}
+div.suggestionDetail {
+	margin: 0;
+	box-sizing: border-box;
+}
+.suggestionDetail_vote {
+	text-align: right;
+}
+p.suggestionDetail_vote-number:nth-child(2) {
+	font-weight: bold;
+}
+.suggestionDetail_user p {
+	height: 23px;
+}
+.suggestionDetail_title-title {
+	height: 66px;
+}
+.suggestionDetail_title-title span {
+	font-weight: bold;
+}
+.title-font {
+	font-size: 20px;
+	font-weight: bold;
+}
+.suggestionComments {
+	margin-top: 20px;
+}
+div.suggestionComment {
+	height: 100px;
+	margin: 10px 0;
+	border: 2px solid darkgray;
+	border-radius: 10px;
+	box-sizing: content-box;
+	border-color: #bce8f1;
+}
+.suggestionComment div {
+	height: 100px;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+.suggestionComment_infor {
+	background-color: #d9edf7;
+	color: #31708f;
+}
+.suggestionComment_infor p {
+	height: 45px;
+	margin: 0;
+	padding: 10px;
+}
+.suggestionComment_infor p span {
+	font-weight: bold;
+}
+h2.suggestionTitle {
+	margin: 20px auto;
+}
+.suggestionComment_detail p {
+	margin: 0;
+}
+.suggestionComment_detail-description {
+	height: 80px;
+	padding: 10px;
+}
+.suggestionComment_detail-infor {
+	color: darkgray;
+}
+.suggestionNotDisplay {
+	display: none;
+}
+form.edit-comment-form {
+	height: inherit;
+}
+.suggestion-control {
+	margin: 20px 0;
+}
+.suggestionItem_vote_downvote {
+	width: 100%;
+}
+section.panel {
+	margin-top: 10px;
+}

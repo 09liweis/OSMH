@@ -12,8 +12,11 @@ namespace OSMH.Models
     {
         [Key]
         public int VisitorLimit_id { get; set; }
+        [Required]
         public int VisitorLimit_max { get; set; }
+        [Required]
         public int VisitorLimit_start { get; set; }
+        [Required]
         public int VisitorLimit_end { get; set; }
         public Nullable<DateTime> VisitorLimit_date { get; set; }
     }

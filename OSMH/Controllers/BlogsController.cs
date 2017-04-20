@@ -16,7 +16,7 @@ namespace OSMH.Controllers
 
         public IQueryable<DateTime> getDates()
         {
-            return db.blogs.Select(b => b.PublishDate).Distinct();
+            return db.blogs.Where(b => b.Published == true).Select(b => b.PublishDate).Distinct();
         }
 
         public ActionResult Archive(DateTime id)
@@ -45,7 +45,7 @@ namespace OSMH.Controllers
 
         public ActionResult Index()
         {
-            List<Blog> blogs = db.blogs.Where(b => b.Published == true).ToList();
+            List<Blog> blogs = db.blogs.Where(b => b.Published == true).OrderByDescending(b => b.PublishDate).ToList();
 
             ViewBag.dates = getDates();
             return View(blogs);
@@ -60,6 +60,7 @@ namespace OSMH.Controllers
         }
 
         // GET: Blogs/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -83,6 +84,7 @@ namespace OSMH.Controllers
         }
 
         // GET: Blogs/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -114,6 +116,7 @@ namespace OSMH.Controllers
         }
 
         // GET: Blogs/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)

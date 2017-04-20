@@ -15,8 +15,9 @@ namespace OSMH.Controllers
     {
         private OSMHDbContext db = new OSMHDbContext();
 
-        // GET: Alert
-        public ActionResult Index()
+		// GET: Alert
+		[Authorize(Roles = "admin")]
+		public ActionResult Index()
         {
 			List<Alert> alerts = db.Alerts.Where(m => m.AlertStatus != Alert.Status.Archived).ToList();
 
@@ -24,6 +25,7 @@ namespace OSMH.Controllers
         }
 
 		// GET Archive
+		[Authorize(Roles = "admin")]
 		public ActionResult Archive()
 		{
 			List<Alert> alerts = db.Alerts.Where(m => m.AlertStatus == Alert.Status.Archived).ToList();
@@ -31,8 +33,9 @@ namespace OSMH.Controllers
 			return View(alerts);
 		}
 
-        // GET: Alert/Details/5
-        public ActionResult Details(int? id)
+		// GET: Alert/Details/5
+		[Authorize(Roles = "admin")]
+		public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -46,16 +49,18 @@ namespace OSMH.Controllers
             return View(alert);
         }
 
-        // GET: Alert/Create
-        public ActionResult Create()
+		// GET: Alert/Create
+		[Authorize(Roles = "admin")]
+		public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Alert/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+		// POST: Alert/Create
+		// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+		// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+		[Authorize(Roles = "admin")]
+		[HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "AlertID,Title,Classification,Message,AlertStatus, Publisher, CreatingTime")] Alert alert)
         {
@@ -70,8 +75,9 @@ namespace OSMH.Controllers
             return View(alert);
         }
 
-        // GET: Alert/Edit/5
-        public ActionResult Edit(int? id)
+		// GET: Alert/Edit/5
+		[Authorize(Roles = "admin")]
+		public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -85,10 +91,11 @@ namespace OSMH.Controllers
             return View(alert);
         }
 
-        // POST: Alert/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+		// POST: Alert/Edit/5
+		// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+		// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+		[Authorize(Roles = "admin")]
+		[HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "AlertID,Title,Classification,Message,AlertStatus,Publisher,CreatingTime,PublishingTime")] Alert alert)
         {
@@ -101,6 +108,7 @@ namespace OSMH.Controllers
             return View(alert);
         }
 
+		[Authorize(Roles = "admin")]
 		public ActionResult SwitchActive(int? id)
 		{
 			if (id == null)
@@ -133,6 +141,7 @@ namespace OSMH.Controllers
 			return View("Index", alerts);
 		}
 
+		[Authorize(Roles = "admin")]
 		public ActionResult SwitchInactive(int? id)
 		{
 			if (id == null)
@@ -156,6 +165,7 @@ namespace OSMH.Controllers
 		}
 
 		// GET: Alert/Delete/5
+		[Authorize(Roles = "admin")]
 		public ActionResult AddtoArchive(int? id)
         {
             if (id == null)
@@ -173,7 +183,8 @@ namespace OSMH.Controllers
         // POST: Alert/Delete/5
         [HttpPost, ActionName("AddtoArchive")]
         [ValidateAntiForgeryToken]
-        public ActionResult AddtoArchive(int id)
+		[Authorize(Roles = "admin")]
+		public ActionResult AddtoArchive(int id)
         {
             Alert alert = db.Alerts.Find(id);
 			alert.AlertStatus = Alert.Status.Archived;

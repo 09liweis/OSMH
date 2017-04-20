@@ -1,0 +1,19 @@
+﻿aside{
+    text-align:center;
+}
+
+main{
+    padding-top:10px;
+}
+
+main h3{
+    margin-bottom: 20px;
+    text-align:center;
+}
+
+main section{
+    background-color: aliceblue;
+    padding: 10px 5%;
+    margin-bottom: 15px;
+    border-radius:5px;
+}

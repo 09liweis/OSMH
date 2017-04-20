@@ -14,7 +14,8 @@ namespace OSMH.Controllers
         // GET: Schedules
         public JsonResult Doctor(int id)
         {
-            List<DateTime> dates = db.Schedules.Where(s => s.Doctor_id == id).Select(s => s.Date).Distinct().ToList();
+            var today = DateTime.Today;
+            List<DateTime> dates = db.Schedules.Where(s => s.Doctor_id == id && s.Date >= today).Select(s => s.Date).Distinct().ToList();
             return new JsonResult { Data = dates, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 

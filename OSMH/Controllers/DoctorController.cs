@@ -57,24 +57,34 @@ namespace OSMH.Controllers
             return RedirectToAction("Admin");
         }
 
+        [HttpPost]
+        public JsonResult cancelSchedule(int id)
+        {
+            Schedule schedule = db.Schedules.Find(id);
+            db.Schedules.Remove(schedule);
+            db.SaveChanges();
+            return this.getSchedules();
+        }
+
         public JsonResult getAppointments()
         {
             int doctorId = Convert.ToInt32(Session["doctorId"]);
-            var appointments = db.Appointments.Where(a => a.schedule.Doctor_id == doctorId).Select(a => new { a.Id, a.patient.user.FirstName, a.patient.user.LastName, a.schedule.Date, a.schedule.StartTime, a.schedule.EndTime }).ToList();
+            var appointments = db.Appointments.Where(a => a.schedule.Doctor_id == doctorId).Select(a => new { a.Id, a.patient.User.FirstName, a.patient.User.LastName, a.schedule.Date, a.schedule.StartTime, a.schedule.EndTime }).ToList();
             return new JsonResult { Data = appointments, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
         public JsonResult getSchedules()
         {
             int doctorId = Convert.ToInt32(Session["doctorId"]);
-            var schedules = db.Schedules.Where(s => s.Doctor_id == doctorId).Select(s => new { s.Id, s.Date, s.StartTime, s.EndTime, s.Booked }).ToList();
+            var schedules = db.Schedules.Where(s => s.Doctor_id == doctorId && s.Date >= DateTime.Today).Select(s => new { s.Id, s.Date, s.StartTime, s.EndTime, s.Booked }).OrderByDescending(s => s.Date).ToList();
             return new JsonResult { Data = schedules, JsonRequestBehavior = JsonRequestBehavior.AllowGet};
         }
 
-        //
+        //get a list of doctors with availabe future schedules
         public JsonResult List()
         {
-            var doctors = db.doctors.Select(d => new { d.Id, d.User.FirstName, d.User.LastName }).ToList();
+            var doctors = db.Schedules.Where(s => s.Date >= DateTime.Today).Select(s => new { s.Doctor.Id, s.Doctor.User.FirstName, s.Doctor.User.LastName }).Distinct().ToList();
+            //var doctors = db.doctors.Select(d => new { d.Id, d.User.FirstName, d.User.LastName }).ToList();
             return new JsonResult { Data = doctors, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
     }

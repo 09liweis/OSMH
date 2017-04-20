@@ -1,0 +1,147 @@
+﻿@model OSMH.Models.helper.UserSuggestion
+
+@{
+	ViewBag.Title = "Details";
+}
+
+@if (!String.IsNullOrWhiteSpace(Model.SystemMessage))
+{
+	<div class="alert alert-danger" role="alert">
+		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		<span class="sr-only">Error:</span>
+		@Model.SystemMessage
+	</div>
+}
+
+<h2 class="suggestionTitle">Suggestion: @Html.DisplayFor(model => model.Title)</h2>
+
+@if (!(Model.Email == User.Identity.Name))
+{
+	if (!Model.SuggestionUpvotes.Any(s => s.FirstName == User.Identity.Name))
+	{
+		<button type="button" class="btn btn-default suggestionItem_vote_upvote" data-id=@Html.DisplayFor(model => model.SuggestionId)>
+			<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true">Upvote</span>
+		</button>
+						<button type="button" class="btn btn-default suggestionItem_vote_downvote suggestionNotDisplay" data-id=@Html.DisplayFor(model => model.SuggestionId) data-current="@User.Identity.Name">
+							<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true">Downvote</span>
+						</button>
+	}
+	else
+	{
+		<button type="button" class="btn btn-default suggestionItem_vote_upvote suggestionNotDisplay" data-id=@Html.DisplayFor(model => model.SuggestionId)>
+			<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true">Upvote</span>
+		</button>
+						<button type="button" class="btn btn-default suggestionItem_vote_downvote" data-id=@Html.DisplayFor(model => model.SuggestionId) data-current="@User.Identity.Name">
+							<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true">Downvote</span>
+						</button>
+	}
+}
+else
+{
+	<p>My Suggestion</p>
+}
+
+<section class="panel panel-info">
+	<div class="panel-heading suggestionDetail row">
+		<div class="suggestionDetail_vote col-sm-1">
+			<p class="suggestionDetail_vote-number">
+				Number of Upvotes:
+			</p>
+			<p class="suggestionDetail_vote-number number-of-vote">
+				@Html.DisplayFor(model => model.Vote)
+			</p>
+		</div>
+		<div class="suggestionDetail_user col-sm-4">
+			<p class="suggestionDetail_user-author">
+				Full Name: @Html.DisplayFor(model => model.UserName)
+			</p>
+			<p>
+				Email: @Html.DisplayFor(model => model.Email)
+			</p>
+		</div>
+		<div class="suggestionDetail_title col-sm-7">
+			<p class="suggestionDetail_title-title">
+				<span>Title: </span>@Html.DisplayFor(model => model.Title)
+			</p>
+			<p class="suggestionDetail_title-infor">
+				<span class="label label-default">@Html.DisplayFor(model => model.NumComments) comments</span>  Submit at: @Html.DisplayFor(model => model.CreatingTime)
+			</p>
+		</div>
+	</div>
+	<div class="panel-body">
+		<p class="title-font">
+			Suggestion:
+		</p>
+		<p>
+			@Html.DisplayFor(model => model.Description)
+		</p>
+		@if (User.Identity.Name == Model.Email)
+		{
+		<p>
+			@Html.ActionLink("Edit", "Edit", new { id = Model.SuggestionId }, new { @class = "btn btn-default" })
+			@Html.ActionLink("Delete", "Delete", new { id = Model.SuggestionId }, new { @class = "btn btn-default" })
+		</p>
+		}
+	</div>
+
+</section>
+
+
+@if (Model.SuggestionCommentViews != null)
+{
+	<h3>Comments:</h3>
+	<section class="suggestionComments">
+		@foreach (var comment in Model.SuggestionCommentViews)
+		{
+			<div class="suggestionComment row">
+				<div class="suggestionComment_infor col-sm-3">
+					<p>
+						<span>User ID: </span>@comment.UserId
+					</p>
+					<p>
+						<span>User Name: </span>@comment.UserName
+					</p>
+				</div>
+				<div class="suggestionComment_detail col-sm-7">
+					<div class="comment-detail">
+						<p class="suggestionComment_detail-description">
+							@comment.Description
+						</p>
+						<p class="suggestionComment_detail-infor">
+							@comment.CreatingTime
+						</p>
+					</div>
+
+					@Html.Partial("_EditComment", comment)
+					
+				</div>
+				@if (comment.Email == User.Identity.Name)
+				{
+				<div class="col-sm-2">
+					@Html.ActionLink("Edit", "EditComment", new { id = Model.SuggestionId }, new { @class = "btn btn-default edit-comment" })
+
+					@using (Html.BeginForm("DeleteComment", "PatientSuggestion", new { id = comment.CommentId }))
+					{
+						@Html.AntiForgeryToken()
+
+						<div class="form-actions no-color">
+							<input type="submit" value="Delete" class="btn btn-default" />
+						</div>
+					}
+
+				</div>
+				}
+			</div>
+		}
+	</section>
+}
+
+<h2>Make A New Comment</h2>
+
+@Html.Partial("_CreateComment", new OSMH.Models.SuggestionComment(), new ViewDataDictionary(this.ViewData) { { "SuggestionId", Model.SuggestionId } })
+
+
+
+<p>
+	@Html.ActionLink("Back to List", "Index")
+</p>

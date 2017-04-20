@@ -3,12 +3,11 @@
 }
 
 <div id="dashboard">
-    <h2>Dashboard</h2>
+    <h2 class="text-center">Dashboard</h2>
 
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#makeAppointment">
-        Make an appointment
-    </button>
-    <table id="appointments" class="table">
+    <button type="button" class="btn btn-primary" v-if="" v-on:click="changeView('bookappointment')">Make an appointment</button>
+	@Html.ActionLink("Suggestion", "Index", "PatientSuggestion", null, new { @Class = "btn btn-primary" })
+    <table id="appointments" class="table" v-if="view == 'appointments'">
         <tr>
             <th>Doctor</th>
             <th>Date</th>
@@ -22,40 +21,42 @@
             <td><button class="btn btn-danger" v-on:click="cancelAppointment(appointment)">Cancel</button></td>
         </tr>
     </table>
-
-    <div class="modal fade" id="makeAppointment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-                </div>
-                <div class="modal-body">
-                    <select id="selectDoctor" class="form-control" v-model="doctorId">
-                        <option value="null">Select a doctor</option>
-                        <option v-for="d in doctors" :value="d.Id">{{d.FirstName}} {{d.LastName}}</option>
+    <div class="modal-content" v-if="view == 'bookappointment'">
+        <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">Make an appointment</h4>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label class="control-label">Select a Doctor</label>
+                <select id="selectDoctor" class="form-control" v-model="doctorId">
+                    <option value="null">Select a doctor</option>
+                    <option v-for="d in doctors" :value="d.Id">{{d.FirstName}} {{d.LastName}}</option>
+                </select>
+            </div>
+            <div class="form-group" v-if="doctorId != null">
+                <label class="control-label">Select a Date</label>
+                <div id="selectDate">
+                    <select v-model="date" class="form-control">
+                        <option value="null">Select a date</option>
+                        <option v-for="d in dates" :value="d">{{d}}</option>
                     </select>
-                    <div id="selectDate" v-if="doctorId != null">
-                        <select v-model="date" class="form-control">
-                            <option value="null">Select a date</option>
-                            <option v-for="d in dates" :value="d">{{d}}</option>
-                        </select>
-                    </div>
-                    <div id="selectTime" v-if="date != null">
-                        <div class="radio" v-for="ts in timeslots">
-                            <label>
-                                <input type="radio" v-model="timeslot" name="timeslot" :value="ts.Id">
-                                {{ts.time}}
-                            </label>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" v-on:click="bookAppointment">Book</button>
                 </div>
             </div>
+            <div class="form-group" v-if="date != null">
+                <label class="control-label">Select a Time</label>
+                <div id="selectTime">
+                    <div class="radio" v-for="ts in timeslots">
+                        <label>
+                            <input type="radio" v-model="timeslot" name="timeslot" :value="ts.Id">
+                            {{ts.time}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" v-on:click="changeView('appointments')">Cancel</button>
+            <button type="button" class="btn btn-primary" v-on:click="bookAppointment">Book</button>
         </div>
     </div>
 </div>
