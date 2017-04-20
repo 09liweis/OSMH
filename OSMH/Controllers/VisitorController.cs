@@ -63,11 +63,11 @@ namespace OSMH.Controllers
         }
 
         // GET: Visitor
+        [Authorize]
         public ActionResult Admin()
         {
             return View();
         }
-
 
         // Post: Read Admin Page
         [HttpPost]
@@ -138,7 +138,32 @@ namespace OSMH.Controllers
             var result = new { Success = "true" };
             return Json(result, JsonRequestBehavior.AllowGet);
         }
+
+
+        // GET: verify visit code
+        [Authorize]
+        public ActionResult Verify()
+        {
+            return View();
+        }
+
+        // POST: verify visit code
+        [HttpPost]
+        public JsonResult verifyCode(string code)
+        {
+            DateTime today = DateTime.Now.Date;
+            VisitorReg reg = db.VisitorReg.FirstOrDefault(r => r.VisitorReg_code == code && r.VisitorReg_date == today);
+            var result = new { Success = true };
+            if (reg == null)
+            {
+                result = new { Success = false };
+            }
+            return Json(result);
+        }
+
+
     }
+
 
     public class require
     {

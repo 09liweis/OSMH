@@ -14,19 +14,27 @@ namespace OSMH.Models
         [Required]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
         [Required]
-        public string UserName { get; set; }
+        [Display(Name ="First Name")]
+        public string FirstName { get; set; }
+        [Required]
+        [Display(Name ="Last Name")]
+        public string LastName { get; set; }
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
         [Required]
         [DataType(DataType.Password)]
+        [Display(Name = "Confirm Password")]
         public string ConfirmPassword { get; set; }
 
         public string Role { get; set; }
 
         public virtual ICollection<Doctor> Doctors { get; set; }
-    }
+        public virtual ICollection<Patient> Patients { get; set; }
+
+		public virtual ICollection<Suggestion> Suggestions { get; set; }
+		public virtual ICollection<SuggestionComment> SuggestionComments { get; set; }
+        public virtual ICollection<Applicant> Applicants { get; set; }
+	}
 }

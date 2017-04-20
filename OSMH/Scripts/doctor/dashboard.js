@@ -27,7 +27,7 @@
 
                 getSchedules() {
                     this.$http.get('/Doctor/getSchedules').then(function (schedules) {
-
+                        this.schedule = {}
                         schedules.data.map(function (s) {
                             var date = formatDate(s.Date);
                             var time = renderFullTimeSlot(s.StartTime, s.EndTime);
@@ -39,8 +39,19 @@
                             }
                         }.bind(this));
                     });
+                },
+
+                cancelSchedule(date, id, index) {
+                    this.$http.post('/Doctor/cancelSchedule/' + id).then(function (scheduels) {
+                    });
                 }
             }
         });
     }
+});
+
+$(document).ready(function () {
+    $('#dashboard').on('click', '.timeslot .clickable', function () {
+        $(this).parent().parent().remove();
+    })
 });

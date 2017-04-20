@@ -14,5 +14,6 @@ namespace OSMH
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
-    }
+
+	}
 }

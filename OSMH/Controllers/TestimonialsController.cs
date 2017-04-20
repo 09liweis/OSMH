@@ -61,7 +61,7 @@ namespace OSMH.Controllers
             {
                 db.Testimonials.Add(test);
                 db.SaveChanges();
-                return RedirectToAction("Index", "Testimonials");
+                return RedirectToAction("Admin", "Testimonials");
             }
 
             return View(test);
@@ -124,15 +124,6 @@ namespace OSMH.Controllers
             db.Testimonials.Remove(test);
             db.SaveChanges();
             return RedirectToAction("Admin", "Testimonials");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

@@ -20,6 +20,7 @@ namespace OSMH.Models
         public bool Published { get; set; }
         [Required]
         [DataType(DataType.Date)]
+        [Display(Name ="Publish Date")]
         public DateTime PublishDate { get; set; }
     }
 }
