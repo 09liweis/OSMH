@@ -11,7 +11,10 @@ namespace OSMH.Models
     public class Patient
     {
         public int Id { get; set; }
+        [Required]
         public string SIN { get; set; }
+        [Required]
+        [DataType(DataType.Date)]
         public DateTime DOB { get; set; }
         public int User_id { get; set; }
 

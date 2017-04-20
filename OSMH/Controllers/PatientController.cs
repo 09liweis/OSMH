@@ -8,6 +8,7 @@ using System.Data.Entity;
 
 namespace OSMH.Controllers
 {
+    [Authorize]
     public class PatientController : Controller
     {
         private OSMHDbContext db = new OSMHDbContext();
@@ -26,10 +27,34 @@ namespace OSMH.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Create(Patient patient)
+        {
+            int userId = Convert.ToInt32(Session["userId"]);
+            patient.User_id = userId;
+            db.patients.Add(patient);
+            db.SaveChanges();
+            return RedirectToAction("Dashboard");
+        }
+
+        public ActionResult Edit()
+        {
+            int patientId = Convert.ToInt32(Session["patientId"]);
+            return View(db.patients.Find(patientId));
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Patient patient)
+        {
+            db.Entry(patient).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Dashboard");
+        }
+
         public JsonResult getAppointments()
         {
             int patientId = Convert.ToInt32(Session["patientId"]);
-            var appointments = db.Appointments.Where(a => a.Patient_Id == patientId).Select(a => new { a.Id, a.Schedule_Id, a.schedule.Date, a.schedule.StartTime, a.schedule.EndTime, a.schedule.Doctor.User.FirstName }).OrderByDescending(a => a.Date).ToList();
+            var appointments = db.Appointments.Where(a => a.Patient_Id == patientId).Select(a => new { a.Id, a.Schedule_Id, a.schedule.Date, a.schedule.StartTime, a.schedule.EndTime, a.schedule.Doctor.User.FirstName, a.schedule.Doctor.User.LastName }).OrderByDescending(a => a.Date).ToList();
             return new JsonResult { Data = appointments, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
