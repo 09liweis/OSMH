@@ -18,8 +18,12 @@ namespace OSMH.Controllers
         // GET: Message
         public ActionResult Index()
         {
-            return View();
+            List<Message> Messages = db.Messages.ToList();
+
+            return View(Messages);
         }
+        // GET: Message/Details
+        
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -38,7 +42,7 @@ namespace OSMH.Controllers
         }
 
 
-        // GET: Messages/Create
+        // GET: Message/Create
         public ActionResult Admin()
         {
             return View(db.Messages.ToList());
@@ -57,20 +61,20 @@ namespace OSMH.Controllers
             {
                 db.Messages.Add(msg);
                 db.SaveChanges();
-                return RedirectToAction("Index", "Message");
+                return RedirectToAction("Index");
             }
 
             return View(msg);
         }
 
 
-        // GET: Messages/Edit/5
+        // GET: Message/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Messages/Edit/5
+        // POST: Message/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -78,7 +82,7 @@ namespace OSMH.Controllers
             {
                 // TODO: Add update logic here
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Admin");
             }
             catch
             {
@@ -86,26 +90,30 @@ namespace OSMH.Controllers
             }
         }
 
-        // GET: Messages/Delete/5
-        public ActionResult Delete(int id)
+        // GET: Message/Delete/5
+        public ActionResult Delete(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Message msg = db.Messages.Find(id);
+            if (msg == null)
+            {
+                return HttpNotFound();
+            }
+            return View(msg);
         }
 
-        // POST: TestimonialsMessagesDelete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        // POST: Message/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            Message msg = db.Messages.Find(id);
+            db.Messages.Remove(msg);
+            db.SaveChanges();
+            return RedirectToAction("Admin");
         }
     }
 }

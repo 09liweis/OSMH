@@ -327,6 +327,9 @@
     <Content Include="Views\Testimonials\Details.cshtml" />
     <Content Include="Views\Testimonials\Delete.cshtml" />
     <Content Include="Views\Testimonials\Edit.cshtml" />
+    <Content Include="Views\Message\Edit.cshtml" />
+    <Content Include="Views\Message\Details.cshtml" />
+    <Content Include="Views\Message\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
