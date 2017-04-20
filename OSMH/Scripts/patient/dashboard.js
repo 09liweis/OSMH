@@ -45,7 +45,7 @@
                 getAppointments() {
                     this.$http.get('/Patient/getAppointments').then(function (appointments) {
                         this.appointments = appointments.data.map(function (a) {
-                            return { AppointmentId: a.Id, ScheduleId: a.Schedule_Id, Date: formatDate(a.Date), Time: renderFullTimeSlot(a.StartTime, a.EndTime), Doctor: a.FirstName }
+                            return { AppointmentId: a.Id, ScheduleId: a.Schedule_Id, Date: formatDate(a.Date), Time: renderFullTimeSlot(a.StartTime, a.EndTime), Doctor: a.FirstName + ' ' + a.LastName }
                         });
                     });
                 },

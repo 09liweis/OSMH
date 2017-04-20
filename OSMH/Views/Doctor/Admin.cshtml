@@ -9,12 +9,12 @@
 
 <h2>Doctor @Session["name"], Welcome to Dashboard</h2>
 @Html.ActionLink("Create Schedule", "CreateSchedule", new { area = "" }, new { @class="btn btn-success" })
-
+ | @Html.ActionLink("Edit Profile", "Edit", null, new { @class = "btn btn-warning" })
+<hr />
 <div id="dashboard">
     <div>
         <button class="btn btn-primary" v-on:click="changeView('appointments')">Appointments</button>
 		@Html.ActionLink("Suggestion", "Index", "StaffSuggestion", null, new { @Class = "btn btn-primary" })
-        <button class="btn btn-primary pull-right" v-on:click="changeView('schedules')">Manage Schedules</button>
         <button class="btn btn-primary pull-right" v-on:click="changeView('schedules')">Cancel Available Schedules</button>
     </div>
     <table class="table" v-if="view == 'appointments'">

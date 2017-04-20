@@ -3,9 +3,10 @@
 }
 
 <div id="dashboard">
-    <h2>Dashboard</h2>
+    <h2 class="text-center">Dashboard</h2>
 
     <button type="button" class="btn btn-primary" v-if="" v-on:click="changeView('bookappointment')">Make an appointment</button>
+    @Html.ActionLink("Edit", "Edit", null, new { @class="btn btn-success" })
 	@Html.ActionLink("Suggestion", "Index", "PatientSuggestion", null, new { @Class = "btn btn-primary" })
     <table id="appointments" class="table" v-if="view == 'appointments'">
         <tr>
