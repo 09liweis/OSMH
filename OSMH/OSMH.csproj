@@ -351,6 +351,12 @@
     <Content Include="Views\Message\Index.cshtml" />
     <Content Include="Views\Message\Admin.cshtml" />
     <Content Include="Views\Message\Create.cshtml" />
+    <Content Include="Views\Testimonials\Details.cshtml" />
+    <Content Include="Views\Testimonials\Delete.cshtml" />
+    <Content Include="Views\Testimonials\Edit.cshtml" />
+    <Content Include="Views\Message\Edit.cshtml" />
+    <Content Include="Views\Message\Details.cshtml" />
+    <Content Include="Views\Message\Delete.cshtml" />
     <Content Include="Views\Patient\Create.cshtml" />
     <Content Include="Views\Admin\CreateMember.cshtml" />
     <Content Include="Views\Admin\Members.cshtml" />
