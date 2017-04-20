@@ -25,6 +25,20 @@ namespace OSMH.Controllers
             return View();
         }
 
+        public ActionResult Edit()
+        {
+            int doctorId = Convert.ToInt32(Session["doctorId"]);
+            return View(db.doctors.Find(doctorId));
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Doctor doctor)
+        {
+            db.Entry(doctor.User).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Admin");
+        }
+
         public ActionResult CreateSchedule()
         {
             if (Session["doctorId"] == null)
