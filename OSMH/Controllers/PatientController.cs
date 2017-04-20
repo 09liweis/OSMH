@@ -34,6 +34,7 @@ namespace OSMH.Controllers
             patient.User_id = userId;
             db.patients.Add(patient);
             db.SaveChanges();
+            Session["patientId"] = patient.Id;
             return RedirectToAction("Dashboard");
         }
 
@@ -47,6 +48,7 @@ namespace OSMH.Controllers
         public ActionResult Edit(Patient patient)
         {
             db.Entry(patient).State = EntityState.Modified;
+            db.Entry(patient.User).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Dashboard");
         }

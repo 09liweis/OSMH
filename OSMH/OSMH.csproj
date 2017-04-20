@@ -401,6 +401,7 @@
     <Content Include="Views\Careers\Index.cshtml" />
     <Content Include="Views\Careers\ApplyNow.cshtml" />
     <Content Include="Views\Patient\Edit.cshtml" />
+    <Content Include="Views\Doctor\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
