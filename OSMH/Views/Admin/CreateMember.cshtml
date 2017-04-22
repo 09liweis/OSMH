@@ -4,6 +4,10 @@
     ViewBag.Title = "Create Member";
 }
 
+<div>
+    @Html.ActionLink("Back to Members", "Members", null, new { @class="btn btn-primary" })
+</div>
+
 <h2 class="text-center">Create Member</h2>
 
 <div class="auth-form">
@@ -74,9 +78,6 @@
             </div>
         </div>
     }
-</div>
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>

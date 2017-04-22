@@ -10,13 +10,12 @@ using System.Data.Entity;
 
 namespace OSMH.Controllers
 {
+    [Authorize(Roles ="doctor")]
     public class DoctorController : Controller
     {
         private OSMHDbContext db = new OSMHDbContext();
         public ActionResult Admin()
         {
-            //Temporary test
-            //Session["doctorId"] = "1";
             if (!Auth.checkLogin())
             {
                 return RedirectToAction("Login", "Account");
@@ -98,7 +97,6 @@ namespace OSMH.Controllers
         public JsonResult List()
         {
             var doctors = db.Schedules.Where(s => s.Date >= DateTime.Today).Select(s => new { s.Doctor.Id, s.Doctor.User.FirstName, s.Doctor.User.LastName }).Distinct().ToList();
-            //var doctors = db.doctors.Select(d => new { d.Id, d.User.FirstName, d.User.LastName }).ToList();
             return new JsonResult { Data = doctors, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
     }
