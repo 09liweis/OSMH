@@ -47,7 +47,6 @@ namespace OSMH.Models
 			modelBuilder.Entity<SuggestionComment>().HasRequired(u => u.User);
 			modelBuilder.Entity<SuggestionComment>().HasRequired(s => s.Suggestion).WithMany(s => s.SuggestionComments).HasForeignKey(s => s.SuggestionId);
 			modelBuilder.Entity<SuggestionUpvote>().HasRequired(s => s.Suggestion).WithMany(s => s.SuggestionUpvotes).HasForeignKey(s => s.SuggestionId);
-            modelBuilder.Entity<Applicant>().HasMany<Job>(a => a.Jobs).WithMany(j => j.Applicants).Map(aj => { aj.MapLeftKey("ApplicantsId"); aj.MapRightKey("JobsId"); aj.ToTable("Jobs_Applicants"); });
         }
 	}
 }

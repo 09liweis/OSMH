@@ -7,7 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using OSMH.Models;
-using OSMH.Models.helper;
+using System.IO;
 
 namespace OSMH.Controllers
 {
@@ -27,6 +27,29 @@ namespace OSMH.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ApplyNow([Bind(Include = "Id,Full_Name,Email,Action_Completed,Job_Id")] Applicant applicant, HttpPostedFileBase file)
+        {
+        
+            if (ModelState.IsValid)
+            {
+                if( file.ContentLength>0)
+                {
+                    var fileName = Path.GetFileName(file.FileName);
+                    var path = Path.Combine(Server.MapPath("~/App_Data/Resumes"), fileName);
+                    applicant.Resume = fileName;
+                    file.SaveAs(path);
+                }
+                db.Applicants.Add(applicant);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(applicant);
+        }
+
 
         // GET: Jobs: Admin 
         [Authorize]
