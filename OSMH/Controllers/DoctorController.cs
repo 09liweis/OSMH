@@ -20,7 +20,10 @@ namespace OSMH.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
-
+            if (TempData["Message"] != null)
+            {
+                ViewBag.Message = TempData["Message"];
+            }
             return View();
         }
 
@@ -35,6 +38,7 @@ namespace OSMH.Controllers
         {
             db.Entry(doctor.User).State = EntityState.Modified;
             db.SaveChanges();
+            TempData["Message"] = "Profile has been updated.";
             return RedirectToAction("Admin");
         }
 
@@ -53,6 +57,7 @@ namespace OSMH.Controllers
             TimeSpan startTime = schedule.StartTime;
             TimeSpan endTime = schedule.EndTime;
 
+            int numSchedule = 0;
             while (startTime < endTime)
             {
                 TimeSpan nextEndTime = startTime.Add(TimeSpan.FromMinutes(30));
@@ -65,8 +70,9 @@ namespace OSMH.Controllers
                 db.SaveChanges();
 
                 startTime = nextEndTime;
+                numSchedule++;
             }
-
+            TempData["Message"] =  numSchedule + " Available Schedules have been created for " + schedule.Date.ToString("yyyy-MM-dd");
             return RedirectToAction("Admin");
         }
 

@@ -4,7 +4,10 @@
 
 <div id="dashboard">
     <h2 class="text-center">Dashboard</h2>
-
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert alert-success" role="alert">@ViewBag.Message</div>
+    }
     <button type="button" class="btn btn-primary" v-if="" v-on:click="changeView('bookappointment')">Make an appointment</button>
     @Html.ActionLink("Edit", "Edit", null, new { @class="btn btn-success" })
 	@Html.ActionLink("Suggestion", "Index", "PatientSuggestion", null, new { @Class = "btn btn-primary" })

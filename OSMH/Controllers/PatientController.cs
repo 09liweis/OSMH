@@ -18,6 +18,10 @@ namespace OSMH.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
+            if (TempData["Message"] != null)
+            {
+                ViewBag.Message = TempData["Message"];
+            }
             return View();
 
         }
@@ -50,6 +54,7 @@ namespace OSMH.Controllers
             db.Entry(patient).State = EntityState.Modified;
             db.Entry(patient.User).State = EntityState.Modified;
             db.SaveChanges();
+            TempData["Message"] = "Profile has been updated.";
             return RedirectToAction("Dashboard");
         }
 

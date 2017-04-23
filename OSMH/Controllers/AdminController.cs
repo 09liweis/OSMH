@@ -19,6 +19,10 @@ namespace OSMH.Controllers
 
         public ActionResult Members()
         {
+            if (TempData["Message"] != null)
+            {
+                ViewBag.Message = TempData["Message"];
+            }
             return View(db.users.ToList());
         }
 
@@ -43,8 +47,8 @@ namespace OSMH.Controllers
                 db.doctors.Add(doctor);
                 db.SaveChanges();
             }
-
-            return RedirectToAction("Doctors");
+            TempData["Message"] = "New member has been created.";
+            return RedirectToAction("Members");
         }
     }
 }

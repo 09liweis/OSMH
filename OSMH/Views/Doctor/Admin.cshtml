@@ -2,12 +2,11 @@
     ViewBag.Title = "Admin";
 }
 
-
-@{
-    ViewBag.Title = "Dashboard";
-}
-
 <h2>Doctor @Session["name"], Welcome to Dashboard</h2>
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-success" role="alert">@ViewBag.Message</div>
+}
 @Html.ActionLink("Create Schedule", "CreateSchedule", new { area = "" }, new { @class="btn btn-success" })
  | @Html.ActionLink("Edit Profile", "Edit", null, new { @class = "btn btn-warning" })
 <hr />
