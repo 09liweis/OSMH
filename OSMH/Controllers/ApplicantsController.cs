@@ -17,8 +17,8 @@ namespace OSMH.Controllers
         // GET: Applicants
         public ActionResult Index()
         {
-
-           return View(db.Applicants.ToList());
+            var applicants = db.Applicants.Include(a => a.Jobs);
+            return View(applicants.ToList());
         }
 
         // GET: Applicants/Details/5
@@ -39,6 +39,7 @@ namespace OSMH.Controllers
         // GET: Applicants/Create
         public ActionResult Create()
         {
+            ViewBag.Job_Id = new SelectList(db.Jobs, "Id", "Job_Title");
             return View();
         }
 
@@ -47,15 +48,16 @@ namespace OSMH.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Applied_Date,Full_Name,Email,Resume,Action_Completed,User_Id")] Applicant applicant)
+        public ActionResult Create([Bind(Include = "Id,Full_Name,Applied_Date,Email,Resume,Action_Completed,Job_Id")] Applicant applicant)
         {
             if (ModelState.IsValid)
             {
                 db.Applicants.Add(applicant);
                 db.SaveChanges();
-                return RedirectToAction("Admin");
+                return RedirectToAction("Index");
             }
 
+            ViewBag.Job_Id = new SelectList(db.Jobs, "Id", "Job_Title", applicant.Job_Id);
             return View(applicant);
         }
 
@@ -71,6 +73,7 @@ namespace OSMH.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Job_Id = new SelectList(db.Jobs, "Id", "Job_Title", applicant.Job_Id);
             return View(applicant);
         }
 
@@ -79,14 +82,15 @@ namespace OSMH.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Applied_Date,Full_Name,Email,Resume,Action_Completed,User_Id")] Applicant applicant)
+        public ActionResult Edit([Bind(Include = "Id,Full_Name,Applied_Date,Email,Resume,Action_Completed,Job_Id")] Applicant applicant)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(applicant).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Admin");
+                return RedirectToAction("Index");
             }
+            ViewBag.Job_Id = new SelectList(db.Jobs, "Id", "Job_Title", applicant.Job_Id);
             return View(applicant);
         }
 
@@ -113,7 +117,7 @@ namespace OSMH.Controllers
             Applicant applicant = db.Applicants.Find(id);
             db.Applicants.Remove(applicant);
             db.SaveChanges();
-            return RedirectToAction("Admin");
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

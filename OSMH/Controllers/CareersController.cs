@@ -23,14 +23,14 @@ namespace OSMH.Controllers
         }
 
         //GET: Applicant - Create
-        public ActionResult ApplyNow()
+        public ActionResult ApplyNow(int id)
         {
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ApplyNow([Bind(Include = "Id,Full_Name,Email,Action_Completed,Job_Id")] Applicant applicant, HttpPostedFileBase file)
+        public ActionResult ApplyNow([Bind(Include = "Id,Full_Name,Applied_Date,Email,Resume,Action_Completed,Job_Id")] Applicant applicant, HttpPostedFileBase file, int id)
         {
         
             if (ModelState.IsValid)
@@ -42,6 +42,7 @@ namespace OSMH.Controllers
                     applicant.Resume = fileName;
                     file.SaveAs(path);
                 }
+                applicant.Job_Id = id;
                 db.Applicants.Add(applicant);
                 db.SaveChanges();
                 return RedirectToAction("Index");
