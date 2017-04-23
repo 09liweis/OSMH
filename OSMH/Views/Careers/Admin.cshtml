@@ -4,10 +4,10 @@
     ViewBag.Title = "Admin";
 }
 
-<h2>Index</h2>
+<h2>Manage Postings</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create Posting", "Create")
 </p>
 <table class="table">
     <tr>
@@ -27,11 +27,15 @@
     </tr>
 
 @foreach (var item in Model) {
+
+    int expiry = (item.Closing_Date - DateTime.Today).Days;
+    string red = expiry <= 0 ? "color:Red" : null;
+
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Job_Title)
         </td>
-        <td>
+        <td style="@red">
             @Html.DisplayFor(modelItem => item.Closing_Date)
         </td>
         <td>
@@ -41,9 +45,9 @@
             @Html.DisplayFor(modelItem => item.JobType.Name)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Edit Posting", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("View Applicants", "Applicants", new { id=item.Id }) |
+            @Html.ActionLink("Delete Posting", "Delete", new { id=item.Id })
         </td>
     </tr>
 }

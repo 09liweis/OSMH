@@ -1,0 +1,80 @@
+﻿@model OSMH.Models.Job
+
+@{
+    ViewBag.Title = "Applicants";
+}
+
+<h2>Applicants</h2>
+
+<div>
+    <h4>Job</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Department.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Department.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JobType.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JobType.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Job_Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Job_Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Closing_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Closing_Date)
+        </dd>
+ 
+    </dl>
+</div>
+<div>
+    <h4>List of Applicants</h4>
+    <table class="table">
+        <tr>
+            <th>Full Name</th>
+            <th>Email</th>.
+            <th>Resume</th>
+            <th>Action Completed</th>
+        </tr>
+
+
+        @foreach (var item in Model.Applicants)
+        {
+         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Full_Name)
+            </td>
+             <td>
+                 @Html.DisplayFor(modelItem => item.Email)
+             </td>
+             <td>
+                 @Html.ActionLink("Download", "Download", new { id = Model.Id, name = item.Resume })       
+             </td>
+             <td>
+                 @Html.DisplayFor(modelItem => item.Action_Completed)
+             </td>
+         </tr>
+        }
+
+    </table>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Admin")
+</p>
