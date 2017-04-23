@@ -25,11 +25,15 @@
 
         @foreach (var item in Model)
         {
+            int expiry = (item.Closing_Date - DateTime.Today).Days;
+            string red = expiry <= 0 ? "color:Red" : null;
+
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Job_Title)
                 </td>
-                <td>
+                
+                <td style="@red">
                     @Html.DisplayFor(modelItem => item.Closing_Date)
                 </td>
                 <td>
