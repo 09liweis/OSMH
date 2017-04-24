@@ -132,6 +132,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\contact\contact.css" />
     <Content Include="Content\email\admin.css" />
+    <Content Include="Content\email\public.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\images\banner.jpg" />
     <Content Include="Content\images\icon1.png" />

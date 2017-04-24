@@ -17,7 +17,7 @@ namespace OSMH.Controllers
         // GET: Email
         public ActionResult Index()
         {
-            List<EmailPost> posts = db.EmailPost.OrderBy(s => s.Id).ToList();
+            List<EmailPost> posts = db.EmailPost.OrderByDescending(s => s.Id).Take(5).ToList();
             return View(posts);
         }
 

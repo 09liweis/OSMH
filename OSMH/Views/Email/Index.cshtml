@@ -8,10 +8,12 @@
 }
 
 <aside class="col-md-4">
-    <h2>Subscrube us</h2>
+    <h4>Subscrube us</h4>
+    <input type="email" class="form-control" placeholder="Email" >
+    <input id="confirm" class="btn btn-default" type="button" value="Confirm">
 </aside>
 
-<main class="col-md-8">
+<main class="col-md-7 col-md-offset-1">
     <h3>Past Emails</h3>
     @foreach (var item in Model)
     {
@@ -20,13 +22,10 @@
                 @Html.DisplayFor(modelItem => item.Title)
             </h4>
             <h6>
-                @Html.DisplayFor(modelItem => item.Content)
+                @Html.Raw(@item.Content)
             </h6>
             <h6>
                 @Html.DisplayFor(modelItem => item.date)
-            </h6>
-            <h6>
-                @Html.ActionLink("Details", "Details", new { id = item.Id })
             </h6>
         </section>
     }
