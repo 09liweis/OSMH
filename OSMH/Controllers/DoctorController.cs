@@ -81,7 +81,7 @@ namespace OSMH.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "doctor")]
+        [Authorize(Roles = "doctor")] 
         public JsonResult cancelSchedule(int id)
         {
             Schedule schedule = db.Schedules.Find(id);
