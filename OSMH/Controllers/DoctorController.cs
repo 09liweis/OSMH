@@ -10,10 +10,10 @@ using System.Data.Entity;
 
 namespace OSMH.Controllers
 {
-    [Authorize(Roles ="doctor")]
     public class DoctorController : Controller
     {
         private OSMHDbContext db = new OSMHDbContext();
+        [Authorize(Roles = "doctor")]
         public ActionResult Admin()
         {
             if (!Auth.checkLogin())
@@ -27,6 +27,7 @@ namespace OSMH.Controllers
             return View();
         }
 
+        [Authorize(Roles = "doctor")]
         public ActionResult Edit()
         {
             int doctorId = Convert.ToInt32(Session["doctorId"]);
@@ -34,6 +35,7 @@ namespace OSMH.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "doctor")]
         public ActionResult Edit(Doctor doctor)
         {
             db.Entry(doctor.User).State = EntityState.Modified;
@@ -42,6 +44,7 @@ namespace OSMH.Controllers
             return RedirectToAction("Admin");
         }
 
+        [Authorize(Roles = "doctor")]
         public ActionResult CreateSchedule()
         {
             if (Session["doctorId"] == null)
@@ -52,6 +55,7 @@ namespace OSMH.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "doctor")]
         public ActionResult CreateSchedule(Schedule schedule)
         {
             TimeSpan startTime = schedule.StartTime;
@@ -77,6 +81,7 @@ namespace OSMH.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "doctor")]
         public JsonResult cancelSchedule(int id)
         {
             Schedule schedule = db.Schedules.Find(id);
