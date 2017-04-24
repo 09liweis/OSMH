@@ -18,9 +18,9 @@ namespace OSMH.Controllers
         // GET: Message
         public ActionResult Index()
         {
-            List<Message> Messages = db.Messages.ToList();
+			List<Message> Messages = db.Messages.ToList();
 
-            return View(Messages);
+			return View(Messages);
         }
         // GET: Message/Details
         

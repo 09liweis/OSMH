@@ -125,6 +125,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\admin\adminDash.css" />
     <Content Include="Content\alert\alert.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -197,6 +198,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Scripts\adminDashBoard\adminDashBoard.js" />
     <Content Include="Scripts\admin\doctor.js" />
     <Content Include="Scripts\blog\admin.js" />
     <Content Include="Scripts\alert.js" />
@@ -218,9 +220,6 @@
     <Content Include="Scripts\Career\datepicker.js" />
     <Content Include="Scripts\doctor\dashboard.js" />
     <Content Include="Scripts\helper\datetime.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
@@ -275,6 +274,7 @@
     </Compile>
     <Compile Include="Models\Alert.cs" />
     <Compile Include="Models\Departments.cs" />
+    <Compile Include="Models\helper\AdminIndexDataView.cs" />
     <Compile Include="Models\JobType.cs" />
     <Compile Include="Models\Jobs.cs" />
     <Compile Include="Models\Appointment.cs" />

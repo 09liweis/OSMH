@@ -1,28 +1,162 @@
-﻿
+﻿@model OSMH.Models.helper.AdminIndexDataView
+
 @{
     ViewBag.Title = "OSMH Admin";
 }
+<div class="row dashboard">
+	<div class="app-sidebar col-sm-3">
+		<div class="sidebar-header">
+			<p>DashBoard</p>
+		</div>
+		<div class="sidebar-nav">
+			<ul>
+				<li><a>Manage Page Content</a></li>
+				<li>
+					@Html.ActionLink("Manage Alerts", "Index", "Alert")
+				</li>
+				<li>
+					@Html.ActionLink("Manage Blog", "Admin", "Blogs")
+				</li>
+				<li>
+					@Html.ActionLink("Manage Job Listings", "Admin", "Careers")
+				</li>
+				<li>
+					@Html.ActionLink("Manage Account", "Members", "Admin")
+				</li>
+				<li>
+					@Html.ActionLink("Manage Suggestion Board", "Index", "Suggestion")
+				</li>
+				<li>
+					@Html.ActionLink("Manage Contact Information", "Admin", "Contact")
+				</li>
+				<li>
+					@Html.ActionLink("Manage Email Subscribers", "Admin", "Email")
+				</li>
+				<li>
+					@Html.ActionLink("Manage Recieved Messages", "Admin", "Message")
+				</li>
+				<li>
+					@Html.ActionLink("Manage Public Vistor Registration", "Admin", "Visitor")
+				</li>
+				<li>
+					@Html.ActionLink("Manage Testimonials", "Admin", "Testimonials")
+				</li>
+				<li>
+					<a>Manage Online Payment</a>
+				</li>
+				<li>
+					<a>Manage Donation</a>
+				</li>
+			</ul>
+		</div>
+	</div>
 
-<h2>Admin</h2>
-<div class="row">
-    <div class="col-xs-6 col-sm-4 col-md-3">
-        @Html.ActionLink("Blog", "Admin", "Blogs")
-    </div>
-    <div class="col-xs-6 col-sm-4 col-md-3">
-        @Html.ActionLink("Members", "Members", "Admin")
-        </div>
-    <div class="col-xs-6 col-sm-4 col-md-3">
-        @Html.ActionLink("Manage Job Listings", "Admin", "Careers")
-    </div>
-	<div class="col-xs-6 col-sm-4 col-md-3">
-		@Html.ActionLink("Alert", "Index", "Alert")
-	</div>
-	<div class="col-xs-6 col-sm-4 col-md-3">
-		@Html.ActionLink("Blogs", "Index", "Blogs")
-	</div>
-	<div class="col-xs-6 col-sm-4 col-md-3">
-		@Html.ActionLink("Manage Suggestion Board", "Index", "Suggestion")
+	<div class="col-sm-9">
+		<div class="dashboard-header" id="dheader">
+			Today is ...
+		</div>
+		<div class="dashboar-data">
+			<div class="row">
+				<div class="col-xs-6 col-md-4 feature-data">
+					<p class="new nondisplay">New</p>
+					<div class="feature-data-content">
+						<p class="feature-data-title">
+							Total Patient Suggestions
+						</p>
+						<p class="feature-data-number" id="data-patient-suggestion">
+							@Html.DisplayFor(m => m.PatientSuggestions)
+						</p>
+					</div>
+				</div>
+				<div class="col-xs-6 col-md-4 feature-data">
+					<p class="new nondisplay">New</p>
+					<div class="feature-data-content">
+						<p class="feature-data-title">
+							Total Stuff Suggestions
+						</p>
+						<p class="feature-data-number" id="data-stuff-suggestion">
+							@Html.DisplayFor(m => m.StuffSuggestions)
+						</p>
+					</div>
+				</div>
+				<div class="col-xs-6 col-md-4 feature-data">
+					<p class="new nondisplay">New</p>
+					<div class="feature-data-content">
+						<p class="feature-data-title">
+							Today's Vistors
+						</p>
+						<p class="feature-data-number" id="data-vistors">
+							@Html.DisplayFor(m => m.VistorsTotal)
+						</p>
+					</div>
+				</div>
+				<div class="col-xs-6 col-md-4 feature-data">
+					<p class="new nondisplay">New</p>
+					<div class="feature-data-content">
+						<p class="feature-data-title">
+							Total Blogs
+						</p>
+						<p class="feature-data-number" id="data-blog">
+							@Html.DisplayFor(m => m.BlogTotal)
+						</p>
+					</div>
+				</div>
+				<div class="col-xs-6 col-md-4 feature-data">
+					<p class="new nondisplay">New</p>
+					<div class="feature-data-content">
+						<p class="feature-data-title">
+							Total jobs
+						</p>
+						<p class="feature-data-number" id="data-job">
+							@Html.DisplayFor(m => m.JobTotal)
+						</p>
+					</div>
+				</div>
+				<div class="col-xs-6 col-md-4 feature-data">
+					<p class="new nondisplay">New</p>
+					<div class="feature-data-content">
+						<p class="feature-data-title">
+							Total's accounts
+						</p>
+						<p class="feature-data-number" id="data-account">
+							@Html.DisplayFor(m => m.AccountsTotal)
+						</p>
+					</div>
+				</div>
+				<div class="col-xs-6 col-md-4 feature-data">
+					<p class="new nondisplay">New</p>
+					<div class="feature-data-content">
+						<p class="feature-data-title">
+							Total messages
+						</p>
+						<p class="feature-data-number" id="data-message">
+							@Html.DisplayFor(m => m.MessageTotal)
+						</p>
+					</div>
+				</div>
+				<div class="col-xs-6 col-md-4 feature-data">
+					<p class="new nondisplay">New</p>
+					<div class="feature-data-content">
+						<p class="feature-data-title">
+							Total Email Subscription
+						</p>
+						<p class="feature-data-number" id="data-email">
+							@Html.DisplayFor(m => m.EmailSubscribers)
+						</p>
+					</div>
+				</div>
+				<div class="col-xs-6 col-md-4 feature-data">
+					<p class="new nondisplay">New</p>
+					<div class="feature-data-content">
+						<p class="feature-data-title">
+							Total Testimonials
+						</p>
+						<p class="feature-data-number" id="data-testimonials">
+							@Html.DisplayFor(m => m.TestimonialsTotal)
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
-
-
