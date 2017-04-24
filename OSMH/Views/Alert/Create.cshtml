@@ -42,7 +42,7 @@
 		<div>
 			@Html.HiddenFor(model => model.AlertStatus, new { Value = OSMH.Models.Alert.Status.Inactive})
 			@Html.HiddenFor(model => model.CreatingTime, new { Value = DateTime.Now})
-			@Html.HiddenFor(model => model.Publisher, new { Value = "admin"})
+			@Html.HiddenFor(model => model.Publisher, new { Value = User.Identity.Name})
 		</div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

@@ -16,7 +16,15 @@ textarea {
     max-width: 280px;
 }
 
+header {
+    margin-bottom: 20px;
+}
+
 .auth-form {
     max-width: 600px;
     margin: auto;
+}
+
+.clickable {
+    cursor: pointer;
 }

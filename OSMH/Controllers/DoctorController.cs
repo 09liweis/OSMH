@@ -10,19 +10,36 @@ using System.Data.Entity;
 
 namespace OSMH.Controllers
 {
+    [Authorize(Roles ="doctor")]
     public class DoctorController : Controller
     {
         private OSMHDbContext db = new OSMHDbContext();
         public ActionResult Admin()
         {
-            //Temporary test
-            //Session["doctorId"] = "1";
             if (!Auth.checkLogin())
             {
                 return RedirectToAction("Login", "Account");
             }
-
+            if (TempData["Message"] != null)
+            {
+                ViewBag.Message = TempData["Message"];
+            }
             return View();
+        }
+
+        public ActionResult Edit()
+        {
+            int doctorId = Convert.ToInt32(Session["doctorId"]);
+            return View(db.doctors.Find(doctorId));
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Doctor doctor)
+        {
+            db.Entry(doctor.User).State = EntityState.Modified;
+            db.SaveChanges();
+            TempData["Message"] = "Profile has been updated.";
+            return RedirectToAction("Admin");
         }
 
         public ActionResult CreateSchedule()
@@ -40,6 +57,7 @@ namespace OSMH.Controllers
             TimeSpan startTime = schedule.StartTime;
             TimeSpan endTime = schedule.EndTime;
 
+            int numSchedule = 0;
             while (startTime < endTime)
             {
                 TimeSpan nextEndTime = startTime.Add(TimeSpan.FromMinutes(30));
@@ -52,9 +70,19 @@ namespace OSMH.Controllers
                 db.SaveChanges();
 
                 startTime = nextEndTime;
+                numSchedule++;
             }
-
+            TempData["Message"] =  numSchedule + " Available Schedules have been created for " + schedule.Date.ToString("yyyy-MM-dd");
             return RedirectToAction("Admin");
+        }
+
+        [HttpPost]
+        public JsonResult cancelSchedule(int id)
+        {
+            Schedule schedule = db.Schedules.Find(id);
+            db.Schedules.Remove(schedule);
+            db.SaveChanges();
+            return this.getSchedules();
         }
 
         public JsonResult getAppointments()
@@ -67,15 +95,14 @@ namespace OSMH.Controllers
         public JsonResult getSchedules()
         {
             int doctorId = Convert.ToInt32(Session["doctorId"]);
-            var schedules = db.Schedules.Where(s => s.Doctor_id == doctorId).Select(s => new { s.Id, s.Date, s.StartTime, s.EndTime, s.Booked }).ToList();
+            var schedules = db.Schedules.Where(s => s.Doctor_id == doctorId && s.Date >= DateTime.Today).Select(s => new { s.Id, s.Date, s.StartTime, s.EndTime, s.Booked }).OrderByDescending(s => s.Date).ToList();
             return new JsonResult { Data = schedules, JsonRequestBehavior = JsonRequestBehavior.AllowGet};
         }
 
         //get a list of doctors with availabe future schedules
         public JsonResult List()
         {
-            //var doctors = db.Schedules.Where(s => s.Date >= DateTime.Today).Select(s => new { s.Doctor.Id, s.Doctor.User.FirstName, s.Doctor.User.LastName }).GroupBy(s => s.Id).ToList();
-            var doctors = db.doctors.Select(d => new { d.Id, d.User.FirstName, d.User.LastName }).ToList();
+            var doctors = db.Schedules.Where(s => s.Date >= DateTime.Today).Select(s => new { s.Doctor.Id, s.Doctor.User.FirstName, s.Doctor.User.LastName }).Distinct().ToList();
             return new JsonResult { Data = doctors, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
     }

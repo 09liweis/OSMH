@@ -4,6 +4,10 @@
     ViewBag.Title = "Create Member";
 }
 
+<div>
+    @Html.ActionLink("Back to Members", "Members", null, new { @class="btn btn-primary" })
+</div>
+
 <h2 class="text-center">Create Member</h2>
 
 <div class="auth-form">
@@ -12,7 +16,6 @@
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
-            <h4>User</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
@@ -69,14 +72,11 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
+                    <input type="submit" value="Create" class="btn btn-primary" />
                 </div>
             </div>
         </div>
     }
-</div>
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>

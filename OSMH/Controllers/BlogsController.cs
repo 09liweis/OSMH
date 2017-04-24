@@ -53,14 +53,18 @@ namespace OSMH.Controllers
 
 
         //Admin site
-        [Authorize]
+        [Authorize(Roles = "admin")]
         public ActionResult Admin()
         {
-            return View(db.blogs.ToList());
+            if (TempData["Message"] != null)
+            {
+                ViewBag.Message = TempData["Message"];
+            }
+            return View(db.blogs.OrderByDescending(b => b.PublishDate).ToList());
         }
 
         // GET: Blogs/Create
-        [Authorize]
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             return View();
@@ -77,6 +81,7 @@ namespace OSMH.Controllers
             {
                 db.blogs.Add(blog);
                 db.SaveChanges();
+                TempData["Message"] = "New blog has been created.";
                 return RedirectToAction("Admin", "Blogs");
             }
 
@@ -84,7 +89,7 @@ namespace OSMH.Controllers
         }
 
         // GET: Blogs/Edit/5
-        [Authorize]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -110,13 +115,14 @@ namespace OSMH.Controllers
             {
                 db.Entry(blog).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["Message"] = "Blog " + blog.Title + " has been updated.";
                 return RedirectToAction("Admin", "Blogs");
             }
             return View(blog);
         }
 
         // GET: Blogs/Delete/5
-        [Authorize]
+        [Authorize(Roles ="admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -139,6 +145,7 @@ namespace OSMH.Controllers
             Blog blog = db.blogs.Find(id);
             db.blogs.Remove(blog);
             db.SaveChanges();
+            TempData["Message"] = "Blog " + blog.Title + " has been deleted.";
             return RedirectToAction("Admin", "Blogs");
         }
 

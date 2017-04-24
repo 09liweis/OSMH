@@ -1,0 +1,97 @@
+﻿@model OSMH.Models.helper.UserSuggestion
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 class="suggestionTitle">Suggestion: @Html.DisplayFor(model => model.Title)</h2>
+
+<section class="panel panel-info">
+	<div class="panel-heading suggestionDetail row">
+		<div class="suggestionDetail_vote col-sm-1">
+			<p class="suggestionDetail_vote-number">
+				Number of Upvotes:
+			</p>
+			<p class="suggestionDetail_vote-number">
+				@Html.DisplayFor(model => model.Vote)
+			</p>
+		</div>
+		<div class="suggestionDetail_user col-sm-4">
+			<p class="suggestionDetail_user-author">
+				Full Name: @Html.DisplayFor(model => model.UserName)
+				<span class="label label-info">
+					@Html.DisplayFor(model => model.GroupName)
+				</span>
+			</p>
+			<p>
+				Email: @Html.DisplayFor(model => model.Email)
+			</p>
+		</div>
+		<div class="suggestionDetail_title col-sm-7">
+			<p class="suggestionDetail_title-title">
+				<span>Title: </span>@Html.DisplayFor(model => model.Title)
+			</p>
+			<p class="suggestionDetail_title-infor">
+				<span class="label label-default">@Html.DisplayFor(model => model.NumComments) comments</span>  Submit at: @Html.DisplayFor(model => model.CreatingTime)
+			</p>
+		</div>
+	</div>
+	<div class="panel-body">
+		<p class="title-font">
+			Suggestion:
+		</p>
+		<p>
+			@Html.DisplayFor(model => model.Description)
+		</p>
+		<p>
+			@Html.ActionLink("Delete", "Delete", new { id = Model.SuggestionId }, new { @class = "btn btn-default" })
+		</p>
+	</div>
+
+</section>
+
+
+@if (Model.SuggestionCommentViews != null)
+{
+	<h3>Comments:</h3>
+	<section class="suggestionComments">
+		@foreach (var comment in Model.SuggestionCommentViews)
+		{
+			<div class="suggestionComment row">
+				<div class="suggestionComment_infor col-sm-3">
+					<p>
+						<span>User ID: </span>@comment.UserId
+					</p>
+					<p>
+						<span>Full Name: </span>@comment.UserName
+					</p>
+				</div>
+				<div class="suggestionComment_detail col-sm-7">
+					<p class="suggestionComment_detail-description">
+						@comment.Description
+					</p>
+					<p class="suggestionComment_detail-infor">
+						@comment.CreatingTime
+					</p>
+				</div>
+				<div class="col-sm-2">
+
+					@using (Html.BeginForm("DeleteComment", "Suggestion", new { id = comment.CommentId }))
+					{
+						@Html.AntiForgeryToken()
+
+						<div class="form-actions no-color">
+							<input type="submit" value="Delete" class="btn btn-default" />
+						</div>
+					}
+
+				</div>
+			</div>
+		}
+	</section>
+}
+
+
+	<p>
+		@Html.ActionLink("Back to List", "Index")
+	</p>

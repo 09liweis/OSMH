@@ -4,10 +4,18 @@
     ViewBag.Title = "Members";
 }
 
+@Html.ActionLink("Back to Admin Dashboard", "Index", null, new { @class="btn btn-primary" })
+
 <h2>Members</h2>
 
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-success" role="alert">@ViewBag.Message</div>
+}
+
 <p>
-    @Html.ActionLink("Create New", "CreateMember")
+    @Html.ActionLink("Create Member", "CreateMember", null, new { @class="btn btn-success" })
 </p>
 <table class="table">
     <tr>

@@ -1,0 +1,55 @@
+﻿@model IEnumerable<OSMH.Models.Job>
+
+@{
+    ViewBag.Title = "Admin";
+}
+
+<h2>Manage Postings</h2>
+
+<p>
+    @Html.ActionLink("Create Posting", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Job_Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Closing_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobType_Id)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+
+    int expiry = (item.Closing_Date - DateTime.Today).Days;
+    string red = expiry <= 0 ? "color:Red" : null;
+
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Job_Title)
+        </td>
+        <td style="@red">
+            @Html.DisplayFor(modelItem => item.Closing_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Department.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobType.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit Posting", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("View Applicants", "Applicants", new { id=item.Id }) |
+            @Html.ActionLink("Delete Posting", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

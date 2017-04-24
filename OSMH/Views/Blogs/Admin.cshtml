@@ -6,6 +6,11 @@
 
 <h2 class="text-center">Admin - News and Blogs</h2>
 
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-success" role="alert">@ViewBag.Message</div>
+}
+
 <p>
     @Html.ActionLink("Create New", "Create", new { area = "" }, new { @class = "btn btn-success" })
 </p>
