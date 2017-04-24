@@ -9,11 +9,11 @@
 		var urlDownvote;
 		var controller = location.pathname.match(regex)[1];
 		if (controller === "patient" || controller === "Patient") {
-			urlUpvote = "http://localhost:50367/PatientSuggestion/Upvote";
-			urlDownvote = "http://localhost:50367/PatientSuggestion/Downvote";
+			urlUpvote = "./PatientSuggestion/Upvote";
+			urlDownvote = "./PatientSuggestion/Downvote";
 		} else if (controller === "staff" || controller === "Staff") {
-			urlUpvote = "http://localhost:50367/StaffSuggestion/Upvote";
-			urlDownvote = "http://localhost:50367/StaffSuggestion/Downvote";
+			urlUpvote = "./StaffSuggestion/Upvote";
+			urlDownvote = "./StaffSuggestion/Downvote";
 		}
 		$.each(upvotebutton, function (index, value) {
 			$(value).on('click', function (event) {

@@ -23,11 +23,19 @@ namespace OSMH.Controllers
         }
 
         //GET: Applicant - Create
-        public ActionResult ApplyNow(int id)
+        public ActionResult ApplyNow(int? id)
         {
+
+            if(id == null)
+            {
+                return RedirectToAction("Index");
+            }
+
             return View();
         }
 
+
+        //POST: Submit Application - Create Applicant
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult ApplyNow([Bind(Include = "Id,Full_Name,Applied_Date,Email,Resume,Action_Completed,Job_Id")] Applicant applicant, HttpPostedFileBase file, int id)
@@ -51,12 +59,38 @@ namespace OSMH.Controllers
             return View(applicant);
         }
 
+        //GET: Appplicant based On Job Id : Admin
+        public ActionResult Applicants(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Admin");
+            }
+
+
+            Job job = db.Jobs.Find(id);
+            if (job == null)
+            {
+                return RedirectToAction("Admin");
+            }
+
+            return View(job);
+        }    
+
+        public ActionResult Download(string name)
+        {
+            string fileName = name;
+
+            return File("~/App_Data/Resumes/"+fileName, "content-dispostion", fileName);
+           
+        }
 
         // GET: Jobs: Admin 
         [Authorize]
         public ActionResult Admin()
         {
-
+ 
+            
             return View(db.Jobs.ToList());
         }
 
@@ -65,15 +99,17 @@ namespace OSMH.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             Job job = db.Jobs.Find(id);
             if (job == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Index");
             }
             return View(job);
         }
+
+
 
         // GET: Jobs/Create
         [Authorize]
@@ -108,12 +144,12 @@ namespace OSMH.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Admin");
             }
             Job job = db.Jobs.Find(id);
             if (job == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Admin");
             }
             ViewBag.Department_Id = new SelectList(db.Departments, "Id", "Name");
             ViewBag.JobType_Id = new SelectList(db.JobTypes, "Id", "Name");
@@ -144,12 +180,12 @@ namespace OSMH.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Admin");
             }
             Job job = db.Jobs.Find(id);
             if (job == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Admin");
             }
             return View(job);
         }

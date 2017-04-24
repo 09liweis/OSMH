@@ -20,6 +20,7 @@ namespace OSMH.Models
         [Required(ErrorMessage = "Full Name is required")]
         [Display(Name = "Full Name")]
         public string Full_Name { get; set; }
+        [Display(Name = "Date Applied")]
         [DataType(DataType.DateTime)]
         public DateTime? Applied_Date { get; set; }
         [Required(ErrorMessage = "Email is required")]
