@@ -1,4 +1,5 @@
 ﻿<link rel="stylesheet" href="~/Content/email/public.css" />
+<script type="text/javascript" src="~/Scripts/email.js"></script>
 
 @model IEnumerable<OSMH.Models.EmailPost>
 
@@ -9,7 +10,8 @@
 
 <aside class="col-md-4">
     <h4>Subscrube us</h4>
-    <input type="email" class="form-control" placeholder="Email" >
+    <input type="email" id="email" class="form-control" placeholder="Email" >
+    <h5 id="error"></h5>
     <input id="confirm" class="btn btn-default" type="button" value="Confirm">
 </aside>
 

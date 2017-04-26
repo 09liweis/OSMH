@@ -3,7 +3,6 @@
         type: "POST",
         url: "./readAdmin",
         success: function (result) {
-            console.log(result);
             var visitorLimit = result.visitorLimit,
                 oldMax = visitorLimit.VisitorLimit_max,
                 newMax = visitorLimit.VisitorLimit_max,
@@ -61,7 +60,6 @@
                                             "VisitorLimit_date": new Date()
                                         }),
                                         error: function (request, status, error) {
-                                            console.log(request.responseText);
                                         }
                                     });
                                 } else {
@@ -78,7 +76,7 @@
             });
         },
         error: function (request, status, error) {
-            console.log(request.responseText);
+
         }
     });
     
@@ -90,7 +88,6 @@
                 url: "./searchDay",
                 data: { date: selectedDate },
                 success: function (result) {
-                    console.log(result);
                     var specialMax = result.VisitorLimit_max,
                         specialStart = result.VisitorLimit_start + ":00",
                         specialEnd = result.VisitorLimit_end + ":59",
@@ -145,7 +142,7 @@
                                                     "VisitorLimit_date": this.specialDate
                                                 }),
                                                 error: function (request, status, error) {
-                                                    console.log(request.responseText);
+                                                    
                                                 }
                                             });
                                         } else {
@@ -162,7 +159,7 @@
                     });
                 },
                 error: function (request, status, error) {
-                    console.log(request.responseText);
+
                 }
             });
         }
@@ -187,7 +184,7 @@
         methods: {
             searchPreset: function (num) {
                 this.$http.post('./readPreset', { date: num }).then(function (result) {
-                    console.log(result.data);
+
                     this.presetDay = IdToDay(result.data.VisitorLimit_id);
                     this.presetMax = result.data.VisitorLimit_max;
                     this.presetStart = result.data.VisitorLimit_start + ":00";
@@ -231,7 +228,7 @@
                                     "VisitorLimit_id": this.presetId
                                 }),
                                 error: function (request, status, error) {
-                                    console.log(request.responseText);
+
                                 }
                             });
                         } else {

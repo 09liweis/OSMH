@@ -9,7 +9,8 @@
             todayReg: 0,
             regStatues: "Can't register now.",
             showReg: false,
-            showSuccess: false
+            showSuccess: false,
+            successMessage: "Success, just display the email you received when you arraive!"
         },
         mounted() {
             this.readToday();
@@ -37,6 +38,11 @@
                         this.showReg = false;
                         this.showSuccess = true;
                         this.todayReg += 1;
+                        this.successMessage = "Success, just display the email you received when you arraive!";
+                    } else if (result.data.Success == "duplicate") {
+                        this.showReg = false;
+                        this.showSuccess = true;
+                        this.successMessage = "Sorry, one email can only register once per day";
                     }
                 });
             }

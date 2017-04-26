@@ -23,6 +23,12 @@ namespace OSMH.Controllers
         public JsonResult regVisitor(require require)
         {
             string email = require.email;
+
+            if (db.VisitorReg.Any(v => v.VisitorReg_email == email))
+            {
+                var fail = new { Success = "duplicate" };
+                return Json(fail, JsonRequestBehavior.DenyGet);
+            }
             var result = new { Success = "true" };
             //generate random code from http://stackoverflow.com/questions/1344221/how-can-i-generate-random-alphanumeric-strings-in-c
             var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";

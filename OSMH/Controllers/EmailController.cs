@@ -20,7 +20,32 @@ namespace OSMH.Controllers
             List<EmailPost> posts = db.EmailPost.OrderByDescending(s => s.Id).Take(5).ToList();
             return View(posts);
         }
-
+        [HttpPost]
+        public JsonResult addEmail(EmailSub sub)
+        {
+            if (db.EmailSub.Any(v => v.Email == sub.Email))
+            {
+                var fail = new { Success = "duplicate" };
+                return Json(fail, JsonRequestBehavior.DenyGet);
+            }
+            db.EmailSub.Add(sub);
+            db.SaveChanges();
+            var result = new { Success = "true" };
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+        // POST: Add new subscriber
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index(EmailSub email)
+        {
+            if (ModelState.IsValid)
+            {
+                db.EmailSub.Add(email);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+        }
         // Admin: Email
         [Authorize]
         public ActionResult Admin()

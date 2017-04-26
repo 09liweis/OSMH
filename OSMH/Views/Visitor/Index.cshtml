@@ -10,7 +10,7 @@
     <aside class="col-md-4 col-md-offset-1">
         <h4>Notice:</h4>
         <h5>
-            If you plan to visit a patient, you must obtain a visit code.
+            <b>If you plan to visit a patient, you must obtain a visit code.</b>
         </h5>
         <h5>
             You can request a visit code on this right side of this page.
@@ -31,7 +31,7 @@
                 <button class="btn btn-default" v-on:click="regToday">Register</button>
             </div>
             <div v-show="showSuccess">
-                <h4 id="today-display-desc">Success, just display the email you receive when you arraive!</h4>
+                <h4 id="today-display-desc">{{ successMessage }}</h4>
             </div>
         </section>
     </main>

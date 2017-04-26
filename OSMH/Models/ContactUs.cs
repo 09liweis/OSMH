@@ -13,7 +13,7 @@ namespace OSMH.Models
         [Key]
         public int ContactUs_id { get; set; }
         [Required]
-        [StringLength(16, ErrorMessage = "Name length must between 2 - 16", MinimumLength = 2)]
+        [StringLength(20, ErrorMessage = "Name length must between 2 - 20", MinimumLength = 2)]
         [Display(Name = "Contact Name")]
         public string ContactUs_name { get; set; }
         [Display(Name = "Contact Info")]
