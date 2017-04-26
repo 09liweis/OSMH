@@ -18,6 +18,7 @@ namespace OSMH.Models
         public string Contact { get; set; }
         public string Title { get; set; }
         public string Message { get; set; }
+        public bool Approval { get; set; }
     }
 
 }
