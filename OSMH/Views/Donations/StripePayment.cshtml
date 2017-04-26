@@ -7,13 +7,14 @@
 <h2>StripePayment</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("StripePayment","Donations",FormMethod.Post)) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
         <h4>AcceptedDonations</h4>
         <hr />
+        @Html.HiddenFor(model=> model.DonorId)
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.DonationAmount, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -75,7 +76,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Pay" class="btn btn-default" />
             </div>
         </div>
     </div>
