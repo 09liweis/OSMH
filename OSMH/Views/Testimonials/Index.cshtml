@@ -5,39 +5,20 @@
 }
 
 <h2>Testimonials</h2>
-
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-success" role="alert">@ViewBag.Message</div>
+}
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Submit your testimonial", "Create")
 </p>
 <div id="sub" class="row">
+@foreach (var item in Model)
+{
     <div class="col-md-4 col-sm-12">
-        <h3>Compassion and Care During Very Rough Times</h3>
-        <p>I want to thank the OSHM staff for their compassion and care during those very rough times for our family.</p>
+        <h3>@item.Title</h3>
+        <p>@item.Message</p>
 
     </div>
-    <div class="col-md-4 col-sm-6">
-        <h3>Excellent Job Alleviating Anxiety</h3>
-        <p>I wanted to let you know that I was very pleased with my mammogram appointment last week. Every person I encountered was extremely pleasant, caring, and thoughtful.</p>
-    </div>
-
-    <div class="col-md-4 col-sm-6">
-        <h3>100% in Remission</h3>
-        <p>"Thank you so much to all of the nurses, doctors, and staff for helping me get through a very difficult time. I survived Acute Myeloid Leukemia and am 100% in remission!"</p>
-    </div>
-    <div class="col-md-4 col-sm-6">
-        <h3>100% in Remission</h3>
-        <p>"Thank you so much to all of the nurses, doctors, and staff for helping me get through a very difficult time. I survived Acute Myeloid Leukemia and am 100% in remission!"</p>
-    </div>
-    <div class="col-md-4 col-sm-6">
-        <h3>100% in Remission</h3>
-        <p>"Thank you so much to all of the nurses, doctors, and staff for helping me get through a very difficult time. I survived Acute Myeloid Leukemia and am 100% in remission!"</p>
-    </div>
-    <div class="col-md-4 col-sm-6">
-        <h3>100% in Remission</h3>
-        <p>"Thank you so much to all of the nurses, doctors, and staff for helping me get through a very difficult time. I survived Acute Myeloid Leukemia and am 100% in remission!"</p>
-    </div>
-    <div class="col-md-4 col-sm-6">
-        <h3>100% in Remission</h3>
-        <p>"Thank you so much to all of the nurses, doctors, and staff for helping me get through a very difficult time. I survived Acute Myeloid Leukemia and am 100% in remission!"</p>
-    </div>
+}
 </div>
