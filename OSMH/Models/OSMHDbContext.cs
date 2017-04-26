@@ -30,6 +30,7 @@ namespace OSMH.Models
         public DbSet<JobType> JobTypes { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Donations> Donations { get; set; }
+        public DbSet<Payment> Payments { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

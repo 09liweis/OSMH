@@ -283,6 +283,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\CareersController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
+    <Compile Include="Controllers\PaymentsController.cs" />
     <Compile Include="Controllers\StaffSuggestionController.cs" />
     <Compile Include="Controllers\TestimonialsController.cs" />
     <Compile Include="Controllers\PatientSuggestionController.cs" />
@@ -298,6 +299,7 @@
     <Compile Include="Models\AcceptedDonations.cs" />
     <Compile Include="Models\helper\AdminIndexDataView.cs" />
     <Compile Include="Models\Donation.cs" />
+    <Compile Include="Models\Payments.cs" />
     <Compile Include="Models\JobType.cs" />
     <Compile Include="Models\Jobs.cs" />
     <Compile Include="Models\Appointment.cs" />
@@ -432,6 +434,12 @@
     <Content Include="Views\Donations\Edit.cshtml" />
     <Content Include="Views\Donations\Admin.cshtml" />
     <Content Include="Views\Donations\StripePayment.cshtml" />
+    <Content Include="Views\Payments\Create.cshtml" />
+    <Content Include="Views\Payments\Delete.cshtml" />
+    <Content Include="Views\Payments\Details.cshtml" />
+    <Content Include="Views\Payments\Edit.cshtml" />
+    <Content Include="Views\Payments\Index.cshtml" />
+    <Content Include="Views\Payments\Admin.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
