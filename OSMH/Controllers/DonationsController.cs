@@ -143,7 +143,7 @@ namespace OSMH.Controllers
             {
                 var token = GetTokenId(model);
                 var chargeId = ChargeCustomer(model.DonationAmount, token);
-                var donation = db.Donations.Single(d => d.Id == model.DonorId);
+                var donation = db.Donations.Single(d => d.Id == model.PaymentId);
                 donation.Total_Amount = decimal.Parse(model.DonationAmount.ToString());
                 db.Entry(donation).State = EntityState.Modified;
                 db.SaveChanges();
