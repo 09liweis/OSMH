@@ -1,0 +1,118 @@
+﻿@model IEnumerable<OSMH.Models.StaticPage>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@if (ViewBag.Message != null)
+{
+	<div class="alert alert-success" role="alert">@ViewBag.Message</div>
+}
+
+<div class="static_page_index row">
+	<h2 class="col-sm-6">Index</h2>
+
+	<div class="col-sm-6">
+		@using (Html.BeginForm())
+		{
+			<p>
+				Find Static Page: @Html.TextBox("SearchString")
+				<input type="submit" value="Search" class="btn btn-default"/>
+			</p>
+		}
+	</div>
+</div>
+
+<p>
+    @Html.ActionLink("Create New", "Create") | @Html.ActionLink("Dash Board", "Index", "Admin")
+</p>
+
+<h3>Sort by</h3>
+
+<div class="static_page_index_control row">
+	<p class="col-sm-3">
+		@Html.ActionLink("All", "Index")
+	</p>
+	<p class="col-sm-3">
+		@Html.ActionLink("Additional", "Index", new { sortOrder = "Additional" })
+	</p>
+	<p class="col-sm-3">
+		@Html.ActionLink("Legal", "Index", new { sortOrder = "Legal" })
+	</p>
+	<p class="col-sm-3">
+		@Html.ActionLink("Service: cure", "Index", new { sortOrder = "Service_Cure" })
+	</p>
+	<p class="col-sm-3">
+		@Html.ActionLink("Service: care", "Index", new { sortOrder = "Service_Care" })
+	</p>
+	<p class="col-sm-3">
+		@Html.ActionLink("Patients", "Index", new { sortOrder = "Patients" })
+	</p>
+	<p class="col-sm-3">
+		@Html.ActionLink("Visitors", "Index", new { sortOrder = "Visitors" })
+	</p>
+	<p class="col-sm-3">
+		@Html.ActionLink("Resources", "Index", new { sortOrder = "Resources" })
+	</p>
+	<p class="col-sm-3">
+		@Html.ActionLink("About", "Index", new { sortOrder = "About" })
+	</p>
+</div>
+
+<section class="static_page_index row">
+@foreach (var item in Model)
+{
+	<div class="static_page_card col-xs-12 col-md-6">
+		<div>
+			<p><span class="bold">@Html.DisplayNameFor(model => model.Title): </span>@Html.DisplayFor(modelItem => item.Title)</p>
+			<p><span class="bold">@Html.DisplayNameFor(model => model.MenuTitle): </span>@Html.DisplayFor(modelItem => item.MenuTitle)</p>
+			<p><span class="bold">@Html.DisplayNameFor(model => model.PageStatus): </span>@Html.DisplayFor(modelItem => item.PageStatus)</p>
+			<p><span class="bold">@Html.DisplayNameFor(model => model.PublishDate): </span>@Html.DisplayFor(modelItem => item.PublishDate)</p>
+			<p><span class="bold">@Html.DisplayNameFor(model => model.CreateDate): </span>@Html.DisplayFor(modelItem => item.CreateDate)</p>
+		</div>
+		<div class="page_preview">
+			<iframe srcdoc="@Html.DisplayFor(modelItem => item.Content)"></iframe>
+		</div>
+		<div>
+			@Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @Class = "btn btn-primary" }) |
+		    @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @Class = "btn btn-info" }) |
+			@Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @Class = "btn btn-danger" }) |
+			@if (item.PageStatus == OSMH.Models.StaticPage.StaticPageStatus.unpublished)
+			{
+				@Html.ActionLink("Publish", "TogglePublish", new { id = item.Id }, new { @Class = "btn btn-success" });
+			}
+			else if (item.PageStatus == OSMH.Models.StaticPage.StaticPageStatus.published)
+			{
+				@Html.ActionLink("Unpublish", "TogglePublish", new { id = item.Id }, new { @Class = "btn btn-danger" });
+			}
+		</div>
+	</div>
+}
+</section>
+
+            
+
+            
+
+            
+
+            
+
+            
+
+
+
+           
+
+            
+
+            
+
+            
+
+            
+
+
+
+
+

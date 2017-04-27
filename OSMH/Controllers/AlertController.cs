@@ -193,9 +193,11 @@ namespace OSMH.Controllers
 			return RedirectToAction("Archive");
         }
 
+		[HttpPost]
 		public JsonResult GetActive()
 		{
 			AlertJson alertView = new AlertJson();
+			var alerts = db.Alerts.Where(a => a.AlertStatus == Alert.Status.Ongoing);
 			var alertsQuery = from a in db.Alerts
 							  where a.AlertStatus == Alert.Status.Ongoing
 							  select a;
@@ -218,7 +220,7 @@ namespace OSMH.Controllers
 				alertView.Active = false;
 			} 
 
-			return Json(alertView, JsonRequestBehavior.AllowGet);
+			return Json(alertView);
 		}
 
 		protected override void Dispose(bool disposing)

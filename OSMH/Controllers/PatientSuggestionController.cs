@@ -53,9 +53,6 @@ namespace OSMH.Controllers
 					break;
 			}
 
-
-			var x = suggestions.ToList();
-
 			foreach (var suggestion in suggestions.ToList())
 			{
 				UserSuggestion userSuggestion = MakeAUserSuggestion(suggestion);

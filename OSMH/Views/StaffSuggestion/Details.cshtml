@@ -19,21 +19,25 @@
 {
 	if (!Model.SuggestionUpvotes.Any(s => s.FirstName == User.Identity.Name))
 	{
-		<button type="button" class="btn btn-default suggestionItem_vote_upvote" data-id=@Html.DisplayFor(model => model.SuggestionId)>
-			<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true">Upvote</span>
-		</button>
-		<button type="button" class="btn btn-default suggestionItem_vote_downvote suggestionNotDisplay" data-id=@Html.DisplayFor(model => model.SuggestionId) data-current="@User.Identity.Name">
-			<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true">Downvote</span>
-		</button>
+		<div>
+			<button type="button" class="btn btn-default suggestionItem_vote_upvote" data-id=@Html.DisplayFor(model => model.SuggestionId)>
+				<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true">Upvote</span>
+			</button>
+			<button type="button" class="btn btn-default suggestionItem_vote_downvote suggestionNotDisplay" data-id=@Html.DisplayFor(model => model.SuggestionId) data-current="@User.Identity.Name">
+				<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true">Downvote</span>
+			</button>
+		</div>
 	}
 	else
 	{
-		<button type="button" class="btn btn-default suggestionItem_vote_upvote suggestionNotDisplay" data-id=@Html.DisplayFor(model => model.SuggestionId)>
-			<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true">Upvote</span>
-		</button>
-		<button type="button" class="btn btn-default suggestionItem_vote_downvote" data-id=@Html.DisplayFor(model => model.SuggestionId) data-current="@User.Identity.Name">
-			<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true">Downvote</span>
-		</button>
+		<div>
+			<button type="button" class="btn btn-default suggestionItem_vote_upvote suggestionNotDisplay" data-id=@Html.DisplayFor(model => model.SuggestionId)>
+				<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true">Upvote</span>
+			</button>
+			<button type="button" class="btn btn-default suggestionItem_vote_downvote" data-id=@Html.DisplayFor(model => model.SuggestionId) data-current="@User.Identity.Name">
+				<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true">Downvote</span>
+			</button>
+		</div>
 	}
 }
 else

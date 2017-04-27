@@ -1,0 +1,22 @@
+﻿@model OSMH.Models.StaticPage
+
+<secont class="static_detals_body">
+	@Html.Raw(Model.Content)
+</secont>
+
+<div class="static_detals_links">
+	@if (User.IsInRole("admin"))
+	{
+		<p>
+			@Html.ActionLink("Back to Index", "Index", null, new { @Class = "btn btn-primary" }) |
+			@Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @Class = "btn btn-primary" }) |
+			@Html.ActionLink("Delete", "Delete", new { id = Model.Id }, new { @Class = "btn btn-danger" })
+		</p>
+	}
+	else
+	{
+		<p>
+			@Html.ActionLink("Back to home", "Index", "Home")
+		</p>
+	}
+</div>

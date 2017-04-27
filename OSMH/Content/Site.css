@@ -28,3 +28,18 @@ header {
 .clickable {
     cursor: pointer;
 }
+#links_servers_cure a {
+	text-decoration: none;
+	color: black;
+	padding: 3px 10px;
+}
+#links_servers_care a {
+	text-decoration: none;
+	color: black;
+	padding: 3px 10px;
+}
+@media (max-width: 767px) {
+	#links_servers_care a, #links_servers_cure a {
+		color: #9d9d9d;
+	}
+}

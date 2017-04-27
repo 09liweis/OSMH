@@ -1,7 +1,7 @@
-﻿var x, y;
+var x, y;
 $(document).ready(function () {
-	var regex = /\/(A|a)dmin(\/Index)?/;
-	if (regex.test(location.pathname)) {
+    var regex = /\/(A|a)dmin(\/Index)?/;
+    if (regex.test(location.pathname)) {
 		var dheader = $('#dheader');
 		var data_patient_suggestion = $('#data-patient-suggestion');
 		var data_stuffs_uggestion = $('#data-stuff-suggestion');
@@ -51,7 +51,7 @@ $(document).ready(function () {
 			element.text(data);
 		}
 
-		function getData() {
+        function getData() {
 			$.ajax({
 				method: 'POST',
 				url: "./Admin/ReadData",

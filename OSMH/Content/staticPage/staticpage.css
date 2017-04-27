@@ -1,0 +1,32 @@
+﻿.page_preview {
+	width: 100%;
+	border: solid 1px lightgray;
+	margin-bottom: 10px;
+	border-radius: 5px;
+}
+.page_preview iframe {
+	width: 100%;
+	border: none;
+	height: 500px;
+}
+.bold {
+	font-weight: bold;
+}
+.static_page_index_control {
+	margin-bottom: 20px
+}
+.static_page_delete_preview {
+	width: 100%;
+}
+.static_page_card {
+	margin-top: 10px;
+}
+.static_page_index h2 {
+	margin-top: 0;
+}
+.static_detals_links {
+	margin-top: 20px;
+}
+.static_detals_body {
+	width: 100%;
+}
