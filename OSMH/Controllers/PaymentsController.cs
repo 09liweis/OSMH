@@ -22,12 +22,7 @@ namespace OSMH.Controllers
 
         public ActionResult Payments(string FirstName, string LastName)
         {
-            var query = from a in db.users
-                        where a.LastName.Contains(LastName) & a.FirstName.Contains(FirstName)
-                        select a;
-
-            var item = query.FirstOrDefault();
-             return View(item);    
+             return View();    
         }
 
         // GET: ADMIN - Payments List

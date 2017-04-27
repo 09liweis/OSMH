@@ -23,7 +23,7 @@ namespace OSMH.Models
         [Required(ErrorMessage = "Required field")]
         [StringLength(7)]
         [Display(Name = "Site Number")]
-        public int Site_Number { get; set; }
+        public string Site_Number { get; set; }
 
         [Display(Name = "Balance Due")]
         public decimal Balance_Due { get; set; }
