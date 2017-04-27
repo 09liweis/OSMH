@@ -51,6 +51,7 @@ namespace OSMH
         {
             //throw new NotImplementedException();
             OSMHDbContext db = new OSMHDbContext();
+			var alerts = db.Alerts;
             string roleResult = db.users.Where(u => u.Email == email).FirstOrDefault().Role;
             string[] results = { roleResult };
             return results;

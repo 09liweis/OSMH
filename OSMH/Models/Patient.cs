@@ -20,5 +20,6 @@ namespace OSMH.Models
 
         public virtual User User { get; set; }
         public ICollection<Appointment> appointments { get; set; }
+        public ICollection<Payment> payments { get; set; }
     }
 }

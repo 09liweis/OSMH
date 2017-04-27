@@ -197,6 +197,7 @@ namespace OSMH.Controllers
 		public JsonResult GetActive()
 		{
 			AlertJson alertView = new AlertJson();
+			var alerts = db.Alerts.Where(a => a.AlertStatus == Alert.Status.Ongoing);
 			var alertsQuery = from a in db.Alerts
 							  where a.AlertStatus == Alert.Status.Ongoing
 							  select a;

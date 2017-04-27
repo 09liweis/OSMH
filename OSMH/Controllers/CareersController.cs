@@ -51,6 +51,7 @@ namespace OSMH.Controllers
                     file.SaveAs(path);
                 }
                 applicant.Job_Id = id;
+                applicant.Applied_Date = DateTime.Now;
                 db.Applicants.Add(applicant);
                 db.SaveChanges();
                 return RedirectToAction("Index");

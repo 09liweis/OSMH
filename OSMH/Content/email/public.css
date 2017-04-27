@@ -1,5 +1,14 @@
 ﻿aside{
     text-align:center;
+    margin-top:50px;
+}
+
+aside input{
+    margin: 10px;
+}
+
+#confirm{
+    margin-top:10px;
 }
 
 main{
@@ -16,4 +25,8 @@ main section{
     padding: 10px 5%;
     margin-bottom: 15px;
     border-radius:5px;
+}
+
+#error{
+    color:red;
 }

@@ -1,0 +1,74 @@
+﻿@model OSMH.Models.Payment
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Payment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient.SIN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient.SIN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Account_Number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Account_Number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Site_Number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Site_Number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Balance_Due)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Balance_Due)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount_Paid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount_Paid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Paid_In_Full)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Paid_In_Full)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

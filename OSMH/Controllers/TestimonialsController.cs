@@ -18,8 +18,11 @@ namespace OSMH.Controllers
         // GET: Testimonials
         public ActionResult Index()
         {
-            List<Testimonial> Testimonials = db.Testimonials.ToList();
-            
+            List<Testimonial> Testimonials = db.Testimonials.Where(t => t.Approval == true).ToList();
+            if (TempData["Message"] != null)
+            {
+                ViewBag.Message = TempData["Message"];
+            }
             return View(Testimonials);
         }
       
@@ -43,8 +46,10 @@ namespace OSMH.Controllers
 
 
         // GET: Testimonials/Create
+        [Authorize(Roles = "admin")]
         public ActionResult Admin()
         {
+           
             return View(db.Testimonials.ToList());
         }
 
@@ -59,17 +64,19 @@ namespace OSMH.Controllers
         {
             if (ModelState.IsValid)
             {
+                test.Approval = false;
                 db.Testimonials.Add(test);
                 db.SaveChanges();
-                return RedirectToAction("Admin", "Testimonials");
+                TempData["Message"] = "Your testimonial has been sent to admin for approval.";
+                return RedirectToAction("Index", "Testimonials");
             }
 
             return View(test);
         }
 
-    
+
         // POST: Testimonial/Edit/5
-        
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -88,7 +95,7 @@ namespace OSMH.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Date,FName,LName,Email,Contact,Title,Message")] Testimonial test)
+        public ActionResult Edit([Bind(Include = "Id,Date,FName,LName,Email,Contact,Title,Message,Approval")] Testimonial test)
         {
             if (ModelState.IsValid)
             {
@@ -101,6 +108,7 @@ namespace OSMH.Controllers
 
 
         // GET: Testimonial/Delete/5
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

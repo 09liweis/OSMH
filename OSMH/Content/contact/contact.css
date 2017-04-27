@@ -26,7 +26,16 @@
     margin-top:70px;
 }
 
+#aside h4 {
+    display: inline-block;
+    background-color: #dff0d8;
+    text-align: center;
+    padding: 10px 5%;
+    border-radius: 5px;
+}
+
 #aside h5{
     margin-bottom: 10px 0;
     cursor:pointer;
+    margin-left:5%;
 }

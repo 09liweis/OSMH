@@ -40,6 +40,9 @@
 				<li>
 					@Html.ActionLink("Manage Public Vistor Registration", "Admin", "Visitor")
 				</li>
+                <li>
+                    @Html.ActionLink("Verify visitor code", "Verify", "Visitor")
+                </li>
 				<li>
 					@Html.ActionLink("Manage Testimonials", "Admin", "Testimonials")
 				</li>
@@ -47,7 +50,7 @@
 					<a>Manage Online Payment</a>
 				</li>
 				<li>
-					<a>Manage Donation</a>
+					@Html.ActionLink("Manage Donations", "Admin", "Donations")
 				</li>
 			</ul>
 		</div>
