@@ -193,6 +193,7 @@ namespace OSMH.Controllers
 			return RedirectToAction("Archive");
         }
 
+		[HttpPost]
 		public JsonResult GetActive()
 		{
 			AlertJson alertView = new AlertJson();
@@ -218,7 +219,7 @@ namespace OSMH.Controllers
 				alertView.Active = false;
 			} 
 
-			return Json(alertView, JsonRequestBehavior.AllowGet);
+			return Json(alertView);
 		}
 
 		protected override void Dispose(bool disposing)

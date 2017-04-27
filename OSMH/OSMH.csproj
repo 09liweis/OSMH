@@ -146,6 +146,7 @@
     <Content Include="Content\images\icon9.png" />
     <Content Include="Content\images\mainlogo.jpg" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\staticPage\staticpage.css" />
     <Content Include="Content\suggestion\Suggestion.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -238,6 +239,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\links\links.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\patient\dashboard.js" />
@@ -262,6 +264,7 @@
     <Compile Include="Controllers\CareersController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\StaffSuggestionController.cs" />
+    <Compile Include="Controllers\StaticPageController.cs" />
     <Compile Include="Controllers\TestimonialsController.cs" />
     <Compile Include="Controllers\PatientSuggestionController.cs" />
     <Compile Include="Controllers\SchedulesController.cs" />
@@ -274,6 +277,8 @@
     <Compile Include="Models\Alert.cs" />
     <Compile Include="Models\Departments.cs" />
     <Compile Include="Models\helper\AdminIndexDataView.cs" />
+    <Compile Include="Models\helper\MenuLink.cs" />
+    <Compile Include="Models\helper\MenuLinksGroup.cs" />
     <Compile Include="Models\JobType.cs" />
     <Compile Include="Models\Jobs.cs" />
     <Compile Include="Models\Appointment.cs" />
@@ -286,10 +291,10 @@
     <Compile Include="Models\helper\Auth.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Schedule.cs" />
+    <Compile Include="Models\StaticPage.cs" />
     <Compile Include="Models\Testimonial.cs" />
     <Compile Include="Models\helper\SuggestionCommentView.cs" />
     <Compile Include="Models\helper\SuggestionUpvoteJsonReturnView.cs" />
-    <Compile Include="Models\helper\SuggestionUpvoteView.cs" />
     <Compile Include="Models\helper\UserSuggestion.cs" />
     <Compile Include="Models\OSMHDbContext.cs" />
     <Compile Include="Models\Patient.cs" />
@@ -402,6 +407,11 @@
     <Content Include="Views\Patient\Edit.cshtml" />
     <Content Include="Views\Doctor\Edit.cshtml" />
     <Content Include="Views\Careers\Applicants.cshtml" />
+    <Content Include="Views\StaticPage\Create.cshtml" />
+    <Content Include="Views\StaticPage\Delete.cshtml" />
+    <Content Include="Views\StaticPage\Details.cshtml" />
+    <Content Include="Views\StaticPage\Edit.cshtml" />
+    <Content Include="Views\StaticPage\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

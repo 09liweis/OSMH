@@ -29,6 +29,7 @@ namespace OSMH.Models
         public DbSet<Applicant> Applicants { get; set; }
         public DbSet<JobType> JobTypes { get; set; }
         public DbSet<Department> Departments { get; set; }
+		public DbSet<StaticPage> StaticPages { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -47,6 +48,7 @@ namespace OSMH.Models
 			modelBuilder.Entity<SuggestionComment>().HasRequired(u => u.User);
 			modelBuilder.Entity<SuggestionComment>().HasRequired(s => s.Suggestion).WithMany(s => s.SuggestionComments).HasForeignKey(s => s.SuggestionId);
 			modelBuilder.Entity<SuggestionUpvote>().HasRequired(s => s.Suggestion).WithMany(s => s.SuggestionUpvotes).HasForeignKey(s => s.SuggestionId);
+			modelBuilder.Entity<StaticPage>().HasRequired(u => u.User);
         }
 	}
 }

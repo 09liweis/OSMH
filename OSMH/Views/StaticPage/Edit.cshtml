@@ -1,0 +1,70 @@
+﻿@model OSMH.Models.StaticPage
+
+@{
+    ViewBag.Title = "Edit";
+}
+<script>tinymce.init({
+		selector: 'textarea',
+		height: 500,
+		plugins: [
+			"advlist autolink lists link image charmap print preview anchor",
+			"searchreplace visualblocks code fullscreen",
+			"insertdatetime media table contextmenu paste imagetools"
+		],
+		toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+		imagetools_cors_hosts: ['www.tinymce.com', 'codepen.io'],
+		content_css: [
+			'//fast.fonts.net/cssapi/e6dc9b99-64fe-4292-ad98-6974f93cd2a2.css',
+			'//www.tinymce.com/css/codepen.min.css'
+		]
+	});</script>
+
+<h2>Edit @Html.DisplayFor(model => model.Title)</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>StaticPage</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+		@Html.HiddenFor(model => model.UserId)
+		@Html.HiddenFor(model => model.CreateDate)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label" })
+            <div class="col-md-12">
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MenuTitle, htmlAttributes: new { @class = "control-label" })
+            <div class="col-md-12">
+                @Html.EnumDropDownListFor(model => model.MenuTitle, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MenuTitle, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label" })
+            <div class="col-md-12">
+                @Html.TextAreaFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

@@ -20,6 +20,7 @@ namespace OSMH.Models
 		public int SuggestionId { get; set; }
 		[Required]
 		[StringLength(1000, MinimumLength = 10)]
+		[Display(Name = "Comment")]
 		public string Description { get; set; }
 		[Required]
 		[DataType(DataType.DateTime)]

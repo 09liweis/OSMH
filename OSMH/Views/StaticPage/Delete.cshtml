@@ -1,0 +1,31 @@
+﻿@model OSMH.Models.StaticPage
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<div class="static_page_delete_preview">
+	<div>
+		<p><span class="bold">@Html.DisplayNameFor(model => model.Title): </span>@Html.DisplayFor(model => model.Title)</p>
+		<p><span class="bold">@Html.DisplayNameFor(model => model.MenuTitle): </span>@Html.DisplayFor(model => model.MenuTitle)</p>
+		<p><span class="bold">@Html.DisplayNameFor(model => model.PageStatus): </span>@Html.DisplayFor(model => model.PageStatus)</p>
+		<p><span class="bold">@Html.DisplayNameFor(model => model.PublishDate): </span>@Html.DisplayFor(model => model.PublishDate)</p>
+		<p><span class="bold">@Html.DisplayNameFor(model => model.CreateDate): </span>@Html.DisplayFor(model => model.CreateDate)</p>
+	</div>
+	<div class="page_preview">
+		<iframe srcdoc="@Html.DisplayFor(model => model.Content)"></iframe>
+	</div>
+</div>
+	@using (Html.BeginForm())
+	{
+		@Html.AntiForgeryToken()
+
+		<div class="form-actions no-color">
+			<input type="submit" value="Delete" class="btn btn-danger" /> |
+			@Html.ActionLink("Back to List", "Index")
+		</div>
+	}
+</div>
+
