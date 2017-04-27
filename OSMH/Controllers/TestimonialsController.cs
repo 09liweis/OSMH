@@ -18,7 +18,7 @@ namespace OSMH.Controllers
         // GET: Testimonials
         public ActionResult Index()
         {
-            List<Testimonial> Testimonials = db.Testimonials.ToList();
+            List<Testimonial> Testimonials = db.Testimonials.Where(t => t.Approval == true).ToList();
             if (TempData["Message"] != null)
             {
                 ViewBag.Message = TempData["Message"];
@@ -64,6 +64,7 @@ namespace OSMH.Controllers
         {
             if (ModelState.IsValid)
             {
+                test.Approval = false;
                 db.Testimonials.Add(test);
                 db.SaveChanges();
                 TempData["Message"] = "Your testimonial has been sent to admin for approval.";
@@ -94,7 +95,7 @@ namespace OSMH.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Date,FName,LName,Email,Contact,Title,Message")] Testimonial test)
+        public ActionResult Edit([Bind(Include = "Id,Date,FName,LName,Email,Contact,Title,Message,Approval")] Testimonial test)
         {
             if (ModelState.IsValid)
             {
