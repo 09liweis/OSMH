@@ -305,6 +305,7 @@
     <Compile Include="Models\helper\MenuLink.cs" />
     <Compile Include="Models\helper\MenuLinksGroup.cs" />
     <Compile Include="Models\Donation.cs" />
+    <Compile Include="Models\Homepage.cs" />
     <Compile Include="Models\Payments.cs" />
     <Compile Include="Models\JobType.cs" />
     <Compile Include="Models\Jobs.cs" />
