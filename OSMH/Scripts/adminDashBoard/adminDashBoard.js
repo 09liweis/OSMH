@@ -1,5 +1,4 @@
-﻿var x, y;
-$(document).ready(function () {
+﻿$(document).ready(function () {
 	var regex = /\/(A|a)dmin(\/Index)?/;
 	if (regex.test(location.pathname)) {
 		var dheader = $('#dheader');
