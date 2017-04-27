@@ -1,4 +1,5 @@
-﻿
+﻿@model OSMH.Models.Homepage
+
 @{
     ViewBag.Title = "Home";
 }
@@ -8,7 +9,8 @@
         <section class="jumbotron">
             <h3 id="banner-text">Quick Resources</h3>
             <div class="row">
-                <p><a class="btn btn-primary btn-large">Log-In</a>&nbsp; <a class="btn btn-primary btn-large">Book An Appointment</a></p>
+                
+                <p>@Html.ActionLink("Log-In", "Login", "Account", null, new { @class = "btn btn-primary btn-large" })&nbsp; @Html.ActionLink("Book An Appointment", "Login", "Account", null, new { @class = "btn btn-primary btn-large" })</p>
                 <p><a class="btn btn-primary btn-large">Suggestions</a>&nbsp; <a class="btn btn-primary btn-large">Online Payment</a></p>
             </div>
         </section>
@@ -80,8 +82,9 @@
         <div id="sub" class="row">
             <div class="col-md-4 col-sm-12">
                 <h3>Latest News and Blog</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                @Html.ActionLink("View More", "Index", "Blogs")
+                <h4>@Html.ActionLink(@Model.blog.Title, "Details", "Blogs", new { id = Model.blog.Id }, null)</h4>
+                <p>@Html.Raw(Model.blog.Content.Substring(0, Math.Min(Model.blog.Content.Length, 300)))...</p>
+                @Html.ActionLink("View All Blogs", "Index", "Blogs")
             </div>
             <div class="col-md-4 col-sm-6">
                 <h3>F.A.Q.</h3>
@@ -90,8 +93,9 @@
             </div>
             <div class="col-md-4 col-sm-6">
                 <h3>Testimonials</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                <p><a href="#">Read More</a></p>
+                <h4>@Model.testimonial.Title</h4>
+                <p>@Model.testimonial.Message</p>
+                @Html.ActionLink("View More", "Index", "Testimonials")
             </div>
         </div>
     
