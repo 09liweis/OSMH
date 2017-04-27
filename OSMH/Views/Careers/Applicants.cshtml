@@ -51,7 +51,6 @@
             <th>Full Name</th>
             <th>Email</th>.
             <th>Resume</th>
-            <th>Action Completed</th>
         </tr>
 
 
@@ -66,9 +65,6 @@
              </td>
              <td>
                  @Html.ActionLink("Download", "Download", new { id = Model.Id, name = item.Resume })       
-             </td>
-             <td>
-                 @Html.DisplayFor(modelItem => item.Action_Completed)
              </td>
          </tr>
         }
