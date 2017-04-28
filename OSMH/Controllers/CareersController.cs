@@ -78,6 +78,40 @@ namespace OSMH.Controllers
             return View(job);
         }    
 
+        public ActionResult EditApplicant(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Applicants");
+            }
+            Applicant applicant = db.Applicants.Find(id);
+            if (applicant == null)
+            {
+                return RedirectToAction("Applicants");
+            }
+
+            ViewBag.Job_Id = new SelectList(db.Jobs, "Id", "Job_Title", applicant.Job_Id);
+            return View(applicant);
+        }
+
+        // POST: Applicants/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditApplicant([Bind(Include = "Id,Full_Name,Applied_Date,Email,Resume,Action_Completed,Job_Id")] Applicant applicant)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(applicant).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Admin");
+            }
+            ViewBag.Job_Id = new SelectList(db.Jobs, "Id", "Job_Title", applicant.Job_Id);
+            return View(applicant);
+        }    
+
+
         public ActionResult Download(string name)
         {
             string fileName = name;

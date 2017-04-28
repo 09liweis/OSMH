@@ -298,6 +298,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AcceptedPayment.cs" />
     <Compile Include="Models\Alert.cs" />
     <Compile Include="Models\Departments.cs" />
     <Compile Include="Models\AcceptedDonations.cs" />
@@ -447,6 +448,15 @@
     <Content Include="Views\Payments\Edit.cshtml" />
     <Content Include="Views\Payments\Index.cshtml" />
     <Content Include="Views\Payments\Admin.cshtml" />
+    <Content Include="Views\Payments\Payment.cshtml" />
+    <Content Include="Views\Payments\ConfirmPayment.cshtml" />
+    <Content Include="Views\Careers\EditApplicant.cshtml" />
+    <Content Include="Views\Applicants\Create.cshtml" />
+    <Content Include="Views\Applicants\Delete.cshtml" />
+    <Content Include="Views\Applicants\Details.cshtml" />
+    <Content Include="Views\Applicants\Edit.cshtml" />
+    <Content Include="Views\Applicants\Index.cshtml" />
+    <Content Include="Views\Payments\ConfirmedPayment.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

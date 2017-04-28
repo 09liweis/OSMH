@@ -7,12 +7,12 @@ using System.Web;
 
 namespace OSMH.Models
 {
-    public partial class AcceptedDonations
+    public partial class AcceptedPayment
     {
         [Key]
-        [Display(Name = "Donation Amount")]
+        [Display(Name = "Payment Amount")]
         [DataType(DataType.Currency)]
-        public decimal DonationAmount { get; set; }
+        public decimal PaymentAmount { get; set; }
 
         [Display(Name = "CVC Code")]
         [DataType(DataType.Text)]
@@ -38,7 +38,7 @@ namespace OSMH.Models
         [DataType(DataType.Text)]
         public string Currency { get; set; }
 
-        public int DonorId { get; set; }
-        public int PaymentId { get; internal set; }
+        public int PatientId { get; set; }
+
     }
 }

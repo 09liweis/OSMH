@@ -52,5 +52,7 @@ namespace OSMH.Models
 			modelBuilder.Entity<SuggestionUpvote>().HasRequired(s => s.Suggestion).WithMany(s => s.SuggestionUpvotes).HasForeignKey(s => s.SuggestionId);
 			modelBuilder.Entity<StaticPage>().HasRequired(u => u.User);
         }
-	}
+
+        public System.Data.Entity.DbSet<OSMH.Models.AcceptedPayment> AcceptedPayments { get; set; }
+    }
 }
