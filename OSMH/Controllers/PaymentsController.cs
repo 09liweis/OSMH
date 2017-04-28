@@ -140,17 +140,27 @@ namespace OSMH.Controllers
             base.Dispose(disposing);
         }
 
+        public ActionResult ConfirmedPayment()
+        {
+            return View();
+        }
+    
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ConfirmPayment(Payment payment)
+        public ActionResult ConfirmedPayment(Payment payment)
         {
-            if (ModelState.IsValid)
-            {
-                return View("Payment", new AcceptedPayment());
-            }
+            /*          if (ModelState.IsValid)
+                      {
+                          int patientid = Convert.ToInt32(Session["patientId"]);
 
-            return View(payment);
+                          return View("Payment", new AcceptedPayment{ PatientId = patientid});
+                      } */
+
+            int patientid = Convert.ToInt32(Session["patientId"]);
+
+            return View("Payment", new AcceptedPayment { PatientId = patientid });
         }
+
         /* follow tutorial from cmatskas.com/processing-payments-on-your-site-using-stripe-and-net/ */
 
         [HttpPost]

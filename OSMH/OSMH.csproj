@@ -414,11 +414,6 @@
     <Content Include="Views\StaffSuggestion\_Menu.cshtml" />
     <Content Include="Views\StaffSuggestion\_EditComment.cshtml" />
     <Content Include="Views\StaffSuggestion\_CreateComment.cshtml" />
-    <Content Include="Views\Applicants\Create.cshtml" />
-    <Content Include="Views\Applicants\Delete.cshtml" />
-    <Content Include="Views\Applicants\Details.cshtml" />
-    <Content Include="Views\Applicants\Edit.cshtml" />
-    <Content Include="Views\Applicants\Index.cshtml" />
     <Content Include="Views\Careers\Create.cshtml" />
     <Content Include="Views\Careers\Delete.cshtml" />
     <Content Include="Views\Careers\Details.cshtml" />
@@ -443,6 +438,13 @@
     <Content Include="Views\Payments\Admin.cshtml" />
     <Content Include="Views\Payments\Payment.cshtml" />
     <Content Include="Views\Payments\ConfirmPayment.cshtml" />
+    <Content Include="Views\Careers\EditApplicant.cshtml" />
+    <Content Include="Views\Applicants\Create.cshtml" />
+    <Content Include="Views\Applicants\Delete.cshtml" />
+    <Content Include="Views\Applicants\Details.cshtml" />
+    <Content Include="Views\Applicants\Edit.cshtml" />
+    <Content Include="Views\Applicants\Index.cshtml" />
+    <Content Include="Views\Payments\ConfirmedPayment.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
