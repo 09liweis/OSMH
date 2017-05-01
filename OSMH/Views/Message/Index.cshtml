@@ -1,25 +1,17 @@
 ﻿@model IEnumerable<OSMH.Models.Message>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Messages";
 }
 
 <h2>Leave Message</h2>
-<form action="/Message/Create" method="post">
-    @Html.AntiForgeryToken()
-    <div class="form-group">
-        <label>Title</label>
-        <input type="text" class="form-control" id="title" placeholder="Title">
-    </div>
-    <div class="form-group">
-        <label>Message</label>
-        <input type="text" class="form-control" id="msg" placeholder="Message">
-    </div>
-
-    <button type="submit" class="btn btn-default">Submit</button>
-</form>
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-success" role="alert">@ViewBag.Message</div>
+}
 
     <p>
         @Html.ActionLink("Create New", "Create")
     </p>
+
     
