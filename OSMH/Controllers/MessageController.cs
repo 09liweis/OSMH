@@ -19,8 +19,11 @@ namespace OSMH.Controllers
         public ActionResult Index()
         {
 			List<Message> Messages = db.Messages.ToList();
-
-			return View(Messages);
+            if (TempData["Message"] != null)
+            {
+                ViewBag.Message = TempData["Message"];
+            }
+            return View(Messages);
         }
         // GET: Message/Details
         
@@ -43,6 +46,7 @@ namespace OSMH.Controllers
 
 
         // GET: Message/Create
+        [Authorize(Roles = "admin")]
         public ActionResult Admin()
         {
             return View(db.Messages.ToList());
@@ -61,6 +65,7 @@ namespace OSMH.Controllers
             {
                 db.Messages.Add(msg);
                 db.SaveChanges();
+                TempData["Message"] = "Your msg has been sent to admin.";
                 return RedirectToAction("Index");
             }
 
@@ -69,28 +74,38 @@ namespace OSMH.Controllers
 
 
         // GET: Message/Edit/5
-        public ActionResult Edit(int id)
+        [Authorize(Roles = "admin")]
+        public ActionResult Edit(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Message msg = db.Messages.Find(id);
+            if (msg == null)
+            {
+                return HttpNotFound();
+            }
+            return View(msg);
         }
 
-        // POST: Message/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
+        // POST: Testimonial/Edit/5
 
-                return RedirectToAction("Admin");
-            }
-            catch
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Id,Title,YourMessage")] Message msg)
+        {
+            if (ModelState.IsValid)
             {
-                return View();
+                db.Entry(msg).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Admin", "Messages");
             }
+            return View(msg);
         }
 
         // GET: Message/Delete/5
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -113,7 +128,7 @@ namespace OSMH.Controllers
             Message msg = db.Messages.Find(id);
             db.Messages.Remove(msg);
             db.SaveChanges();
-            return RedirectToAction("Admin");
+            return RedirectToAction("Admin", "Messages");
         }
     }
 }
