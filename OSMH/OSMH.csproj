@@ -461,6 +461,10 @@
     <Content Include="Views\Payments\ConfirmedPayment.cshtml" />
     <Content Include="Views\FAQS\Index.cshtml" />
     <Content Include="Views\FAQS\Create.cshtml" />
+    <Content Include="Views\FAQS\Edit.cshtml" />
+    <Content Include="Views\FAQS\Delete.cshtml" />
+    <Content Include="Views\FAQS\Details.cshtml" />
+    <Content Include="Views\FAQS\Admin.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

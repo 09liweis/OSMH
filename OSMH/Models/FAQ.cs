@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OSMH.Models
 {
+    [Table("FAQ")]
     public class FAQ
     {
         public int Id { get; set; }
