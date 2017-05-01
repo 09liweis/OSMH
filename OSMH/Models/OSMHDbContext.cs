@@ -32,6 +32,7 @@ namespace OSMH.Models
 		public DbSet<StaticPage> StaticPages { get; set; }
         public DbSet<Donations> Donations { get; set; }
         public DbSet<Payment> Payments { get; set; }
+        public DbSet<FAQ> FAQs { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

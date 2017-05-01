@@ -281,6 +281,7 @@
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\DonationsController.cs" />
+    <Compile Include="Controllers\FAQSController.cs" />
     <Compile Include="Controllers\Helper\ISuggestionController.cs" />
     <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -302,6 +303,7 @@
     <Compile Include="Models\Alert.cs" />
     <Compile Include="Models\Departments.cs" />
     <Compile Include="Models\AcceptedDonations.cs" />
+    <Compile Include="Models\FAQ.cs" />
     <Compile Include="Models\helper\AdminIndexDataView.cs" />
     <Compile Include="Models\helper\MenuLink.cs" />
     <Compile Include="Models\helper\MenuLinksGroup.cs" />
@@ -457,6 +459,8 @@
     <Content Include="Views\Applicants\Edit.cshtml" />
     <Content Include="Views\Applicants\Index.cshtml" />
     <Content Include="Views\Payments\ConfirmedPayment.cshtml" />
+    <Content Include="Views\FAQS\Index.cshtml" />
+    <Content Include="Views\FAQS\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -466,6 +470,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Resumes\" />
+    <Folder Include="Views\FAQ\" />
     <Folder Include="Views\Schedules\" />
   </ItemGroup>
   <ItemGroup>
