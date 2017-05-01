@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using OSMH.Models;
+using Stripe;
 
 namespace OSMH.Controllers
 {
@@ -17,17 +18,11 @@ namespace OSMH.Controllers
         // GET: Payments
         public ActionResult Index()
         {
-            return View();
-        }
+            var PatientId = Convert.ToInt32(Session["patientId"]);
 
-        public ActionResult Payments(string FirstName, string LastName)
-        {
-            var query = from a in db.users
-                        where a.LastName.Contains(LastName) & a.FirstName.Contains(FirstName)
-                        select a;
+            List<Payment> payment = db.Payments.Where(i => i.Patient_Id == PatientId && i.Paid_In_Full == false).ToList();
 
-            var item = query.FirstOrDefault();
-             return View(item);    
+            return View(payment);
         }
 
         // GET: ADMIN - Payments List
@@ -143,6 +138,84 @@ namespace OSMH.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult ConfirmedPayment()
+        {
+            return View();
+        }
+    
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ConfirmedPayment(Payment payment)
+        {
+            /*          if (ModelState.IsValid)
+                      {
+                          int patientid = Convert.ToInt32(Session["patientId"]);
+
+                          return View("Payment", new AcceptedPayment{ PatientId = patientid});
+                      } */
+
+            int patientid = Convert.ToInt32(Session["patientId"]);
+
+            return View("Payment", new AcceptedPayment { PatientId = patientid });
+        }
+
+        /* follow tutorial from cmatskas.com/processing-payments-on-your-site-using-stripe-and-net/ */
+
+        [HttpPost]
+        public ActionResult Payment(AcceptedPayment model)
+        {
+            if (ModelState.IsValid)
+            {
+                var token = GetTokenId(model);
+                var chargeId = ChargeCustomer(model.PaymentAmount, token);
+                var payment = db.Payments.Single(d => d.Patient_Id == model.PatientId);
+                payment.Amount_Paid = decimal.Parse(model.PaymentAmount.ToString());
+                db.Entry(payment).State = EntityState.Modified;
+                db.SaveChanges();
+
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View(model);
+        }
+
+        private static string GetTokenId(AcceptedPayment model)
+        {
+            var myToken = new StripeTokenCreateOptions
+            {
+                Card = new StripeCreditCardOptions
+                {
+                    Cvc = model.CardCvc,
+                    ExpirationMonth = model.CardExpirationMonth.ToString(),
+                    ExpirationYear = model.CardExpirationYear.ToString(),
+                    Currency = model.Currency,
+                    Number = model.CardNumber,
+                    Name = model.CardName
+                }
+            };
+
+            var tokenService = new StripeTokenService();
+            var stripeToken = tokenService.Create(myToken);
+
+            return stripeToken.Id;
+        }
+
+        private static string ChargeCustomer(decimal price, string tokenId)
+        {
+            var myCharge = new StripeChargeCreateOptions
+            {
+                Amount = Convert.ToInt32(price * 100),
+                Currency = "cad",
+                Description = "OSMH material payment.",
+                SourceTokenOrExistingSourceId = tokenId //check if source token is right
+            };
+
+            var chargeService = new StripeChargeService();
+            var stripeCharge = chargeService.Create(myCharge);
+
+            return stripeCharge.Id;
         }
     }
 }

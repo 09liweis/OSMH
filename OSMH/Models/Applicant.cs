@@ -27,6 +27,7 @@ namespace OSMH.Models
         public string Email { get; set; }
         public string Resume { get; set; }
         public string Action_Completed { get; set; }
+        [Display(Name ="Job Type")]
         public int Job_Id { get; set; }
 
         [ForeignKey("Job_Id")]

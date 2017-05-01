@@ -128,7 +128,7 @@ namespace OSMH.Controllers
             Message msg = db.Messages.Find(id);
             db.Messages.Remove(msg);
             db.SaveChanges();
-            return RedirectToAction("Admin", "Messages");
+            return RedirectToAction("Admin");
         }
     }
 }
