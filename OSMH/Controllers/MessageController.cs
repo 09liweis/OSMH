@@ -99,7 +99,7 @@ namespace OSMH.Controllers
             {
                 db.Entry(msg).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Admin", "Messages");
+                return RedirectToAction("Admin");
             }
             return View(msg);
         }
